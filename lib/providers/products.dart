@@ -1,7 +1,8 @@
-//File Import
-import './meal.dart';
+import 'package:flutter/material.dart';
 
-const DUMMY_MEALS = const [
+import 'meal.dart';
+class Products with ChangeNotifier {
+  List<Meal> _items = [
   Meal(
     id: 'm1',
     categories: [
@@ -173,7 +174,7 @@ const DUMMY_MEALS = const [
       'c6',
       'c10',
     ],
-    title: 'Delicious Orange Mousse',
+    title: 'Delicious Mousse',
     affordability: Affordability.Affordable,
     complexity: Complexity.Hard,
     imageUrl:
@@ -417,3 +418,29 @@ const DUMMY_MEALS = const [
     isLactoseFree: true,
   ),
 ];
+
+  var showFavoritesOnly = false;
+
+  List<Meal> get items {
+    if (showFavoritesOnly) {
+      return _items.where((prodItem) => prodItem.isFav).toList();
+    }
+
+    return [..._items];
+  }
+
+  List<Meal> get favortieItems {
+    return _items.where((mealitem) => mealitem.isFav).toList();
+  }
+
+  void addProduct() {
+    //_items.add(value);
+    notifyListeners();
+  }
+
+  Meal findById (String id) {
+    return _items.firstWhere((meal) => meal.id == id);
+
+  }
+
+}
