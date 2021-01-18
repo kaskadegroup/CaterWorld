@@ -3,13 +3,11 @@ import 'package:provider/provider.dart';
 
 import '../providers/meal.dart';
 import '../models/meal_item.dart';
-import '../providers/products.dart';
 
 class LikesScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final productsData = Provider.of<Products>(context);
-    final favItemList = productsData.favortieItems;
+    final favItemList = [];
     if (favItemList.isEmpty) {
       return Center(
         child: Text("You have no favorites"),
