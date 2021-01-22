@@ -42,6 +42,7 @@ class _AddDishFormState extends State<AddDishForm> {
       _formKey.currentState.save();
       final user = await FirebaseAuth.instance.currentUser();
       final userData = await Firestore.instance.collection('users').document(user.uid).get();
+      DocumentReference documentReference = Firestore.instance.collection('dish_info').document();
       // final dishId = FirebaseFirestore.instance.collection('dish_info').doc().id;
       Firestore.instance.collection('dish_info').add({
         'dish_cat': _dishCuisine,
@@ -50,6 +51,8 @@ class _AddDishFormState extends State<AddDishForm> {
         'dish_story': _dishStory,
         'userId': user.uid,
         'username': userData.data['username'],
+
+        'dishId': documentReference.documentID,
         'Ingredients': _dishIngredients,
         'isVeg': isVeg
         // 'dish_id': dishId,
