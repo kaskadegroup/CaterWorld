@@ -18,7 +18,6 @@ class DishInfo extends StatelessWidget {
             return Center(child: CircularProgressIndicator());
           }
           final dishInfo = dishInfoSnapshot.data.documents;
-          print(dishInfo[0]['Ingredients']);
           return ListView.builder(
               itemCount: dishInfo.length,
               itemBuilder: (ctx, index) => MealItem(
