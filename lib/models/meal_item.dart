@@ -8,12 +8,11 @@ import 'package:provider/provider.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
-
 //File Import
 import '../screens/dish_view_screen.dart';
 import '../providers/meal.dart';
 
-class MealItem extends StatelessWidget {
+class MealItem extends StatefulWidget {
   // final String id;
   final String title;
   final String cuisine;
@@ -35,6 +34,11 @@ class MealItem extends StatelessWidget {
     this.dishId,
   });
 
+  @override
+  _MealItemState createState() => _MealItemState();
+}
+
+class _MealItemState extends State<MealItem> {
   final String assetName = 'assets/icons/Non-Veg.svg';
 
   final String favIcon = 'assets/icons/Heartv2.svg';
@@ -43,27 +47,23 @@ class MealItem extends StatelessWidget {
 
   final String likedbuttom = 'assets/icons/liked.svg';
 
-  void selectMeal(BuildContext context) {
-    Navigator.push(
+  bool isFavorite = false;
+
+  void selectMeal(BuildContext context) async {
+    final favResult = await Navigator.push(
         context,
         new MaterialPageRoute(
             builder: (context) => MealsScreen(
-                  title: title,
-                  cuisine: cuisine,
-                  dishStory: dishStory,
+                  title: widget.title,
+                  cuisine: widget.cuisine,
+                  dishStory: widget.dishStory,
+                  dishId: widget.dishId,
+                  isFavorite: isFavorite,
                 )));
 
-
-  }
-
-  void likedThis() async{
-    final user = await FirebaseAuth.instance.currentUser();
-    final userData = await Firestore.instance.collection('users').document(user.uid).get();
-    Firestore.instance.collection('liked_dish').add({
-      'userId': user.uid,
-      'username': userData.data['username'],
-
-  }); 
+    setState(() {
+      isFavorite = favResult;
+    });
   }
 
   @override
@@ -110,7 +110,7 @@ class MealItem extends StatelessWidget {
                   Row(
                     children: [
                       Text(
-                        title,
+                        widget.title,
                         style: TextStyle(
                           fontSize: 21,
                           fontFamily: '.SF Pro Display',
@@ -123,7 +123,7 @@ class MealItem extends StatelessWidget {
 
                       //Cuisine
                       Text(
-                        cuisine,
+                        widget.cuisine,
                         style: TextStyle(
                           fontSize: 21,
                           fontFamily: '.SF Pro Display',
@@ -144,16 +144,15 @@ class MealItem extends StatelessWidget {
                       Padding(
                         padding: EdgeInsets.only(right: 5),
                       ),
-                      IconButton(
-                          
-                          icon: SvgPicture.asset(favIcon),
-                          
-                          onPressed: () => null,
-                          
-                          // {
-                          //   meals.toggleFavorite(),
-                          // },
-                          ),
+                      !isFavorite
+                          ? SvgPicture.asset(
+                              favIcon,
+                              height: 35,
+                            )
+                          : SvgPicture.asset(
+                              likedbuttom,
+                              height: 35,
+                            ),
                     ],
                   ),
                 ],

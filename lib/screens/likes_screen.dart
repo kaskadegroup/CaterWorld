@@ -1,35 +1,46 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+// import 'package:provider/provider.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
-import '../providers/meal.dart';
+// import '../providers/meal.dart';
 import '../models/meal_item.dart';
 
-class LikesScreen extends StatelessWidget {
+class LikesScreen extends StatefulWidget {
+  @override
+  _LikesScreenState createState() => _LikesScreenState();
+}
+
+class _LikesScreenState extends State<LikesScreen> {
+  Future getFavoriteDishes() async {
+    final user = await FirebaseAuth.instance.currentUser();
+    final userData =
+        await Firestore.instance.collection('users').document(user.uid).get();
+    var _allFavorites = userData.data["data"];
+    var results = Firestore.instance
+        .collection('dish_info')
+        .where("dishId", whereIn: _allFavorites)
+        .getDocuments();
+    return results;
+  }
+
   @override
   Widget build(BuildContext context) {
-    final favItemList = [];
-    if (favItemList.isEmpty) {
-      return Center(
-        child: Text("You have no favorites"),
-      );
-    } else {
-      //print(favItemList.length);
-      //print(favItemList[0].id);
-      //print(favItemList[0].title);
-      return ListView.builder(
-          itemCount: favItemList.length,
-          itemBuilder: (BuildContext context, int index) {
-            //return ChangeNotifierProvider.value(
-            //value: favItemList[index],
-            return MealItem(
-              //d: likedMeals[index].id,
-              title: "placeholder",
-              cuisine: "all",
-              imageUrl: 'none',
-              //isFavorite: widget.isMealFavorite,
-              //toggleFovorite: widget.toggleFavorite,
-            );
-          });
-    }
+    return FutureBuilder(
+        future: getFavoriteDishes(),
+        builder: (ctx, dishInfoSnapshot) {
+          if (dishInfoSnapshot.hasData) {
+            final dishInfo = dishInfoSnapshot.data.documents;
+            return ListView.builder(
+                itemCount: dishInfo.length,
+                itemBuilder: (ctx, index) => MealItem(
+                      title: dishInfo[index]['dish_name'],
+                      cuisine: dishInfo[index]['dish_cat'],
+                      dishStory: dishInfo[index]['dish_story'],
+                      dishId: dishInfo[index]['dishId'],
+                    ));
+          }
+          return Center(child: Text("You have no Favorites"));
+        });
   }
 }

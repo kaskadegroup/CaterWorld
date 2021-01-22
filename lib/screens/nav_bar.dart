@@ -36,9 +36,6 @@ class _NavBarState extends State<NavBar> {
       {
         'page': DishInfo(
 
-          
-          //widget.toggleFavorite,
-          //widget.isMealFavorite,
         ),
         'title': 'Home',
       },

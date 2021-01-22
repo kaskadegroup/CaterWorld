@@ -1,29 +1,71 @@
 //Package Import
 import 'dart:ui';
 import 'package:flutter_svg/svg.dart';
-//import 'package:image_picker/image_picker.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 
-class MealsScreen extends StatelessWidget {
+class MealsScreen extends StatefulWidget {
   static const routeName = '/views-screen';
 
   final Function toggleFavorite;
-  final Function isFavorite;
 
-  final image1 = 'assets/images/Patriotic-Charcuterie-Board-RC.png';
-  final String nonVeg = 'assets/icons/Non-Veg.svg';
-  final String likeButton = 'assets/icons/Tile Like Button.svg';
   final String title;
   final String cuisine;
   final String dishStory;
+  final String dishId;
+  bool isFavorite;
 
-
-  MealsScreen({Key key, this.title,this.cuisine,this.dishStory, this.toggleFavorite, this.isFavorite})
+  MealsScreen(
+      {Key key,
+      this.title,
+      this.cuisine,
+      this.dishStory,
+      this.dishId,
+      this.toggleFavorite,
+      this.isFavorite})
       : super(key: key);
 
-  //_takePictur() {}
+  @override
+  _MealsScreenState createState() => _MealsScreenState();
+}
+
+class _MealsScreenState extends State<MealsScreen> {
+  final image1 = 'assets/images/Patriotic-Charcuterie-Board-RC.png';
+
+  final String nonVeg = 'assets/icons/Non-Veg.svg';
+
+  final String favIcon = 'assets/icons/Heartv2.svg';
+
+  final String likedbuttom = 'assets/icons/liked.svg';
+
+  // bool isFavorite = false;
+
+  void _likedThis() async {
+    final user = await FirebaseAuth.instance.currentUser();
+    final userData = Firestore.instance.collection('users').document(user.uid);
+    if (widget.isFavorite == false) {
+      userData.updateData({
+        "data": FieldValue.arrayUnion([widget.dishId])
+      });
+
+      setState(() {
+        widget.isFavorite = true;
+      });
+    } else {
+      userData.updateData({
+        "data": FieldValue.arrayRemove([widget.dishId])
+      });
+
+      setState(() {
+        widget.isFavorite = false;
+      });
+    }
+  }
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -31,10 +73,10 @@ class MealsScreen extends StatelessWidget {
       appBar: AppBar(
         leading: IconButton(
           icon: Icon(Icons.arrow_back, color: Colors.black),
-          onPressed: () => Navigator.of(context).pop(),
+          onPressed: () => Navigator.of(context).pop(widget.isFavorite),
         ),
         title: Text(
-          title,
+          widget.title,
           style: TextStyle(
             fontSize: 24,
             fontFamily: '.SF Pro Display',
@@ -129,7 +171,7 @@ class MealsScreen extends StatelessWidget {
                   Row(
                     children: [
                       Text(
-                        title,
+                        widget.title,
                         style: TextStyle(
                           fontSize: 24,
                           fontFamily: '.SF Pro Display',
@@ -141,7 +183,7 @@ class MealsScreen extends StatelessWidget {
                         padding: EdgeInsets.only(right: 20),
                       ),
                       Text(
-                        cuisine,
+                        widget.cuisine,
                         style: TextStyle(
                           fontSize: 24,
                           fontFamily: '.SF Pro Display',
@@ -159,11 +201,17 @@ class MealsScreen extends StatelessWidget {
                       Padding(
                         padding: EdgeInsets.only(right: 10),
                       ),
-                      //FlatButton.icon(onPressed: (null), icon:Icon(Icons.camera), label: Text("cam")),
-
-                      SvgPicture.asset(
-                        likeButton,
-                        height: 40,
+                      IconButton(
+                        icon: !widget.isFavorite
+                            ? SvgPicture.asset(
+                                favIcon,
+                                height: 35,
+                              )
+                            : SvgPicture.asset(
+                                likedbuttom,
+                                height: 35,
+                              ),
+                        onPressed: _likedThis,
                       ),
                       Padding(
                         padding: EdgeInsets.only(right: 10),
@@ -195,7 +243,7 @@ class MealsScreen extends StatelessWidget {
                     padding: const EdgeInsets.only(bottom: 5),
                   ),
                   Text(
-                      dishStory,
+                    widget.dishStory,
                     style: TextStyle(
                       fontSize: 17,
                       fontFamily: '.SF Pro Display',
