@@ -20,16 +20,20 @@ class _AddDishFormState extends State<AddDishForm> {
   final _formKey = GlobalKey<FormState>();
   String _dishName;
   String _dishCuisine;
-  String _dishIngredients;
+  List _dishIngredients;
   String _dishAllergens;
   String _dishStory;
   String userId;
+  bool isVeg=false;
 
   void uploadImages(BuildContext context) {
     Navigator.push(
         context, new MaterialPageRoute(builder: (context) => AddImagae()));
   }
 
+  List convertIngredientsList(value){
+    return value.split(",");
+  }
   void _trySubmit() async {
     final isValid = _formKey.currentState.validate();
     FocusScope.of(context).unfocus();
@@ -47,7 +51,11 @@ class _AddDishFormState extends State<AddDishForm> {
         'dish_story': _dishStory,
         'userId': user.uid,
         'username': userData.data['username'],
+
         'dishId': documentReference.documentID,
+        'Ingredients': _dishIngredients,
+        'isVeg': isVeg
+        // 'dish_id': dishId,
         //'userImage': userData.data()['image_url']
       });
     }
@@ -59,9 +67,6 @@ class _AddDishFormState extends State<AddDishForm> {
         key: _formKey,
         child: Column(
           children: [
-            Text(
-              "Name of the Dish, Change yo",
-            ),
             TextFormField(
               key: ValueKey('Name'),
               validator: (value) {
@@ -102,10 +107,10 @@ class _AddDishFormState extends State<AddDishForm> {
                 }
                 return null;
               },
-              decoration: InputDecoration(labelText: 'Ingredients'),
+              decoration: InputDecoration(labelText: 'Add comma separated Ingredients'),
               textInputAction: TextInputAction.next,
               onSaved: (value) {
-                _dishIngredients = value;
+                _dishIngredients = convertIngredientsList(value);
               },
               //focusNode: _priceNode,
             ),
@@ -124,6 +129,13 @@ class _AddDishFormState extends State<AddDishForm> {
                 _dishAllergens = value;
               },
             ),
+            CheckboxListTile(title: const Text('Is this dish Vegetarian ?'),
+                value: isVeg,
+                onChanged: (val){
+                  setState(() {
+                    isVeg = val;
+                  });
+                }),
             TextFormField(
               key: ValueKey('Story'),
               validator: (value) {

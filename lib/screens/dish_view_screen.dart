@@ -17,6 +17,8 @@ class MealsScreen extends StatefulWidget {
   final String dishStory;
   final String dishId;
   bool isFavorite;
+  final List ingredients;
+  final bool isVeg;
 
   MealsScreen(
       {Key key,
@@ -25,7 +27,10 @@ class MealsScreen extends StatefulWidget {
       this.dishStory,
       this.dishId,
       this.toggleFavorite,
-      this.isFavorite})
+      this.isFavorite,
+      this.ingredients,
+      this.isVeg,})
+
       : super(key: key);
 
   @override
@@ -67,6 +72,13 @@ class _MealsScreenState extends State<MealsScreen> {
 
 
 
+  String get_ingredients (List ingredients){
+    String ingredients_str = '';
+    for (var i = 0 ; i < ingredients.length; i++){
+      ingredients_str += '>' + ingredients[i] + '\n';
+    }
+    return ingredients_str;
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -230,6 +242,22 @@ class _MealsScreenState extends State<MealsScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  Text("Ingredients",
+                    style: TextStyle(
+                      fontSize: 17,
+                      fontFamily: '.SF Pro Display',
+                      fontWeight: FontWeight.w500,
+                      color: Color.fromRGBO(120, 115, 115, 1),
+                    ),
+                  ),
+                  Text(get_ingredients(ingredients),
+                  style: TextStyle(
+                    fontSize: 17,
+                    fontFamily: '.SF Pro Display',
+                    fontWeight: FontWeight.w500,
+                    color: Color.fromRGBO(120, 115, 115, 1),
+                  ),
+                  ),
                   Text(
                     "Story Behind This Dish",
                     style: TextStyle(
