@@ -250,7 +250,7 @@ class _MealsScreenState extends State<MealsScreen> {
                       color: Color.fromRGBO(120, 115, 115, 1),
                     ),
                   ),
-                  Text(get_ingredients(ingredients),
+                  Text(get_ingredients(widget.ingredients),
                   style: TextStyle(
                     fontSize: 17,
                     fontFamily: '.SF Pro Display',

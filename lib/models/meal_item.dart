@@ -150,7 +150,7 @@ class _MealItemState extends State<MealItem> {
                       ),
 
                       //Non-Veg Icon
-                      isVeg ?  SvgPicture.asset(
+                      widget.isVeg ?  SvgPicture.asset(
                         vegIcon,
                         height: 25,
                       ):
