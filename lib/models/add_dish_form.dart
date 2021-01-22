@@ -24,6 +24,7 @@ class _AddDishFormState extends State<AddDishForm> {
   String _dishAllergens;
   String _dishStory;
   String userId;
+  bool isVeg=false;
 
   void uploadImages(BuildContext context) {
     Navigator.push(
@@ -49,7 +50,8 @@ class _AddDishFormState extends State<AddDishForm> {
         'dish_story': _dishStory,
         'userId': user.uid,
         'username': userData.data['username'],
-        'Ingredients': _dishIngredients
+        'Ingredients': _dishIngredients,
+        'isVeg': isVeg
         // 'dish_id': dishId,
         //'userImage': userData.data()['image_url']
       });
@@ -62,9 +64,6 @@ class _AddDishFormState extends State<AddDishForm> {
         key: _formKey,
         child: Column(
           children: [
-            Text(
-              "Name of the Dish, Change yo",
-            ),
             TextFormField(
               key: ValueKey('Name'),
               validator: (value) {
@@ -127,6 +126,13 @@ class _AddDishFormState extends State<AddDishForm> {
                 _dishAllergens = value;
               },
             ),
+            CheckboxListTile(title: const Text('Is this dish Vegetarian ?'),
+                value: isVeg,
+                onChanged: (val){
+                  setState(() {
+                    isVeg = val;
+                  });
+                }),
             TextFormField(
               key: ValueKey('Story'),
               validator: (value) {
