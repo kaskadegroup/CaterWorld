@@ -24,7 +24,11 @@ class DishInfo extends StatelessWidget {
                     title: dishInfo[index]['dish_name'],
                     cuisine: dishInfo[index]['dish_cat'],
                     dishStory: dishInfo[index]['dish_story'],
+                    imageUrl: null,
+                    toggleFovorite: null,
+                    isMealFavorite: null,
                     dishId: null,
+                    ingredients: dishInfo[index]['Ingredients'],
                   ));
         });
   }
