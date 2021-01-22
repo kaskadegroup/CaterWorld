@@ -20,7 +20,7 @@ class _AddDishFormState extends State<AddDishForm> {
   final _formKey = GlobalKey<FormState>();
   String _dishName;
   String _dishCuisine;
-  String _dishIngredients;
+  List _dishIngredients;
   String _dishAllergens;
   String _dishStory;
   String userId;
@@ -30,6 +30,9 @@ class _AddDishFormState extends State<AddDishForm> {
         context, new MaterialPageRoute(builder: (context) => AddImagae()));
   }
 
+  List convertIngredientsList(value){
+    return value.split(",");
+  }
   void _trySubmit() async {
     final isValid = _formKey.currentState.validate();
     FocusScope.of(context).unfocus();
@@ -46,6 +49,7 @@ class _AddDishFormState extends State<AddDishForm> {
         'dish_story': _dishStory,
         'userId': user.uid,
         'username': userData.data['username'],
+        'Ingredients': _dishIngredients
         // 'dish_id': dishId,
         //'userImage': userData.data()['image_url']
       });
@@ -101,10 +105,10 @@ class _AddDishFormState extends State<AddDishForm> {
                 }
                 return null;
               },
-              decoration: InputDecoration(labelText: 'Ingredients'),
+              decoration: InputDecoration(labelText: 'Add comma separated Ingredients'),
               textInputAction: TextInputAction.next,
               onSaved: (value) {
-                _dishIngredients = value;
+                _dishIngredients = convertIngredientsList(value);
               },
               //focusNode: _priceNode,
             ),
