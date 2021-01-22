@@ -7,6 +7,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 //File imports
 
 import '../screens/add_images.dart';
+import '../screens/multi_image.dart';
 
 class AddDishForm extends StatefulWidget {
   @override
@@ -25,11 +26,6 @@ class _AddDishFormState extends State<AddDishForm> {
   String userId;
   bool isVeg = false;
 
-  void uploadImages(BuildContext context) {
-    Navigator.push(
-        context, new MaterialPageRoute(builder: (context) => AddImagae()));
-  }
-
   List convertIngredientsList(value) {
     return value.split(",");
   }
@@ -46,7 +42,7 @@ class _AddDishFormState extends State<AddDishForm> {
       DocumentReference documentReference =
           Firestore.instance.collection('dish_info').document();
       // final dishId = FirebaseFirestore.instance.collection('dish_info').doc().id;
-      Firestore.instance.collection('dish_info').add({
+      documentReference.setData({
         'dish_cat': _dishCuisine,
         'dish_name': _dishName,
         'createdAt': Timestamp.now(),
@@ -60,14 +56,25 @@ class _AddDishFormState extends State<AddDishForm> {
         // 'dish_id': dishId,
         //'userImage': userData.data()['image_url']
       });
+
+      uploadImages(context, documentReference.documentID);
     }
+  }
+
+  void uploadImages(BuildContext context, dishId) {
+    Navigator.push(
+        context,
+        new MaterialPageRoute(
+            builder: (context) => MultiPicker(
+                  dishId: dishId,
+                )));
   }
 
   Widget build(BuildContext context) {
     return Scaffold(
       body: Form(
         key: _formKey,
-        child: Column(
+        child: ListView(
           children: [
             TextFormField(
               key: ValueKey('Name'),
@@ -151,17 +158,21 @@ class _AddDishFormState extends State<AddDishForm> {
               decoration: InputDecoration(labelText: 'Story'),
               maxLines: 4,
               keyboardType: TextInputType.multiline,
+              textInputAction: TextInputAction.next,
               onSaved: (value) {
                 _dishStory = value;
               },
+
               //focusNode: _priceNode,
             ),
-            RaisedButton(
-                child: Text('Upload Images'),
-                onPressed: () => uploadImages(context))
+            // RaisedButton(
+            //   child: Text('Upload Images'),
+            //   onPressed: null,
 
-            // onPressed: () => uploadImages(context),
-            ,
+            //   // () => uploadImages(context))
+
+            //   // onPressed: () => uploadImages(context),
+            // ),
             RaisedButton(
               child: Text('Submit'),
               onPressed: _trySubmit,

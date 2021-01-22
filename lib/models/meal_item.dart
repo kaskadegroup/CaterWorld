@@ -12,44 +12,34 @@ import 'package:firebase_auth/firebase_auth.dart';
 import '../screens/dish_view_screen.dart';
 import '../providers/meal.dart';
 
-
 class MealItem extends StatefulWidget {
-
   // final String id;
   final String title;
   final String cuisine;
   final String dishStory;
-  final String imageUrl;
+  final List dishUrl;
   final String dishId;
   final List ingredients;
   final bool isVeg;
 
-  final Function toggleFovorite;
-  final Function isMealFavorite;
-
-  MealItem({
-    // @required this.id,
-    @required this.title,
-    @required this.cuisine,
-    this.dishStory,
-    this.imageUrl,
-    this.toggleFovorite,
-    this.isMealFavorite,
-    this.dishId,
-    this.ingredients,
-    this.isVeg
-  });
-
+  MealItem(
+      {
+      // @required this.id,
+      @required this.title,
+      @required this.cuisine,
+      this.dishStory,
+      this.dishUrl,
+      this.dishId,
+      this.ingredients,
+      this.isVeg});
 
   @override
   _MealItemState createState() => _MealItemState();
 }
 
 class _MealItemState extends State<MealItem> {
-
   final String nonVegIcon = 'assets/icons/Non-Veg.svg';
   final String vegIcon = 'assets/icons/Veg.svg';
-
 
   final String favIcon = 'assets/icons/Heartv2.svg';
 
@@ -64,20 +54,19 @@ class _MealItemState extends State<MealItem> {
         context,
         new MaterialPageRoute(
             builder: (context) => MealsScreen(
-
                   title: widget.title,
                   cuisine: widget.cuisine,
                   dishStory: widget.dishStory,
                   dishId: widget.dishId,
                   isFavorite: isFavorite,
                   ingredients: widget.ingredients,
-                  isVeg: widget.isVeg
+                  isVeg: widget.isVeg,
+                  dishUrl: widget.dishUrl,
                 )));
 
     setState(() {
       isFavorite = favResult;
     });
-
   }
 
   @override
@@ -150,14 +139,15 @@ class _MealItemState extends State<MealItem> {
                       ),
 
                       //Non-Veg Icon
-                      widget.isVeg ?  SvgPicture.asset(
-                        vegIcon,
-                        height: 25,
-                      ):
-                      SvgPicture.asset(
-                        nonVegIcon,
-                        height: 25,
-                      ),
+                      widget.isVeg
+                          ? SvgPicture.asset(
+                              vegIcon,
+                              height: 25,
+                            )
+                          : SvgPicture.asset(
+                              nonVegIcon,
+                              height: 25,
+                            ),
 
                       Padding(
                         padding: EdgeInsets.only(right: 5),

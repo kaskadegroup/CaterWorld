@@ -3,8 +3,6 @@ import 'package:flutter_svg/svg.dart';
 import 'package:image_picker/image_picker.dart';
 import 'dart:io';
 import 'dart:async';
-import 'package:path/path.dart' as path;
-import 'package:path_provider/path_provider.dart' as syspaths;
 import 'package:firebase_storage/firebase_storage.dart';
 
 class AddImagae extends StatefulWidget {
@@ -15,29 +13,31 @@ class AddImagae extends StatefulWidget {
 }
 
 class _AddImagaeState extends State<AddImagae> {
-  File _storedImage;
+  File _storedImage1,
+      _storedImage2,
+      _storedImage3,
+      _storedImage4,
+      _storedImage5,
+      _storedImage6;
   final addPhoto = 'assets/icons/Add Photo.svg';
+
 
   Future _takePicture() async {
     final picker = ImagePicker();
     final imageFile = await picker.getImage(
       source: ImageSource.camera,
       maxWidth: 600,
+      imageQuality: 50,
     );
     setState(() {
-      _storedImage = File(imageFile.path);
+      _storedImage1 = File(imageFile.path);
     });
-
-    final appDir = await syspaths.getApplicationDocumentsDirectory();
-
-    final fileName = path.basename(_storedImage.path);
-    final savedImage = await _storedImage.copy('${appDir.path}/$fileName');
   }
 
   Future _uploadImage() async {
     final ref =
         FirebaseStorage.instance.ref().child('dish_image').child('dish2.png');
-    await ref.putFile(_storedImage).onComplete;
+    await ref.putFile(_storedImage1).onComplete;
   }
 
   @override
@@ -69,9 +69,9 @@ class _AddImagaeState extends State<AddImagae> {
         children: <Widget>[
           Container(
             padding: const EdgeInsets.all(5),
-            child: _storedImage != null
+            child: _storedImage1 != null
                 ? Image.file(
-                    _storedImage,
+                    _storedImage1,
                     fit: BoxFit.cover,
                     width: double.infinity,
                   )
@@ -82,23 +82,68 @@ class _AddImagaeState extends State<AddImagae> {
           ),
           Container(
             padding: const EdgeInsets.all(5),
-            child: SvgPicture.asset(addPhoto),
+            child: _storedImage2 != null
+                ? Image.file(
+                    _storedImage2,
+                    fit: BoxFit.cover,
+                    width: double.infinity,
+                  )
+                : IconButton(
+                    icon: SvgPicture.asset(addPhoto),
+                    onPressed: _takePicture,
+                  ),
           ),
           Container(
             padding: const EdgeInsets.all(5),
-            child: SvgPicture.asset(addPhoto),
+            child: _storedImage3 != null
+                ? Image.file(
+                    _storedImage3,
+                    fit: BoxFit.cover,
+                    width: double.infinity,
+                  )
+                : IconButton(
+                    icon: SvgPicture.asset(addPhoto),
+                    onPressed: _takePicture,
+                  ),
           ),
           Container(
             padding: const EdgeInsets.all(5),
-            child: SvgPicture.asset(addPhoto),
+            child: _storedImage4 != null
+                ? Image.file(
+                    _storedImage4,
+                    fit: BoxFit.cover,
+                    width: double.infinity,
+                  )
+                : IconButton(
+                    icon: SvgPicture.asset(addPhoto),
+                    onPressed: _takePicture,
+                  ),
           ),
           Container(
             padding: const EdgeInsets.all(5),
-            child: SvgPicture.asset(addPhoto),
+            child: _storedImage5 != null
+                ? Image.file(
+                    _storedImage5,
+                    fit: BoxFit.cover,
+                    width: double.infinity,
+                  )
+                : IconButton(
+                    icon: SvgPicture.asset(addPhoto),
+                    onPressed: _takePicture,
+                  ),
           ),
           Container(
             padding: const EdgeInsets.all(5),
-            child: SvgPicture.asset(addPhoto),
+            child: _storedImage6 != null
+                ? Image.file(
+                    _storedImage6,
+                    fit: BoxFit.cover,
+                    width: double.infinity,
+                  )
+                : IconButton(
+                    icon: SvgPicture.asset(addPhoto),
+                    onPressed: _takePicture,
+                  ),
           ),
         ],
       ),
