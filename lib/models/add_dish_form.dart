@@ -1,4 +1,3 @@
-
 // import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
@@ -24,25 +23,28 @@ class _AddDishFormState extends State<AddDishForm> {
   String _dishAllergens;
   String _dishStory;
   String userId;
-  bool isVeg=false;
+  bool isVeg = false;
 
   void uploadImages(BuildContext context) {
     Navigator.push(
         context, new MaterialPageRoute(builder: (context) => AddImagae()));
   }
 
-  List convertIngredientsList(value){
+  List convertIngredientsList(value) {
     return value.split(",");
   }
+
   void _trySubmit() async {
     final isValid = _formKey.currentState.validate();
     FocusScope.of(context).unfocus();
 
-    if (isValid){
+    if (isValid) {
       _formKey.currentState.save();
       final user = await FirebaseAuth.instance.currentUser();
-      final userData = await Firestore.instance.collection('users').document(user.uid).get();
-      DocumentReference documentReference = Firestore.instance.collection('dish_info').document();
+      final userData =
+          await Firestore.instance.collection('users').document(user.uid).get();
+      DocumentReference documentReference =
+          Firestore.instance.collection('dish_info').document();
       // final dishId = FirebaseFirestore.instance.collection('dish_info').doc().id;
       Firestore.instance.collection('dish_info').add({
         'dish_cat': _dishCuisine,
@@ -107,7 +109,8 @@ class _AddDishFormState extends State<AddDishForm> {
                 }
                 return null;
               },
-              decoration: InputDecoration(labelText: 'Add comma separated Ingredients'),
+              decoration:
+                  InputDecoration(labelText: 'Add comma separated Ingredients'),
               textInputAction: TextInputAction.next,
               onSaved: (value) {
                 _dishIngredients = convertIngredientsList(value);
@@ -129,9 +132,10 @@ class _AddDishFormState extends State<AddDishForm> {
                 _dishAllergens = value;
               },
             ),
-            CheckboxListTile(title: const Text('Is this dish Vegetarian ?'),
+            CheckboxListTile(
+                title: const Text('Is this dish Vegetarian ?'),
                 value: isVeg,
-                onChanged: (val){
+                onChanged: (val) {
                   setState(() {
                     isVeg = val;
                   });
@@ -153,10 +157,11 @@ class _AddDishFormState extends State<AddDishForm> {
               //focusNode: _priceNode,
             ),
             RaisedButton(
-              child: Text('Upload Images'),
-              onPressed: null,
-              // onPressed: () => uploadImages(context),
-            ),
+                child: Text('Upload Images'),
+                onPressed: () => uploadImages(context))
+
+            // onPressed: () => uploadImages(context),
+            ,
             RaisedButton(
               child: Text('Submit'),
               onPressed: _trySubmit,
