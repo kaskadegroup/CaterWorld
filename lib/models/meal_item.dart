@@ -23,6 +23,7 @@ class MealItem extends StatelessWidget {
   final String imageUrl;
   final String dishId;
   final List ingredients;
+  final bool isVeg;
 
   final Function toggleFovorite;
   final Function isMealFavorite;
@@ -37,9 +38,11 @@ class MealItem extends StatelessWidget {
     this.isMealFavorite,
     this.dishId,
     this.ingredients,
+    this.isVeg
   });
 
-  final String assetName = 'assets/icons/Non-Veg.svg';
+  final String nonVegIcon = 'assets/icons/Non-Veg.svg';
+  final String vegIcon = 'assets/icons/Veg.svg';
 
   final String favIcon = 'assets/icons/Heartv2.svg';
 
@@ -56,6 +59,7 @@ class MealItem extends StatelessWidget {
                   cuisine: cuisine,
                   dishStory: dishStory,
                   ingredients: ingredients,
+                  isVeg: isVeg
                 )));
   }
 
@@ -139,8 +143,12 @@ class MealItem extends StatelessWidget {
                       ),
 
                       //Non-Veg Icon
+                      isVeg ?  SvgPicture.asset(
+                        vegIcon,
+                        height: 25,
+                      ):
                       SvgPicture.asset(
-                        assetName,
+                        nonVegIcon,
                         height: 25,
                       ),
 

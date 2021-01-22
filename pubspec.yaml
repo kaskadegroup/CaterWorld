@@ -70,6 +70,7 @@ flutter:
     - assets/icons/Add Photo.svg
     - assets/icons/facebooklogin.svg
     - assets/icons/googlelogin.svg
+    - assets/icons/Veg.svg
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
 

@@ -29,6 +29,7 @@ class DishInfo extends StatelessWidget {
                     isMealFavorite: null,
                     dishId: null,
                     ingredients: dishInfo[index]['Ingredients'],
+                    isVeg: dishInfo[index]['isVeg'],
                   ));
         });
   }

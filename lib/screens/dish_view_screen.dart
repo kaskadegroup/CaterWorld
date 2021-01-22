@@ -19,6 +19,7 @@ class MealsScreen extends StatelessWidget {
   final String cuisine;
   final String dishStory;
   final List ingredients;
+  final bool isVeg;
 
 
   MealsScreen({
@@ -28,7 +29,8 @@ class MealsScreen extends StatelessWidget {
     this.dishStory,
     this.toggleFavorite,
     this.isFavorite,
-    this.ingredients
+    this.ingredients,
+    this.isVeg,
   })
       : super(key: key);
 
