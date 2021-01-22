@@ -5,7 +5,6 @@ import 'dart:io';
 import 'dart:async';
 import 'package:path/path.dart' as path;
 import 'package:path_provider/path_provider.dart' as syspaths;
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 
 class AddImagae extends StatefulWidget {
@@ -44,6 +43,23 @@ class _AddImagaeState extends State<AddImagae> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back, color: Colors.black),
+          onPressed: () => Navigator.of(context).pop(),
+        ),
+        title: Text(
+          "Add Images",
+          style: TextStyle(
+            fontSize: 24,
+            fontFamily: '.SF Pro Display',
+            fontWeight: FontWeight.w500,
+            color: Color.fromRGBO(120, 115, 115, 1),
+          ),
+        ),
+        backgroundColor: Colors.white,
+        elevation: 0,
+      ),
       body: GridView.count(
         primary: false,
         padding: const EdgeInsets.all(15),
