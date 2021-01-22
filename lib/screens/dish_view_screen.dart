@@ -18,13 +18,29 @@ class MealsScreen extends StatelessWidget {
   final String title;
   final String cuisine;
   final String dishStory;
+  final List ingredients;
 
 
-  MealsScreen({Key key, this.title,this.cuisine,this.dishStory, this.toggleFavorite, this.isFavorite})
+  MealsScreen({
+    Key key,
+    this.title,
+    this.cuisine,
+    this.dishStory,
+    this.toggleFavorite,
+    this.isFavorite,
+    this.ingredients
+  })
       : super(key: key);
 
   //_takePictur() {}
 
+  String get_ingredients (List ingredients){
+    String ingredients_str = '';
+    for (var i = 0 ; i < ingredients.length; i++){
+      ingredients_str += '>' + ingredients[i] + '\n';
+    }
+    return ingredients_str;
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -182,6 +198,22 @@ class MealsScreen extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  Text("Ingredients",
+                    style: TextStyle(
+                      fontSize: 17,
+                      fontFamily: '.SF Pro Display',
+                      fontWeight: FontWeight.w500,
+                      color: Color.fromRGBO(120, 115, 115, 1),
+                    ),
+                  ),
+                  Text(get_ingredients(ingredients),
+                  style: TextStyle(
+                    fontSize: 17,
+                    fontFamily: '.SF Pro Display',
+                    fontWeight: FontWeight.w500,
+                    color: Color.fromRGBO(120, 115, 115, 1),
+                  ),
+                  ),
                   Text(
                     "Story Behind This Dish",
                     style: TextStyle(

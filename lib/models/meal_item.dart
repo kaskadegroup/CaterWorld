@@ -13,6 +13,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import '../screens/dish_view_screen.dart';
 import '../providers/meal.dart';
 
+// Custom Card widget to give the preivew of the dish
+
 class MealItem extends StatelessWidget {
   // final String id;
   final String title;
@@ -20,6 +22,7 @@ class MealItem extends StatelessWidget {
   final String dishStory;
   final String imageUrl;
   final String dishId;
+  final List ingredients;
 
   final Function toggleFovorite;
   final Function isMealFavorite;
@@ -33,6 +36,7 @@ class MealItem extends StatelessWidget {
     this.toggleFovorite,
     this.isMealFavorite,
     this.dishId,
+    this.ingredients,
   });
 
   final String assetName = 'assets/icons/Non-Veg.svg';
@@ -51,9 +55,8 @@ class MealItem extends StatelessWidget {
                   title: title,
                   cuisine: cuisine,
                   dishStory: dishStory,
+                  ingredients: ingredients,
                 )));
-
-
   }
 
   void likedThis() async{

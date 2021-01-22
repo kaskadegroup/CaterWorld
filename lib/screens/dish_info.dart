@@ -18,13 +18,18 @@ class DishInfo extends StatelessWidget {
             return Center(child: CircularProgressIndicator());
           }
           final dishInfo = dishInfoSnapshot.data.documents;
+          print(dishInfo[0]['Ingredients']);
           return ListView.builder(
               itemCount: dishInfo.length,
               itemBuilder: (ctx, index) => MealItem(
                     title: dishInfo[index]['dish_name'],
                     cuisine: dishInfo[index]['dish_cat'],
                     dishStory: dishInfo[index]['dish_story'],
+                    imageUrl: null,
+                    toggleFovorite: null,
+                    isMealFavorite: null,
                     dishId: null,
+                    ingredients: dishInfo[index]['Ingredients'],
                   ));
         });
   }
