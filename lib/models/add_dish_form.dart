@@ -6,7 +6,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 //File imports
 
-import '../screens/add_images.dart';
+
 import '../screens/multi_image.dart';
 
 class AddDishForm extends StatefulWidget {
