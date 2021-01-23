@@ -27,6 +27,7 @@ class DishInfo extends StatelessWidget {
                     dishUrl: dishInfo[index]['dishUrl'],
                     ingredients: dishInfo[index]['Ingredients'],
                     isVeg: dishInfo[index]['isVeg'],
+                    isFavorite: false,
                   ));
         });
   }
