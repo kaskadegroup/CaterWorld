@@ -38,6 +38,10 @@ class _LikesScreenState extends State<LikesScreen> {
                       cuisine: dishInfo[index]['dish_cat'],
                       dishStory: dishInfo[index]['dish_story'],
                       dishId: dishInfo[index]['dishId'],
+                      dishUrl:  dishInfo[index]['dishUrl'],
+                      isVeg: dishInfo[index]['isVeg'],
+                      isFavorite: true,
+                      ingredients: dishInfo[index]['Ingredients'],
                     ));
           }
           return Center(child: Text("You have no Favorites"));

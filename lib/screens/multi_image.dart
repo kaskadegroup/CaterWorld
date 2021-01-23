@@ -1,3 +1,4 @@
+import 'package:caterWorld/screens/nav_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:multi_image_picker/multi_image_picker.dart';
 import 'package:firebase_storage/firebase_storage.dart';
@@ -55,7 +56,7 @@ class _MultiPickerState extends State<MultiPicker> {
     });
   }
 
-  Future saveImage(Asset asset,int count) async {
+  Future saveImage(Asset asset, int count) async {
     ByteData byteData =
         await asset.getByteData(); // requestOriginal is being deprecated
     List<int> imageData = byteData.buffer.asUint8List();
@@ -64,26 +65,24 @@ class _MultiPickerState extends State<MultiPicker> {
         .child('dish_image')
         .child(widget.dishId)
         .child("imageNumber" +
-            count
-                .toString()+'.jpg'); // To be aligned with the latest firebase API(4.0)
+            count.toString() +
+            '.jpg'); // To be aligned with the latest firebase API(4.0)
     StorageUploadTask uploadTask = ref.putData(imageData);
 
     await uploadTask.onComplete;
 
     var url = await ref.getDownloadURL();
 
-    addUrl();
-    setState(() {
-      allUrl.add(url);
-    });
+    addUrl(url);
   }
 
   // Add Url to Dish Document on Firebase
-  addUrl() async {
-    print(allUrl.length);
+  addUrl(url) async {
     final ref =
         Firestore.instance.collection('dish_info').document(widget.dishId);
-    ref.updateData({'dishUrl': allUrl});
+    await ref.updateData({
+      'dishUrl': FieldValue.arrayUnion([url])
+    });
   }
 
   Widget buildGridView() {
@@ -98,6 +97,11 @@ class _MultiPickerState extends State<MultiPicker> {
         );
       }),
     );
+  }
+
+  void backHome() {
+    Navigator.pop(
+        context, new MaterialPageRoute(builder: (context) => NavBar()));
   }
 
   @override
@@ -131,9 +135,9 @@ class _MultiPickerState extends State<MultiPicker> {
               // onPressed: () => saveImage(images[0]),
               onPressed: () {
                 for (var i = 0; i < images.length; i++) {
-                  saveImage(images[i],i);
+                  saveImage(images[i], i);
                 }
-                addUrl();
+                backHome();
               }),
           Expanded(child: buildGridView()),
         ],

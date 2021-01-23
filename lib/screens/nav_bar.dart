@@ -37,7 +37,7 @@ class _NavBarState extends State<NavBar> {
         'page': DishInfo(
 
         ),
-        'title': 'Homeat',
+        'title': 'Homely',
       },
       {
         'page': LikesScreen(),

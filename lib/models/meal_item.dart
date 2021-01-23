@@ -21,17 +21,19 @@ class MealItem extends StatefulWidget {
   final String dishId;
   final List ingredients;
   final bool isVeg;
+  bool isFavorite;
 
-  MealItem(
-      {
-      // @required this.id,
-      @required this.title,
-      @required this.cuisine,
-      this.dishStory,
-      this.dishUrl,
-      this.dishId,
-      this.ingredients,
-      this.isVeg});
+  MealItem({
+    // @required this.id,
+    @required this.title,
+    @required this.cuisine,
+    this.dishStory,
+    this.dishUrl,
+    this.dishId,
+    this.ingredients,
+    this.isVeg,
+    this.isFavorite, // do not use except for like screen for now
+  });
 
   @override
   _MealItemState createState() => _MealItemState();
@@ -47,7 +49,6 @@ class _MealItemState extends State<MealItem> {
 
   final String likedbuttom = 'assets/icons/liked.svg';
 
-  bool isFavorite = false;
 
   void selectMeal(BuildContext context) async {
     final favResult = await Navigator.push(
@@ -58,14 +59,15 @@ class _MealItemState extends State<MealItem> {
                   cuisine: widget.cuisine,
                   dishStory: widget.dishStory,
                   dishId: widget.dishId,
-                  isFavorite: isFavorite,
+                  isFavorite: widget.isFavorite,
                   ingredients: widget.ingredients,
                   isVeg: widget.isVeg,
                   dishUrl: widget.dishUrl,
+                  
                 )));
 
     setState(() {
-      isFavorite = favResult;
+      widget.isFavorite = favResult;
     });
   }
 
@@ -93,17 +95,16 @@ class _MealItemState extends State<MealItem> {
             Stack(
               children: [
                 ClipRRect(
-                  borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(10),
-                    topRight: Radius.circular(10),
-                  ),
-                  child: Image.asset(
-                    foodImage,
-                    height: 180,
-                    width: double.infinity,
-                    fit: BoxFit.cover,
-                  ),
-                ),
+                    borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(10),
+                      topRight: Radius.circular(10),
+                    ),
+                    child: Image.network(
+                      widget.dishUrl[0].toString(),
+                      height: 180,
+                      width: double.infinity,
+                      fit: BoxFit.cover,
+                    )),
               ],
             ),
             Padding(
@@ -152,7 +153,7 @@ class _MealItemState extends State<MealItem> {
                       Padding(
                         padding: EdgeInsets.only(right: 5),
                       ),
-                      !isFavorite
+                      !widget.isFavorite
                           ? SvgPicture.asset(
                               favIcon,
                               height: 35,
