@@ -1,11 +1,10 @@
-//Package Import
+//import packages
 import 'package:caterWorld/screens/auth_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 
-//File Import
+//import files
 import './screens/nav_bar.dart';
-import './screens/splash_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 

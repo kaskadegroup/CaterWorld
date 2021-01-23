@@ -1,9 +1,8 @@
-//Package Imports
-
+////import packages
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-//File Imports
+////import files
 import 'package:caterWorld/models/meal_item.dart';
 
 class DishInfo extends StatelessWidget {

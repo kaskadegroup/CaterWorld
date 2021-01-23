@@ -1,9 +1,10 @@
-//Package Import
+//import packages
 import 'dart:ui';
 import 'package:flutter_svg/svg.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
+//import files
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 
@@ -92,12 +93,11 @@ class _MealsScreenState extends State<MealsScreen> {
   Widget build(BuildContext context) {
     return WillPopScope(
       onWillPop: () async => !Navigator.of(context).userGestureInProgress,
-          child: Scaffold(
+      child: Scaffold(
         appBar: AppBar(
           leading: IconButton(
-            icon: Icon(Icons.arrow_back, color: Colors.black),
-            onPressed: () => Navigator.of(context).pop(widget.isFavorite)
-            ),
+              icon: Icon(Icons.arrow_back, color: Colors.black),
+              onPressed: () => Navigator.of(context).pop(widget.isFavorite)),
           title: Text(
             widget.title,
             style: TextStyle(
@@ -130,39 +130,7 @@ class _MealsScreenState extends State<MealsScreen> {
                     controller: PageController(viewportFraction: 1),
                     children: dishCarousel(),
                   ),
-                  // child: GridView.count(
-                  //   physics: NeverScrollableScrollPhysics(),
-                  //   crossAxisCount: 2,
-                  //   children: [
-                  //     Image.asset(
-                  //       image1,
-                  //       height: 80,
-                  //       width: 80,
-                  //     ),
-                  //     Image.asset(
-                  //       image1,
-                  //       height: 80,
-                  //       width: 80,
-                  //       //fit: BoxFit.cover,
-                  //     ),
-                  //     Image.asset(
-                  //       image1,
-                  //       height: 80,
-                  //       width: 80,
-                  //       //fit: BoxFit.cover,
-                  //     ),
-                  //     Image.asset(
-                  //       image1,
-                  //       height: 80,
-                  //       width: 80,
-                  //       //fit: BoxFit.cover,
-                  //     )
-                  //   ],
-                  // ),
                 ),
-                // decoration: BoxDecoration(
-                //   borderRadius: BorderRadius.circular(50),
-                // ),
               ),
               Padding(
                 padding: const EdgeInsets.only(

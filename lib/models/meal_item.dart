@@ -1,16 +1,11 @@
 import 'dart:ui';
 
-import 'package:caterWorld/providers/products.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:provider/provider.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 
 //File Import
 import '../screens/dish_view_screen.dart';
-import '../providers/meal.dart';
 
 class MealItem extends StatefulWidget {
   // final String id;
