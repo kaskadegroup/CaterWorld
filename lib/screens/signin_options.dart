@@ -1,7 +1,9 @@
+//import packages
 import 'package:caterWorld/screens/auth_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 
+
+//import files
 import 'auth_screen.dart';
 
 class SignInOptions extends StatelessWidget {

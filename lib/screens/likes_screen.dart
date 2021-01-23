@@ -1,9 +1,9 @@
+//import packages
 import 'package:flutter/material.dart';
-// import 'package:provider/provider.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
-// import '../providers/meal.dart';
+//import files
 import '../models/meal_item.dart';
 
 class LikesScreen extends StatefulWidget {

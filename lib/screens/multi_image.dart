@@ -1,5 +1,6 @@
-import 'package:caterWorld/screens/nav_bar.dart';
+//import packages
 import 'package:flutter/material.dart';
+import 'package:caterWorld/screens/nav_bar.dart';
 import 'package:multi_image_picker/multi_image_picker.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'dart:async';

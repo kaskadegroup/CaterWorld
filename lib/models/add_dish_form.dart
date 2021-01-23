@@ -1,11 +1,10 @@
-// import 'package:firebase_core/firebase_core.dart';
+//import packages
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-//File imports
-
+//import files
 
 import '../screens/multi_image.dart';
 
@@ -41,7 +40,6 @@ class _AddDishFormState extends State<AddDishForm> {
           await Firestore.instance.collection('users').document(user.uid).get();
       DocumentReference documentReference =
           Firestore.instance.collection('dish_info').document();
-      // final dishId = FirebaseFirestore.instance.collection('dish_info').doc().id;
       documentReference.setData({
         'dish_cat': _dishCuisine,
         'dish_name': _dishName,
@@ -49,12 +47,9 @@ class _AddDishFormState extends State<AddDishForm> {
         'dish_story': _dishStory,
         'userId': user.uid,
         'username': userData.data['username'],
-
         'dishId': documentReference.documentID,
         'Ingredients': _dishIngredients,
         'isVeg': isVeg
-        // 'dish_id': dishId,
-        //'userImage': userData.data()['image_url']
       });
 
       uploadImages(context, documentReference.documentID);

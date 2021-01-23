@@ -1,20 +1,14 @@
-
+//import packages
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
-
-//Import Files
+//import files
 import 'add_dish_screen.dart';
-//import 'ios_homev2.dart';
 import 'dish_info.dart';
 import 'likes_screen.dart';
-//import '../providers/meal.dart';
-//import 'auth_screen.dart';
 import 'user_settings.dart';
 
 class NavBar extends StatefulWidget {
-  
-
   @override
   _NavBarState createState() => _NavBarState();
 }
@@ -24,7 +18,6 @@ class _NavBarState extends State<NavBar> {
   final String favDish = 'assets/icons/Union.svg';
   final String addNew = 'assets/icons/Add.svg';
   final String burgMenu = 'assets/icons/Hamburger Menu.svg';
-  //final String filterMenu = 'assets/icons/Meatball Menu.svg';
 
   List<Map<String, Object>> _pages;
 
@@ -34,9 +27,7 @@ class _NavBarState extends State<NavBar> {
   void initState() {
     _pages = [
       {
-        'page': DishInfo(
-
-        ),
+        'page': DishInfo(),
         'title': 'Homely',
       },
       {
@@ -94,19 +85,31 @@ class _NavBarState extends State<NavBar> {
           currentIndex: _selectedPageIndex,
           items: [
             BottomNavigationBarItem(
-              icon: SvgPicture.asset(home,height: 30,),
+              icon: SvgPicture.asset(
+                home,
+                height: 30,
+              ),
               label: "Home",
             ),
             BottomNavigationBarItem(
-              icon: SvgPicture.asset(favDish,height: 30,),
+              icon: SvgPicture.asset(
+                favDish,
+                height: 30,
+              ),
               label: "fav",
             ),
             BottomNavigationBarItem(
-              icon: SvgPicture.asset(addNew,height: 30,),
+              icon: SvgPicture.asset(
+                addNew,
+                height: 30,
+              ),
               label: "Add",
             ),
             BottomNavigationBarItem(
-              icon: SvgPicture.asset(burgMenu,height: 30,),
+              icon: SvgPicture.asset(
+                burgMenu,
+                height: 30,
+              ),
               label: "set",
             )
           ],
