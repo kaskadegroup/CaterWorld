@@ -19,6 +19,7 @@ class MealsScreen extends StatefulWidget {
   bool isFavorite;
   final List ingredients;
   final bool isVeg;
+  final List dishUrl;
 
   MealsScreen(
       {Key key,
@@ -29,7 +30,9 @@ class MealsScreen extends StatefulWidget {
       this.toggleFavorite,
       this.isFavorite,
       this.ingredients,
-      this.isVeg,})
+      this.isVeg,
+      this.dishUrl,
+      })
 
       : super(key: key);
 
@@ -40,7 +43,8 @@ class MealsScreen extends StatefulWidget {
 class _MealsScreenState extends State<MealsScreen> {
   final image1 = 'assets/images/Patriotic-Charcuterie-Board-RC.png';
 
-  final String nonVeg = 'assets/icons/Non-Veg.svg';
+  final String nonVegIcon = 'assets/icons/Non-Veg.svg';
+  final String vegIcon = 'assets/icons/Veg.svg';
 
   final String favIcon = 'assets/icons/Heartv2.svg';
 
@@ -70,7 +74,13 @@ class _MealsScreenState extends State<MealsScreen> {
     }
   }
 
-
+  List<Widget> dishCarousel () {
+    List<Widget> images = [];
+    for(var index = 0; index < widget.dishUrl.length ; index++) {
+                     images.add(Image.network(widget.dishUrl[index].toString()));
+        }
+    return images;
+  }
 
   String get_ingredients (List ingredients){
     String ingredients_str = '';
@@ -117,28 +127,7 @@ class _MealsScreenState extends State<MealsScreen> {
                 ),
                 child: PageView(
                   controller: PageController(viewportFraction: 1),
-                  children: [
-                    Image.asset(
-                      image1,
-                      //height: 80,
-                      //width: 80,
-                    ),
-                    Image.asset(
-                      image1,
-                      //height: 80,
-                      //width: 80,
-                    ),
-                    Image.asset(
-                      image1,
-                      //height: 80,
-                      //width: 80,
-                    ),
-                    Image.asset(
-                      image1,
-                      //height: 80,
-                      //width: 80,
-                    ),
-                  ],
+                  children: dishCarousel(),
                 ),
                 // child: GridView.count(
                 //   physics: NeverScrollableScrollPhysics(),
@@ -206,8 +195,13 @@ class _MealsScreenState extends State<MealsScreen> {
                       Padding(
                         padding: EdgeInsets.only(right: 30),
                       ),
+                      widget.isVeg ? 
                       SvgPicture.asset(
-                        nonVeg,
+                        vegIcon,
+                        height: 30,
+                      ):
+                      SvgPicture.asset(
+                        nonVegIcon,
                         height: 30,
                       ),
                       Padding(
