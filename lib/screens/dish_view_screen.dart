@@ -164,60 +164,64 @@ class _MealsScreenState extends State<MealsScreen> {
                 ),
                 child: Row(
                   children: [
-                    Row(
-                      children: [
-                        Text(
-                          widget.title,
-                          style: TextStyle(
-                            fontSize: 24,
-                            fontFamily: '.SF Pro Display',
-                            fontWeight: FontWeight.w500,
-                            color: Color.fromRGBO(120, 115, 115, 1),
-                          ),
-                        ),
-                        Padding(
-                          padding: EdgeInsets.only(right: 20),
-                        ),
-                        Text(
-                          widget.cuisine,
-                          style: TextStyle(
-                            fontSize: 24,
-                            fontFamily: '.SF Pro Display',
-                            fontWeight: FontWeight.w500,
-                            color: Color.fromRGBO(120, 115, 115, 1),
-                          ),
-                        ),
-                        Padding(
-                          padding: EdgeInsets.only(right: 30),
-                        ),
-                        widget.isVeg
-                            ? SvgPicture.asset(
-                                vegIcon,
-                                height: 15,
-                              )
-                            : SvgPicture.asset(
-                                nonVegIcon,
-                                height: 15,
+                    Flexible(
+                      child: Row(
+                        children: [
+                          Flexible(
+                            child: Text(
+                              widget.title,
+                              style: TextStyle(
+                                fontSize: 24,
+                                fontFamily: '.SF Pro Display',
+                                fontWeight: FontWeight.w500,
+                                color: Color.fromRGBO(120, 115, 115, 1),
                               ),
-                        Padding(
-                          padding: EdgeInsets.only(right: 10),
-                        ),
-                        IconButton(
-                          icon: !widget.isFavorite
+                            ),
+                          ),
+                          Padding(
+                            padding: EdgeInsets.only(right: 20),
+                          ),
+                          Text(
+                            widget.cuisine,
+                            style: TextStyle(
+                              fontSize: 24,
+                              fontFamily: '.SF Pro Display',
+                              fontWeight: FontWeight.w500,
+                              color: Color.fromRGBO(120, 115, 115, 1),
+                            ),
+                          ),
+                          Padding(
+                            padding: EdgeInsets.only(right: 30),
+                          ),
+                          widget.isVeg
                               ? SvgPicture.asset(
-                                  favIcon,
-                                  height: 35,
+                                  vegIcon,
+                                  height: 15,
                                 )
                               : SvgPicture.asset(
-                                  likedbuttom,
-                                  height: 35,
+                                  nonVegIcon,
+                                  height: 15,
                                 ),
-                          onPressed: _likedThis,
-                        ),
-                        Padding(
-                          padding: EdgeInsets.only(right: 10),
-                        ),
-                      ],
+                          Padding(
+                            padding: EdgeInsets.only(right: 10),
+                          ),
+                          IconButton(
+                            icon: !widget.isFavorite
+                                ? SvgPicture.asset(
+                                    favIcon,
+                                    height: 35,
+                                  )
+                                : SvgPicture.asset(
+                                    likedbuttom,
+                                    height: 35,
+                                  ),
+                            onPressed: _likedThis,
+                          ),
+                          Padding(
+                            padding: EdgeInsets.only(right: 10),
+                          ),
+                        ],
+                      ),
                     ),
                   ],
                 ),
