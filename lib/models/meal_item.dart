@@ -44,7 +44,6 @@ class _MealItemState extends State<MealItem> {
 
   final String likedbuttom = 'assets/icons/liked.svg';
 
-
   void selectMeal(BuildContext context) async {
     final favResult = await Navigator.push(
         context,
@@ -58,7 +57,6 @@ class _MealItemState extends State<MealItem> {
                   ingredients: widget.ingredients,
                   isVeg: widget.isVeg,
                   dishUrl: widget.dishUrl,
-                  
                 )));
 
     setState(() {
@@ -68,10 +66,6 @@ class _MealItemState extends State<MealItem> {
 
   @override
   Widget build(BuildContext context) {
-    //return InkWell(
-    //onTap: selectMeal,
-    //final meals = Provider.of<Meal>(context);
-
     return InkWell(
       onTap: () => selectMeal(context),
       child: Card(
@@ -106,58 +100,65 @@ class _MealItemState extends State<MealItem> {
               padding: const EdgeInsets.all(18),
               child: Row(
                 children: [
-                  Row(
-                    children: [
-                      Text(
-                        widget.title,
-                        style: TextStyle(
-                          fontSize: 21,
-                          fontFamily: '.SF Pro Display',
-                          color: Color.fromRGBO(120, 115, 115, 1),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(right: 10),
-                      ),
-
-                      //Cuisine
-                      Text(
-                        widget.cuisine,
-                        style: TextStyle(
-                          fontSize: 21,
-                          fontFamily: '.SF Pro Display',
-                          color: Color.fromRGBO(120, 115, 115, 1),
-                        ),
-                      ),
-
-                      Padding(
-                        padding: const EdgeInsets.only(right: 10),
-                      ),
-
-                      //Non-Veg Icon
-                      widget.isVeg
-                          ? SvgPicture.asset(
-                              vegIcon,
-                              height: 25,
-                            )
-                          : SvgPicture.asset(
-                              nonVegIcon,
-                              height: 25,
+                  Flexible(
+                    child: Row(
+                      children: [
+                        Flexible(
+                          
+                          child: Text(
+                            widget.title,
+                            style: TextStyle(
+                              fontSize: 21,
+                              fontFamily: '.SF Pro Display',
+                              color: Color.fromRGBO(120, 115, 115, 1),
                             ),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(right: 8),
+                        ),
 
-                      Padding(
-                        padding: EdgeInsets.only(right: 5),
-                      ),
-                      !widget.isFavorite
-                          ? SvgPicture.asset(
-                              favIcon,
-                              height: 35,
-                            )
-                          : SvgPicture.asset(
-                              likedbuttom,
-                              height: 35,
-                            ),
-                    ],
+                        //Cuisine
+                        Text(
+                          widget.cuisine,
+                          style: TextStyle(
+                            fontSize: 21,
+                            fontFamily: '.SF Pro Display',
+                            color: Color.fromRGBO(120, 115, 115, 1),
+                          ),
+                        ),
+
+                        Padding(
+                          padding: const EdgeInsets.only(right: 8),
+                        ),
+
+                        //Non-Veg Icon
+                        widget.isVeg
+                            ? SvgPicture.asset(
+                                vegIcon,
+                                height: 10,
+                              )
+                            : SvgPicture.asset(
+                                nonVegIcon,
+                                height: 10,
+                              ),
+
+                        Padding(
+                          padding: EdgeInsets.only(right: 8),
+                        ),
+                        //Favorite Icon
+                        
+                        !widget.isFavorite
+                            ? SvgPicture.asset(
+                                favIcon,
+                                height: 30,
+                              )
+                            : SvgPicture.asset(
+                                likedbuttom,
+                                height: 30,
+                              ),
+                      ],
+                    ),
                   ),
                 ],
               ),

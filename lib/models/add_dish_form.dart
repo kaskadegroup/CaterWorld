@@ -160,14 +160,6 @@ class _AddDishFormState extends State<AddDishForm> {
 
               //focusNode: _priceNode,
             ),
-            // RaisedButton(
-            //   child: Text('Upload Images'),
-            //   onPressed: null,
-
-            //   // () => uploadImages(context))
-
-            //   // onPressed: () => uploadImages(context),
-            // ),
             RaisedButton(
               child: Text('Submit'),
               onPressed: _trySubmit,

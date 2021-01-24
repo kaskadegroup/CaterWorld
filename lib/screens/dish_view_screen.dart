@@ -193,11 +193,11 @@ class _MealsScreenState extends State<MealsScreen> {
                         widget.isVeg
                             ? SvgPicture.asset(
                                 vegIcon,
-                                height: 30,
+                                height: 15,
                               )
                             : SvgPicture.asset(
                                 nonVegIcon,
-                                height: 30,
+                                height: 15,
                               ),
                         Padding(
                           padding: EdgeInsets.only(right: 10),
