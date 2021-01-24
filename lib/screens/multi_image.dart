@@ -67,7 +67,7 @@ class _MultiPickerState extends State<MultiPicker> {
         .child(widget.dishId)
         .child("imageNumber" +
             count.toString() +
-            '.jpg'); // To be aligned with the latest firebase API(4.0)
+            '.HEIC'); // To be aligned with the latest firebase API(4.0)
     StorageUploadTask uploadTask = ref.putData(imageData);
 
     await uploadTask.onComplete;
