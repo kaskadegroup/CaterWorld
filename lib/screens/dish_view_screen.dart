@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:flutter_svg/svg.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:page_view_indicators/page_view_indicators.dart';
 
 //import files
 import 'package:flutter/material.dart';
@@ -49,6 +50,9 @@ class _MealsScreenState extends State<MealsScreen> {
 
   final String likedbuttom = 'assets/icons/liked.svg';
 
+  final _pageController = PageController();
+  final _currentPageNotifier = ValueNotifier<int>(0);
+
   // bool isFavorite = false;
 
   void _likedThis() async {
@@ -73,13 +77,18 @@ class _MealsScreenState extends State<MealsScreen> {
     }
   }
 
-  List<Widget> dishCarousel() {
-    List<Widget> images = [];
-    for (var index = 0; index < widget.dishUrl.length; index++) {
-      images.add(Image.network(widget.dishUrl[index].toString()));
-    }
-    return images;
+  void getChangedPageAndMoveBar(int page) {
+    var currentPageValue = page;
+    setState(() {});
   }
+
+  // List<Widget> dishCarousel() {
+  //   List<Widget> images = [];
+  //   for (var index = 0; index < widget.dishUrl.length; index++) {
+  //     images.add(Image.network(widget.dishUrl[index].toString()));
+  //   }
+  //   return images;
+  // }
 
   String get_ingredients(List ingredients) {
     String ingredients_str = '';
@@ -126,12 +135,29 @@ class _MealsScreenState extends State<MealsScreen> {
                   borderRadius: BorderRadius.all(
                     Radius.circular(10),
                   ),
-                  child: PageView(
-                    controller: PageController(viewportFraction: 1),
-                    children: dishCarousel(),
+                  child:
+                    PageView.builder(
+                      physics: ClampingScrollPhysics(),
+                      controller: _pageController,
+                      itemCount: widget.dishUrl.length,
+                      onPageChanged: (int index) {
+                        _currentPageNotifier.value = index;
+                      },
+                      itemBuilder: (BuildContext context, index) {
+                        return Image.network(widget.dishUrl[index]);
+                      },
+                    ),
+                    
                   ),
                 ),
-              ),
+                Padding(
+                      padding: const EdgeInsets.all(4.0),
+                      child: CirclePageIndicator(
+                        itemCount: widget.dishUrl.length,
+                        currentPageNotifier: _currentPageNotifier,
+                      ),
+                    ),
+              
               Padding(
                 padding: const EdgeInsets.only(
                   left: 10,
