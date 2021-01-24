@@ -41,19 +41,13 @@ class MealsScreen extends StatefulWidget {
 }
 
 class _MealsScreenState extends State<MealsScreen> {
-  final image1 = 'assets/images/Patriotic-Charcuterie-Board-RC.png';
-
   final String nonVegIcon = 'assets/icons/Non-Veg.svg';
   final String vegIcon = 'assets/icons/Veg.svg';
-
   final String favIcon = 'assets/icons/Heartv2.svg';
-
   final String likedbuttom = 'assets/icons/liked.svg';
 
   final _pageController = PageController();
   final _currentPageNotifier = ValueNotifier<int>(0);
-
-  // bool isFavorite = false;
 
   void _likedThis() async {
     final user = await FirebaseAuth.instance.currentUser();
@@ -77,25 +71,12 @@ class _MealsScreenState extends State<MealsScreen> {
     }
   }
 
-  void getChangedPageAndMoveBar(int page) {
-    var currentPageValue = page;
-    setState(() {});
-  }
-
-  // List<Widget> dishCarousel() {
-  //   List<Widget> images = [];
-  //   for (var index = 0; index < widget.dishUrl.length; index++) {
-  //     images.add(Image.network(widget.dishUrl[index].toString()));
-  //   }
-  //   return images;
-  // }
-
-  String get_ingredients(List ingredients) {
-    String ingredients_str = '';
+  String getIngredients(List ingredients) {
+    String ingredientsStr = '';
     for (var i = 0; i < ingredients.length; i++) {
-      ingredients_str += '>' + ingredients[i] + '\n';
+      ingredientsStr += '>' + ingredients[i] + '\n';
     }
-    return ingredients_str;
+    return ingredientsStr;
   }
 
   @override
@@ -135,29 +116,26 @@ class _MealsScreenState extends State<MealsScreen> {
                   borderRadius: BorderRadius.all(
                     Radius.circular(10),
                   ),
-                  child:
-                    PageView.builder(
-                      physics: ClampingScrollPhysics(),
-                      controller: _pageController,
-                      itemCount: widget.dishUrl.length,
-                      onPageChanged: (int index) {
-                        _currentPageNotifier.value = index;
-                      },
-                      itemBuilder: (BuildContext context, index) {
-                        return Image.network(widget.dishUrl[index]);
-                      },
-                    ),
-                    
+                  child: PageView.builder(
+                    physics: ClampingScrollPhysics(),
+                    controller: _pageController,
+                    itemCount: widget.dishUrl.length,
+                    onPageChanged: (int index) {
+                      _currentPageNotifier.value = index;
+                    },
+                    itemBuilder: (BuildContext context, index) {
+                      return Image.network(widget.dishUrl[index]);
+                    },
                   ),
                 ),
-                Padding(
-                      padding: const EdgeInsets.all(4.0),
-                      child: CirclePageIndicator(
-                        itemCount: widget.dishUrl.length,
-                        currentPageNotifier: _currentPageNotifier,
-                      ),
-                    ),
-              
+              ),
+              Padding(
+                padding: const EdgeInsets.all(4.0),
+                child: CirclePageIndicator(
+                  itemCount: widget.dishUrl.length,
+                  currentPageNotifier: _currentPageNotifier,
+                ),
+              ),
               Padding(
                 padding: const EdgeInsets.only(
                   left: 10,
@@ -245,7 +223,7 @@ class _MealsScreenState extends State<MealsScreen> {
                       ),
                     ),
                     Text(
-                      get_ingredients(widget.ingredients),
+                      getIngredients(widget.ingredients),
                       style: TextStyle(
                         fontSize: 17,
                         fontFamily: '.SF Pro Display',
