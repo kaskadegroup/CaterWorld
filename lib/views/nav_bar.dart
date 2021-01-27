@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 //import files
-import 'add_dish_screen.dart';
-import 'dish_info.dart';
-import 'likes_screen.dart';
-import 'user_settings.dart';
+import 'new_dish_view.dart';
+import '../server/get_dish_data.dart';
+import 'favorite_dishes.dart';
+import 'user_settings_view.dart';
 
 class NavBar extends StatefulWidget {
   @override
@@ -27,11 +27,11 @@ class _NavBarState extends State<NavBar> {
   void initState() {
     _pages = [
       {
-        'page': DishInfo(),
+        'page': GetDishData(),
         'title': 'Homely',
       },
       {
-        'page': LikesScreen(),
+        'page': FavoriteDishes(),
         'title': 'Likes',
       },
       {

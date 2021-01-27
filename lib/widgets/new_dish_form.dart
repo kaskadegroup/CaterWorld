@@ -6,14 +6,14 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 //import files
 
-import '../screens/multi_image.dart';
+import '../server/upload_images.dart';
 
-class AddDishForm extends StatefulWidget {
+class NewDishForm extends StatefulWidget {
   @override
-  _AddDishFormState createState() => _AddDishFormState();
+  _NewDishFormState createState() => _NewDishFormState();
 }
 
-class _AddDishFormState extends State<AddDishForm> {
+class _NewDishFormState extends State<NewDishForm> {
   final _priceNode = FocusNode();
   //final _controller = new TextEditingController();
   final _formKey = GlobalKey<FormState>();
@@ -39,17 +39,18 @@ class _AddDishFormState extends State<AddDishForm> {
       final userData =
           await Firestore.instance.collection('users').document(user.uid).get();
       DocumentReference documentReference =
-          Firestore.instance.collection('dish_info').document();
+          Firestore.instance.collection('dishInfo').document();
       documentReference.setData({
-        'dish_cat': _dishCuisine,
-        'dish_name': _dishName,
+        'dishCat': _dishCuisine,
+        'dishName': _dishName,
         'createdAt': Timestamp.now(),
-        'dish_story': _dishStory,
+        'dishStory': _dishStory,
         'userId': user.uid,
         'username': userData.data['username'],
         'dishId': documentReference.documentID,
         'Ingredients': _dishIngredients,
-        'isVeg': isVeg
+        'isVeg': isVeg,
+        'dishAllergens': _dishAllergens,
       });
 
       uploadImages(context, documentReference.documentID);

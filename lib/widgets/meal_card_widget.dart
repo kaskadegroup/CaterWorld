@@ -5,9 +5,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_svg/svg.dart';
 
 //File Import
-import '../screens/dish_view_screen.dart';
+import '../views/dish_detail_view.dart';
 
-class MealItem extends StatefulWidget {
+class DishCard extends StatefulWidget {
   // final String id;
   final String title;
   final String cuisine;
@@ -18,7 +18,7 @@ class MealItem extends StatefulWidget {
   final bool isVeg;
   bool isFavorite;
 
-  MealItem({
+  DishCard({
     // @required this.id,
     @required this.title,
     @required this.cuisine,
@@ -31,10 +31,10 @@ class MealItem extends StatefulWidget {
   });
 
   @override
-  _MealItemState createState() => _MealItemState();
+  _DishCardState createState() => _DishCardState();
 }
 
-class _MealItemState extends State<MealItem> {
+class _DishCardState extends State<DishCard> {
   final String nonVegIcon = 'assets/icons/Non-Veg.svg';
   final String vegIcon = 'assets/icons/Veg.svg';
 
@@ -48,7 +48,7 @@ class _MealItemState extends State<MealItem> {
     final favResult = await Navigator.push(
         context,
         new MaterialPageRoute(
-            builder: (context) => MealsScreen(
+            builder: (context) => DishDetailView(
                   title: widget.title,
                   cuisine: widget.cuisine,
                   dishStory: widget.dishStory,

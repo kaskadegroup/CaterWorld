@@ -9,7 +9,7 @@ import 'package:page_view_indicators/page_view_indicators.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 
-class MealsScreen extends StatefulWidget {
+class DishDetailView extends StatefulWidget {
   static const routeName = '/views-screen';
 
   final Function toggleFavorite;
@@ -23,7 +23,7 @@ class MealsScreen extends StatefulWidget {
   final bool isVeg;
   final List dishUrl;
 
-  MealsScreen({
+  DishDetailView({
     Key key,
     this.title,
     this.cuisine,
@@ -37,10 +37,10 @@ class MealsScreen extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  _MealsScreenState createState() => _MealsScreenState();
+  _DishDetailViewState createState() => _DishDetailViewState();
 }
 
-class _MealsScreenState extends State<MealsScreen> {
+class _DishDetailViewState extends State<DishDetailView> {
   final String nonVegIcon = 'assets/icons/Non-Veg.svg';
   final String vegIcon = 'assets/icons/Veg.svg';
   final String favIcon = 'assets/icons/Heartv2.svg';

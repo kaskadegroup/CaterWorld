@@ -1,15 +1,15 @@
-////import packages
+//import packages
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-////import files
-import 'package:caterWorld/models/meal_item.dart';
+//import files
+import '../widgets/meal_card_widget.dart';
 
-class DishInfo extends StatelessWidget {
+class GetDishData extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return StreamBuilder(
-        stream: Firestore.instance.collection('dish_info').snapshots(),
+        stream: Firestore.instance.collection('dishInfo').snapshots(),
         builder: (ctx, dishInfoSnapshot) {
           if (dishInfoSnapshot.connectionState == ConnectionState.waiting) {
             return Center(child: CircularProgressIndicator());
@@ -18,10 +18,10 @@ class DishInfo extends StatelessWidget {
 
           return ListView.builder(
               itemCount: dishInfo.length,
-              itemBuilder: (ctx, index) => MealItem(
-                    title: dishInfo[index]['dish_name'],
-                    cuisine: dishInfo[index]['dish_cat'],
-                    dishStory: dishInfo[index]['dish_story'],
+              itemBuilder: (ctx, index) => DishCard(
+                    title: dishInfo[index]['dishName'],
+                    cuisine: dishInfo[index]['dishCat'],
+                    dishStory: dishInfo[index]['dishStory'],
                     dishId: dishInfo[index]['dishId'],
                     dishUrl: dishInfo[index]['dishUrl'],
                     ingredients: dishInfo[index]['Ingredients'],
