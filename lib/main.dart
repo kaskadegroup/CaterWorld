@@ -1,10 +1,10 @@
 //import packages
-import 'package:caterWorld/screens/auth_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 
 //import files
-import './screens/nav_bar.dart';
+import './views/nav_bar.dart';
+import './views/auth_view.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
@@ -23,7 +23,7 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return StreamBuilder(
         //future: _initialization,
-        stream: Firestore.instance.collection('dish_info').snapshots(),
+        stream: Firestore.instance.collection('dishInfo').snapshots(),
         builder: (context, appSnapshot) {
           return MaterialApp(
             home: StreamBuilder(
@@ -32,7 +32,7 @@ class _MyAppState extends State<MyApp> {
                   if (userSnapshot.hasData) {
                     return NavBar();
                   }
-                  return AuthScreen();
+                  return AuthView();
                 }),
           );
         });

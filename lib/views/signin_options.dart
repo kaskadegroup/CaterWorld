@@ -1,10 +1,10 @@
 //import packages
-import 'package:caterWorld/screens/auth_screen.dart';
+
 import 'package:flutter/material.dart';
 
 
 //import files
-import 'auth_screen.dart';
+import 'auth_view.dart';
 
 class SignInOptions extends StatelessWidget {
   final String facebookLogin = 'assets/icons/facebooklogin.svg';
@@ -13,7 +13,7 @@ class SignInOptions extends StatelessWidget {
   void _signInWithEmail(BuildContext context) {
     Navigator.push(
       context,
-      new MaterialPageRoute(builder: (context) => AuthScreen()),
+      new MaterialPageRoute(builder: (context) => AuthView()),
     );
   }
 

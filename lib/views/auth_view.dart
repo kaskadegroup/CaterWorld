@@ -5,14 +5,14 @@ import 'package:flutter/services.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 //import files
-import '../models/auth_form.dart';
+import '../widgets/auth_form.dart';
 
-class AuthScreen extends StatefulWidget {
+class AuthView extends StatefulWidget {
   @override
-  _AuthScreenState createState() => _AuthScreenState();
+  _AuthViewState createState() => _AuthViewState();
 }
 
-class _AuthScreenState extends State<AuthScreen> {
+class _AuthViewState extends State<AuthView> {
   final _auth = FirebaseAuth.instance;
   var _isLoading = false;
 

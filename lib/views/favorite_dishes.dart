@@ -4,21 +4,21 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 //import files
-import '../models/meal_item.dart';
+import '../widgets/meal_card_widget.dart';
 
-class LikesScreen extends StatefulWidget {
+class FavoriteDishes extends StatefulWidget {
   @override
-  _LikesScreenState createState() => _LikesScreenState();
+  _FavoriteDishesState createState() => _FavoriteDishesState();
 }
 
-class _LikesScreenState extends State<LikesScreen> {
+class _FavoriteDishesState extends State<FavoriteDishes> {
   Future getFavoriteDishes() async {
     final user = await FirebaseAuth.instance.currentUser();
     final userData =
         await Firestore.instance.collection('users').document(user.uid).get();
-    var _allFavorites = userData.data["data"];
+    var _allFavorites = userData.data["favoriteDishes"];
     var results = Firestore.instance
-        .collection('dish_info')
+        .collection('dishInfo')
         .where("dishId", whereIn: _allFavorites)
         .getDocuments();
     return results;
@@ -33,10 +33,10 @@ class _LikesScreenState extends State<LikesScreen> {
             final dishInfo = dishInfoSnapshot.data.documents;
             return ListView.builder(
                 itemCount: dishInfo.length,
-                itemBuilder: (ctx, index) => MealItem(
-                      title: dishInfo[index]['dish_name'],
-                      cuisine: dishInfo[index]['dish_cat'],
-                      dishStory: dishInfo[index]['dish_story'],
+                itemBuilder: (ctx, index) => DishCard(
+                      title: dishInfo[index]['dishName'],
+                      cuisine: dishInfo[index]['dishCat'],
+                      dishStory: dishInfo[index]['dishStory'],
                       dishId: dishInfo[index]['dishId'],
                       dishUrl:  dishInfo[index]['dishUrl'],
                       isVeg: dishInfo[index]['isVeg'],

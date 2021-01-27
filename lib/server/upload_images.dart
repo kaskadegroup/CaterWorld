@@ -1,11 +1,15 @@
 //import packages
 import 'package:flutter/material.dart';
-import 'package:caterWorld/screens/nav_bar.dart';
 import 'package:multi_image_picker/multi_image_picker.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'dart:async';
 import 'dart:typed_data';
 import 'package:cloud_firestore/cloud_firestore.dart';
+
+//import files
+import '../views/nav_bar.dart';
+
+
 
 class MultiPicker extends StatefulWidget {
   final String dishId;
@@ -47,9 +51,6 @@ class _MultiPickerState extends State<MultiPicker> {
       error = e.toString();
     }
 
-    // If the widget was removed from the tree while the asynchronous platform
-    // message was in flight, we want to discard the reply rather than calling
-    // setState to update our non-existent appearance.
     if (!mounted) return;
 
     setState(() {
@@ -59,7 +60,7 @@ class _MultiPickerState extends State<MultiPicker> {
 
   Future saveImage(Asset asset, int count) async {
     ByteData byteData =
-        await asset.getByteData(); // requestOriginal is being deprecated
+        await asset.getByteData(); 
     List<int> imageData = byteData.buffer.asUint8List();
     StorageReference ref = FirebaseStorage.instance
         .ref()
@@ -67,7 +68,7 @@ class _MultiPickerState extends State<MultiPicker> {
         .child(widget.dishId)
         .child("imageNumber" +
             count.toString() +
-            '.HEIC'); // To be aligned with the latest firebase API(4.0)
+            '.jpeg'); 
     StorageUploadTask uploadTask = ref.putData(imageData);
 
     await uploadTask.onComplete;
@@ -80,7 +81,7 @@ class _MultiPickerState extends State<MultiPicker> {
   // Add Url to Dish Document on Firebase
   addUrl(url) async {
     final ref =
-        Firestore.instance.collection('dish_info').document(widget.dishId);
+        Firestore.instance.collection('dishInfo').document(widget.dishId);
     await ref.updateData({
       'dishUrl': FieldValue.arrayUnion([url])
     });
@@ -133,7 +134,7 @@ class _MultiPickerState extends State<MultiPicker> {
           ),
           RaisedButton(
               child: Text("upload images"),
-              // onPressed: () => saveImage(images[0]),
+              
               onPressed: () {
                 for (var i = 0; i < images.length; i++) {
                   saveImage(images[i], i);
