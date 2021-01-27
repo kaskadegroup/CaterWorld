@@ -9,8 +9,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 //import files
 import '../views/nav_bar.dart';
 
-
-
 class MultiPicker extends StatefulWidget {
   final String dishId;
 
@@ -59,16 +57,13 @@ class _MultiPickerState extends State<MultiPicker> {
   }
 
   Future saveImage(Asset asset, int count) async {
-    ByteData byteData =
-        await asset.getByteData(); 
+    ByteData byteData = await asset.getByteData();
     List<int> imageData = byteData.buffer.asUint8List();
     StorageReference ref = FirebaseStorage.instance
         .ref()
         .child('dish_image')
         .child(widget.dishId)
-        .child("imageNumber" +
-            count.toString() +
-            '.jpeg'); 
+        .child("imageNumber" + count.toString() + '.jpeg');
     StorageUploadTask uploadTask = ref.putData(imageData);
 
     await uploadTask.onComplete;
@@ -134,7 +129,6 @@ class _MultiPickerState extends State<MultiPicker> {
           ),
           RaisedButton(
               child: Text("upload images"),
-              
               onPressed: () {
                 for (var i = 0; i < images.length; i++) {
                   saveImage(images[i], i);
