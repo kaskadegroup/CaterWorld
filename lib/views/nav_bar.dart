@@ -28,7 +28,7 @@ class _NavBarState extends State<NavBar> {
     _pages = [
       {
         'page': GetDishData(),
-        'title': 'toastea',
+        'title': 'Toastea',
       },
       {
         'page': FavoriteDishes(),
