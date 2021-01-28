@@ -27,7 +27,7 @@ class SignInOptions extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.all(10.0),
                 child: Text(
-                    "Sign Up to CaterWorld to contact a chef, sell your dishes and so much more!"),
+                    "Sign Up to Toastea to contact a chef, sell your dishes and so much more!"),
               ),
               RaisedButton(
                 onPressed: null,
