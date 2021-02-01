@@ -8,10 +8,6 @@
 	<string>toastea</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
-	<key>NSPhotoLibraryUsageDescription</key>
-	<string>Example usage description</string>
-	<key>NSCameraUsageDescription</key>
-	<string>Example usage description</string>
 	<key>CFBundleIdentifier</key>
 	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
 	<key>CFBundleInfoDictionaryVersion</key>
