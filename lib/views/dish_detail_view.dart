@@ -54,7 +54,7 @@ class _DishDetailViewState extends State<DishDetailView> {
     final userData = Firestore.instance.collection('users').document(user.uid);
     if (widget.isFavorite == false) {
       userData.updateData({
-        "data": FieldValue.arrayUnion([widget.dishId])
+        "allFavorites": FieldValue.arrayUnion([widget.dishId])
       });
 
       setState(() {
@@ -62,7 +62,7 @@ class _DishDetailViewState extends State<DishDetailView> {
       });
     } else {
       userData.updateData({
-        "data": FieldValue.arrayRemove([widget.dishId])
+        "allFavorites": FieldValue.arrayRemove([widget.dishId])
       });
 
       setState(() {
