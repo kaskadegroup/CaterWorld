@@ -16,7 +16,7 @@ class _FavoriteDishesState extends State<FavoriteDishes> {
     final user = await FirebaseAuth.instance.currentUser();
     final userData =
         await Firestore.instance.collection('users').document(user.uid).get();
-    var _allFavorites = userData.data["favoriteDishes"];
+    var _allFavorites = userData.data["allFavorites"];
     var results = Firestore.instance
         .collection('dishInfo')
         .where("dishId", whereIn: _allFavorites)
@@ -29,22 +29,32 @@ class _FavoriteDishesState extends State<FavoriteDishes> {
     return FutureBuilder(
         future: getFavoriteDishes(),
         builder: (ctx, dishInfoSnapshot) {
-          if (dishInfoSnapshot.hasData) {
-            final dishInfo = dishInfoSnapshot.data.documents;
-            return ListView.builder(
-                itemCount: dishInfo.length,
-                itemBuilder: (ctx, index) => DishCard(
-                      title: dishInfo[index]['dishName'],
-                      cuisine: dishInfo[index]['dishCat'],
-                      dishStory: dishInfo[index]['dishStory'],
-                      dishId: dishInfo[index]['dishId'],
-                      dishUrl:  dishInfo[index]['dishUrl'],
-                      isVeg: dishInfo[index]['isVeg'],
-                      isFavorite: true,
-                      ingredients: dishInfo[index]['Ingredients'],
-                    ));
+          switch (dishInfoSnapshot.connectionState) {
+            case ConnectionState.none:
+            case ConnectionState.waiting:
+              return Center(child: CircularProgressIndicator());
+              break;
+            default:
+              if (dishInfoSnapshot.hasError)
+                return Container(
+                    child: Text(dishInfoSnapshot.error.toString()));
+              final List dishInfo = dishInfoSnapshot.data.documents;
+              if(dishInfo.isEmpty){
+                return Center(child: Text("You have no Favorites"));
+              }
+              return ListView.builder(
+                  itemCount: dishInfo.length,
+                  itemBuilder: (ctx, index) => DishCard(
+                        title: dishInfo[index]['dishName'],
+                        cuisine: dishInfo[index]['dishCat'],
+                        dishStory: dishInfo[index]['dishStory'],
+                        dishId: dishInfo[index]['dishId'],
+                        dishUrl: dishInfo[index]['dishUrl'],
+                        isVeg: dishInfo[index]['isVeg'],
+                        isFavorite: true,
+                        ingredients: dishInfo[index]['Ingredients'],
+                      ));
           }
-          return Center(child: Text("You have no Favorites"));
         });
   }
 }
