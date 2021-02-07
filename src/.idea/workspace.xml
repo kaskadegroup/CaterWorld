@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </select>
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="7546e7f9-d3a0-4dcc-973e-cfc045601d8f" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1nGDeUA3ky1nrYAybbrGAC5goI2" />
+  <component name="ProjectReloadState">
+    <option name="STATE" value="1" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="dart.analysis.tool.window.visible" value="false" />
+    <property name="io.flutter.reload.alreadyRun" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="show.migrate.to.gradle.popup" value="false" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src" />
+      <recent name="$PROJECT_DIR$/assets/icons" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="main.dart" type="FlutterRunConfigurationType" factoryName="Flutter">
+      <option name="filePath" value="$PROJECT_DIR$/lib/main.dart" />
+      <method v="2" />
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="7546e7f9-d3a0-4dcc-973e-cfc045601d8f" name="Default Changelist" comment="" />
+      <created>1611007628704</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1611007628704</updated>
+      <workItem from="1611007631453" duration="3962000" />
+      <workItem from="1611194997079" duration="12426000" />
+      <workItem from="1611505083568" duration="5110000" />
+      <workItem from="1612722008785" duration="1035000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="1931" y="-957" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1611287621139">
+      <screen x="913" y="-1415" width="2560" height="1415" />
+    </state>
+    <state x="1931" y="-957" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/-1007.-1055.1920.1055/913.-1415.2560.1415/0.25.1792.1095@913.-1415.2560.1415" timestamp="1611287621139" />
+    <state width="2518" height="424" key="GridCell.Tab.0.bottom" timestamp="1612721993834">
+      <screen x="0" y="25" width="1792" height="1095" />
+    </state>
+    <state width="2518" height="424" key="GridCell.Tab.0.bottom/-1007.-1055.1920.1055/913.-1415.2560.1415/0.25.1792.1095@913.-1415.2560.1415" timestamp="1612115682053" />
+    <state width="2518" height="424" key="GridCell.Tab.0.bottom/-1920.25.1920.1055/1792.114.2560.1415/0.25.1792.1095@1792.114.2560.1415" timestamp="1611280663761" />
+    <state width="2518" height="424" key="GridCell.Tab.0.bottom/-2560.-295.2560.1415/0.25.1792.1095@-2560.-295.2560.1415" timestamp="1611514355003" />
+    <state width="1878" height="301" key="GridCell.Tab.0.bottom/-53.-1055.1920.1055/0.25.1792.1095@-53.-1055.1920.1055" timestamp="1611009974621" />
+    <state width="1750" height="301" key="GridCell.Tab.0.bottom/-53.-1055.1920.1055/0.25.1792.1095@0.25.1792.1095" timestamp="1611007719950" />
+    <state width="2518" height="424" key="GridCell.Tab.0.bottom/0.25.1792.1095@0.25.1792.1095" timestamp="1612721993834" />
+    <state width="2518" height="424" key="GridCell.Tab.0.bottom/1792.-65.2560.1415/0.25.1792.1095@1792.-65.2560.1415" timestamp="1611501268269" />
+    <state width="2518" height="424" key="GridCell.Tab.0.center" timestamp="1612721993834">
+      <screen x="0" y="25" width="1792" height="1095" />
+    </state>
+    <state width="2518" height="424" key="GridCell.Tab.0.center/-1007.-1055.1920.1055/913.-1415.2560.1415/0.25.1792.1095@913.-1415.2560.1415" timestamp="1612115682053" />
+    <state width="2518" height="424" key="GridCell.Tab.0.center/-1920.25.1920.1055/1792.114.2560.1415/0.25.1792.1095@1792.114.2560.1415" timestamp="1611280663760" />
+    <state width="2518" height="424" key="GridCell.Tab.0.center/-2560.-295.2560.1415/0.25.1792.1095@-2560.-295.2560.1415" timestamp="1611514355002" />
+    <state width="1878" height="301" key="GridCell.Tab.0.center/-53.-1055.1920.1055/0.25.1792.1095@-53.-1055.1920.1055" timestamp="1611009974620" />
+    <state width="1750" height="301" key="GridCell.Tab.0.center/-53.-1055.1920.1055/0.25.1792.1095@0.25.1792.1095" timestamp="1611007719948" />
+    <state width="2518" height="424" key="GridCell.Tab.0.center/0.25.1792.1095@0.25.1792.1095" timestamp="1612721993834" />
+    <state width="2518" height="424" key="GridCell.Tab.0.center/1792.-65.2560.1415/0.25.1792.1095@1792.-65.2560.1415" timestamp="1611501268268" />
+    <state width="2518" height="424" key="GridCell.Tab.0.left" timestamp="1612721993833">
+      <screen x="0" y="25" width="1792" height="1095" />
+    </state>
+    <state width="2518" height="424" key="GridCell.Tab.0.left/-1007.-1055.1920.1055/913.-1415.2560.1415/0.25.1792.1095@913.-1415.2560.1415" timestamp="1612115682052" />
+    <state width="2518" height="424" key="GridCell.Tab.0.left/-1920.25.1920.1055/1792.114.2560.1415/0.25.1792.1095@1792.114.2560.1415" timestamp="1611280663759" />
+    <state width="2518" height="424" key="GridCell.Tab.0.left/-2560.-295.2560.1415/0.25.1792.1095@-2560.-295.2560.1415" timestamp="1611514355002" />
+    <state width="1878" height="301" key="GridCell.Tab.0.left/-53.-1055.1920.1055/0.25.1792.1095@-53.-1055.1920.1055" timestamp="1611009974619" />
+    <state width="1750" height="301" key="GridCell.Tab.0.left/-53.-1055.1920.1055/0.25.1792.1095@0.25.1792.1095" timestamp="1611007719948" />
+    <state width="2518" height="424" key="GridCell.Tab.0.left/0.25.1792.1095@0.25.1792.1095" timestamp="1612721993833" />
+    <state width="2518" height="424" key="GridCell.Tab.0.left/1792.-65.2560.1415/0.25.1792.1095@1792.-65.2560.1415" timestamp="1611501268268" />
+    <state width="2518" height="424" key="GridCell.Tab.0.right" timestamp="1612721993834">
+      <screen x="0" y="25" width="1792" height="1095" />
+    </state>
+    <state width="2518" height="424" key="GridCell.Tab.0.right/-1007.-1055.1920.1055/913.-1415.2560.1415/0.25.1792.1095@913.-1415.2560.1415" timestamp="1612115682053" />
+    <state width="2518" height="424" key="GridCell.Tab.0.right/-1920.25.1920.1055/1792.114.2560.1415/0.25.1792.1095@1792.114.2560.1415" timestamp="1611280663760" />
+    <state width="2518" height="424" key="GridCell.Tab.0.right/-2560.-295.2560.1415/0.25.1792.1095@-2560.-295.2560.1415" timestamp="1611514355002" />
+    <state width="1878" height="301" key="GridCell.Tab.0.right/-53.-1055.1920.1055/0.25.1792.1095@-53.-1055.1920.1055" timestamp="1611009974620" />
+    <state width="1750" height="301" key="GridCell.Tab.0.right/-53.-1055.1920.1055/0.25.1792.1095@0.25.1792.1095" timestamp="1611007719949" />
+    <state width="2518" height="424" key="GridCell.Tab.0.right/0.25.1792.1095@0.25.1792.1095" timestamp="1612721993834" />
+    <state width="2518" height="424" key="GridCell.Tab.0.right/1792.-65.2560.1415/0.25.1792.1095@1792.-65.2560.1415" timestamp="1611501268269" />
+    <state x="1892" y="-1075" width="695" height="735" key="find.popup" timestamp="1612114547440">
+      <screen x="913" y="-1415" width="2560" height="1415" />
+    </state>
+    <state x="1892" y="-1075" width="695" height="735" key="find.popup/-1007.-1055.1920.1055/913.-1415.2560.1415/0.25.1792.1095@913.-1415.2560.1415" timestamp="1612114547440" />
+    <state x="2771" y="275" width="645" height="735" key="find.popup/1792.-65.2560.1415/0.25.1792.1095@1792.-65.2560.1415" timestamp="1611412585296" />
+    <state x="1858" y="-1091" width="670" height="676" key="search.everywhere.popup" timestamp="1612115469049">
+      <screen x="913" y="-1415" width="2560" height="1415" />
+    </state>
+    <state x="1858" y="-1091" width="670" height="676" key="search.everywhere.popup/-1007.-1055.1920.1055/913.-1415.2560.1415/0.25.1792.1095@913.-1415.2560.1415" timestamp="1612115469049" />
+    <state x="-1615" y="29" width="670" height="676" key="search.everywhere.popup/-2560.-295.2560.1415/0.25.1792.1095@-2560.-295.2560.1415" timestamp="1611505034825" />
+    <state x="2737" y="259" width="670" height="676" key="search.everywhere.popup/1792.-65.2560.1415/0.25.1792.1095@1792.-65.2560.1415" timestamp="1611412583926" />
+  </component>
+</project>
