@@ -6,6 +6,7 @@ import 'package:flutter_svg/svg.dart';
 import 'new_dish_view.dart';
 import '../server/get_dish_data.dart';
 import 'favorite_dishes.dart';
+import '../server/upload_images.dart';
 import 'user_settings_view.dart';
 
 class NavBar extends StatefulWidget {

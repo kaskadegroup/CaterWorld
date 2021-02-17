@@ -5,6 +5,7 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'dart:async';
 import 'dart:typed_data';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter_svg/svg.dart';
 
 //import files
 import '../views/nav_bar.dart';
@@ -21,11 +22,37 @@ class MultiPicker extends StatefulWidget {
 class _MultiPickerState extends State<MultiPicker> {
   List<Asset> images = List<Asset>();
   List allUrl = List();
+  // File _imagePath;
+  // File _storedImage;
+  // PickedFile _imageFile;
+  final String addImage = 'assets/icons/Add Photo.svg';
 
   @override
   void initState() {
     super.initState();
   }
+
+  // Future _takePicture() async {
+  //   final picker = ImagePicker();
+  //   final imageFile = await picker.getImage(
+  //     source: ImageSource.camera,
+  //     maxWidth: 600,
+  //   );
+
+  //   setState(() {
+  //     _imageFile = imageFile;
+  //     _imagePath = File(imageFile.path);
+  //   });
+  // }
+
+  // _imgFromGallery() async {
+  //   File image = await ImagePicker.pickImage(
+  //       source: ImageSource.gallery, imageQuality: 50);
+
+  //   setState(() {
+  //     _image = image;
+  //   });
+  // }
 
   Future<void> loadAssets() async {
     List<Asset> resultList = List<Asset>();
@@ -57,7 +84,7 @@ class _MultiPickerState extends State<MultiPicker> {
   }
 
   Future saveImage(Asset asset, int count) async {
-    ByteData byteData = await asset.getByteData();
+    ByteData byteData = await asset.getByteData(quality: 50);
     List<int> imageData = byteData.buffer.asUint8List();
     StorageReference ref = FirebaseStorage.instance
         .ref()
@@ -72,6 +99,15 @@ class _MultiPickerState extends State<MultiPicker> {
 
     addUrl(url);
   }
+
+  // Future _uploadImage() async {
+  //       StorageReference ref = FirebaseStorage.instance
+  //       .ref()
+  //       .child('dish_image')
+  //       .child(widget.dishId)
+  //       .child("imageNumber" + count.toString() + '.jpeg');
+  //   await ref.putFile(_storedImage).onComplete;
+  // }
 
   // Add Url to Dish Document on Firebase
   addUrl(url) async {
@@ -95,6 +131,16 @@ class _MultiPickerState extends State<MultiPicker> {
       }),
     );
   }
+
+  // Widget buildListView() {
+  //   return ListTile(
+  //       leading: new Icon(Icons.photo_library),
+  //       title: new Text('Photo Library'),
+  //       onTap: () {
+  //         _imgFromGallery();
+  //         Navigator.of(context).pop();
+  //       });
+  // }
 
   void backHome() {
     Navigator.pop(
@@ -123,19 +169,84 @@ class _MultiPickerState extends State<MultiPicker> {
       ),
       body: Column(
         children: <Widget>[
-          RaisedButton(
-            child: Text("Pick images"),
-            onPressed: loadAssets,
+          Center(
+            child: Text("Please select a minimum of images"),
           ),
+          Expanded(
+            child: GridView.count(
+              padding: const EdgeInsets.all(20),
+              crossAxisSpacing: 10,
+              mainAxisSpacing: 10,
+              crossAxisCount: 2,
+              children: <Widget>[
+                Padding(
+                  padding: const EdgeInsets.all(8),
+                  child: images.isNotEmpty
+                      ? AssetThumb(
+                          asset: images[0],
+                          width: 100,
+                          height: 100,
+                        )
+                      : IconButton(
+                          icon: SvgPicture.asset(addImage),
+                          onPressed: loadAssets,
+                        ),
+                ),
+                Container(
+                  padding: const EdgeInsets.all(8),
+                  child: images.length >= 2
+                      ? AssetThumb(
+                          asset: images[1],
+                          width: 100,
+                          height: 100,
+                        )
+                      : IconButton(
+                          icon: SvgPicture.asset(addImage),
+                          onPressed: loadAssets,
+                        ),
+                ),
+                Container(
+                  padding: const EdgeInsets.all(8),
+                  child: images.length >= 3
+                      ? AssetThumb(
+                          asset: images[2],
+                          width: 100,
+                          height: 100,
+                        )
+                      : IconButton(
+                          icon: SvgPicture.asset(addImage),
+                          onPressed: loadAssets,
+                        ),
+                ),
+                Container(
+                  padding: const EdgeInsets.all(8),
+                  child: images.length == 4
+                      ? AssetThumb(
+                          asset: images[3],
+                          width: 100,
+                          height: 100,
+                        )
+                      : IconButton(
+                          icon: SvgPicture.asset(addImage),
+                          onPressed: loadAssets,
+                        ),
+                ),
+              ],
+            ),
+          ),
+          // Flexible(
+
+          //   child: buildGridView()),
           RaisedButton(
               child: Text("upload images"),
-              onPressed: () {
-                for (var i = 0; i < images.length; i++) {
-                  saveImage(images[i], i);
-                }
-                backHome();
-              }),
-          Expanded(child: buildGridView()),
+              onPressed: images.length >= 2
+                  ? () {
+                      for (var i = 0; i < images.length; i++) {
+                        saveImage(images[i], i);
+                      }
+                      backHome();
+                    }
+                  : null),
         ],
       ),
     );
