@@ -227,9 +227,8 @@ class _NewDishFormState extends State<NewDishForm> {
               ),
             ),
             SizedBox(
-              
               height: 20,
-              width: 40, 
+              width: 40,
               child: RaisedButton(
                 //shape: ,
                 child: Text('Submit'),

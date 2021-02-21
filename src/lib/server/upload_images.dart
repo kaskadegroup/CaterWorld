@@ -22,37 +22,13 @@ class MultiPicker extends StatefulWidget {
 class _MultiPickerState extends State<MultiPicker> {
   List<Asset> images = List<Asset>();
   List allUrl = List();
-  // File _imagePath;
-  // File _storedImage;
-  // PickedFile _imageFile;
+
   final String addImage = 'assets/icons/Add Photo.svg';
 
   @override
   void initState() {
     super.initState();
   }
-
-  // Future _takePicture() async {
-  //   final picker = ImagePicker();
-  //   final imageFile = await picker.getImage(
-  //     source: ImageSource.camera,
-  //     maxWidth: 600,
-  //   );
-
-  //   setState(() {
-  //     _imageFile = imageFile;
-  //     _imagePath = File(imageFile.path);
-  //   });
-  // }
-
-  // _imgFromGallery() async {
-  //   File image = await ImagePicker.pickImage(
-  //       source: ImageSource.gallery, imageQuality: 50);
-
-  //   setState(() {
-  //     _image = image;
-  //   });
-  // }
 
   Future<void> loadAssets() async {
     List<Asset> resultList = List<Asset>();
@@ -100,15 +76,6 @@ class _MultiPickerState extends State<MultiPicker> {
     addUrl(url);
   }
 
-  // Future _uploadImage() async {
-  //       StorageReference ref = FirebaseStorage.instance
-  //       .ref()
-  //       .child('dish_image')
-  //       .child(widget.dishId)
-  //       .child("imageNumber" + count.toString() + '.jpeg');
-  //   await ref.putFile(_storedImage).onComplete;
-  // }
-
   // Add Url to Dish Document on Firebase
   addUrl(url) async {
     final ref =
@@ -132,19 +99,11 @@ class _MultiPickerState extends State<MultiPicker> {
     );
   }
 
-  // Widget buildListView() {
-  //   return ListTile(
-  //       leading: new Icon(Icons.photo_library),
-  //       title: new Text('Photo Library'),
-  //       onTap: () {
-  //         _imgFromGallery();
-  //         Navigator.of(context).pop();
-  //       });
-  // }
-
   void backHome() {
-    Navigator.pop(
-        context, new MaterialPageRoute(builder: (context) => NavBar()));
+    Navigator.push(
+        context, new MaterialPageRoute(builder: (context) => new NavBar()));
+    // Navigator.pop(
+    //     context, new MaterialPageRoute(builder: (context) => NavBar()));
   }
 
   @override
