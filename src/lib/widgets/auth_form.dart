@@ -96,13 +96,6 @@ class _AuthFormState extends State<AuthForm> {
                           _userPassword = value;
                         },
                       ),
-                      //if (_isLogin)
-                      // RaisedButton(
-                      //   onPressed: () async {
-                      //     await FirebaseAuth.instance.signOut();
-                      //   },
-                      //   child: Text("Sign out"),
-                      // ),
                       SizedBox(height: 12),
                       if (widget.isLoading) CircularProgressIndicator(),
                       if (!widget.isLoading)

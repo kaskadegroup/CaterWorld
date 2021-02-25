@@ -53,6 +53,7 @@ class _NewDishFormState extends State<NewDishForm> {
         'dishAllergens': _dishAllergens,
       });
 
+      _formKey.currentState.reset();
       uploadImages(context, documentReference.documentID);
     }
   }
@@ -72,68 +73,119 @@ class _NewDishFormState extends State<NewDishForm> {
         key: _formKey,
         child: ListView(
           children: [
-            TextFormField(
-              key: ValueKey('Name'),
-              validator: (value) {
-                if (value.isEmpty) {
-                  return 'Name is required';
-                }
-                return null;
-              },
-              decoration: InputDecoration(labelText: 'Name of Dish'),
-              textInputAction: TextInputAction.next,
-              onFieldSubmitted: (_) {
-                FocusScope.of(context).requestFocus(_priceNode);
-              },
-              onSaved: (value) {
-                _dishName = value;
-              },
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: TextFormField(
+                key: ValueKey('Name'),
+                validator: (value) {
+                  if (value.isEmpty) {
+                    return 'Name is required';
+                  }
+                  return null;
+                },
+                decoration: InputDecoration(
+                  hintText: 'Name of Dish',
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(10)),
+                    borderSide: BorderSide(color: Colors.grey),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                    borderSide: BorderSide(color: Colors.grey),
+                  ),
+                ),
+                textInputAction: TextInputAction.next,
+                onFieldSubmitted: (_) {
+                  FocusScope.of(context).requestFocus(_priceNode);
+                },
+                onSaved: (value) {
+                  _dishName = value;
+                },
+              ),
             ),
-            TextFormField(
-              key: ValueKey('Cuisine'),
-              validator: (value) {
-                if (value.isEmpty) {
-                  return 'Cuisine is required';
-                }
-                return null;
-              },
-              decoration: InputDecoration(labelText: 'Cuisine'),
-              textInputAction: TextInputAction.next,
-              focusNode: _priceNode,
-              onSaved: (value) {
-                _dishCuisine = value;
-              },
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: TextFormField(
+                key: ValueKey('Cuisine'),
+                validator: (value) {
+                  if (value.isEmpty) {
+                    return 'Cuisine is required';
+                  }
+                  return null;
+                },
+                decoration: InputDecoration(
+                  hintText: 'Cuisine',
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(10)),
+                    borderSide: BorderSide(color: Colors.grey),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                    borderSide: BorderSide(color: Colors.grey),
+                  ),
+                ),
+                textInputAction: TextInputAction.next,
+                focusNode: _priceNode,
+                onSaved: (value) {
+                  _dishCuisine = value;
+                },
+              ),
             ),
-            TextFormField(
-              key: ValueKey('Ingredients'),
-              validator: (value) {
-                if (value.isEmpty) {
-                  return 'Ingredients is required';
-                }
-                return null;
-              },
-              decoration:
-                  InputDecoration(labelText: 'Add comma separated Ingredients'),
-              textInputAction: TextInputAction.next,
-              onSaved: (value) {
-                _dishIngredients = convertIngredientsList(value);
-              },
-              //focusNode: _priceNode,
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: TextFormField(
+                key: ValueKey('Ingredients'),
+                validator: (value) {
+                  if (value.isEmpty) {
+                    return 'Ingredients is required';
+                  }
+                  return null;
+                },
+                decoration: InputDecoration(
+                  hintText: 'Add comma separated Ingredients',
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(10)),
+                    borderSide: BorderSide(color: Colors.grey),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                    borderSide: BorderSide(color: Colors.grey),
+                  ),
+                ),
+                textInputAction: TextInputAction.next,
+                onSaved: (value) {
+                  _dishIngredients = convertIngredientsList(value);
+                },
+                //focusNode: _priceNode,
+              ),
             ),
-            TextFormField(
-              key: ValueKey('Allergens'),
-              validator: (value) {
-                if (value.isEmpty) {
-                  return 'Allergens is required';
-                }
-                return null;
-              },
-              decoration: InputDecoration(labelText: 'Allergens'),
-              textInputAction: TextInputAction.next,
-              //focusNode: _priceNode,
-              onSaved: (value) {
-                _dishAllergens = value;
-              },
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: TextFormField(
+                key: ValueKey('Allergens'),
+                validator: (value) {
+                  if (value.isEmpty) {
+                    return 'Allergens is required';
+                  }
+                  return null;
+                },
+                decoration: InputDecoration(
+                  hintText: 'Allergens',
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(10)),
+                    borderSide: BorderSide(color: Colors.grey),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                    borderSide: BorderSide(color: Colors.grey),
+                  ),
+                ),
+                textInputAction: TextInputAction.next,
+                //focusNode: _priceNode,
+                onSaved: (value) {
+                  _dishAllergens = value;
+                },
+              ),
             ),
             CheckboxListTile(
                 title: const Text('Is this dish Vegetarian ?'),
@@ -143,27 +195,45 @@ class _NewDishFormState extends State<NewDishForm> {
                     isVeg = val;
                   });
                 }),
-            TextFormField(
-              key: ValueKey('Story'),
-              validator: (value) {
-                if (value.isEmpty) {
-                  return 'Story is required';
-                }
-                return null;
-              },
-              decoration: InputDecoration(labelText: 'Story'),
-              maxLines: 4,
-              keyboardType: TextInputType.multiline,
-              textInputAction: TextInputAction.next,
-              onSaved: (value) {
-                _dishStory = value;
-              },
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: TextFormField(
+                key: ValueKey('Story'),
+                validator: (value) {
+                  if (value.isEmpty) {
+                    return 'Story is required';
+                  }
+                  return null;
+                },
+                decoration: InputDecoration(
+                  hintText: 'Story',
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(10)),
+                    borderSide: BorderSide(color: Colors.grey),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                    borderSide: BorderSide(color: Colors.grey),
+                  ),
+                ),
+                maxLines: 4,
+                keyboardType: TextInputType.multiline,
+                textInputAction: TextInputAction.next,
+                onSaved: (value) {
+                  _dishStory = value;
+                },
 
-              //focusNode: _priceNode,
+                //focusNode: _priceNode,
+              ),
             ),
-            RaisedButton(
-              child: Text('Submit'),
-              onPressed: _trySubmit,
+            SizedBox(
+              height: 20,
+              width: 40,
+              child: RaisedButton(
+                //shape: ,
+                child: Text('Submit'),
+                onPressed: _trySubmit,
+              ),
             ),
           ],
         ),
