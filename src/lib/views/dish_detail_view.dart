@@ -22,6 +22,8 @@ class DishDetailView extends StatefulWidget {
   final List ingredients;
   final bool isVeg;
   final List dishUrl;
+  bool isStatus;
+  final status;
 
   DishDetailView({
     Key key,
@@ -34,6 +36,8 @@ class DishDetailView extends StatefulWidget {
     this.ingredients,
     this.isVeg,
     this.dishUrl,
+    this.status,
+    this.isStatus
   }) : super(key: key);
 
   @override
@@ -245,6 +249,14 @@ class _DishDetailViewState extends State<DishDetailView> {
                     ),
                     Text(
                       widget.dishStory,
+                      style: TextStyle(
+                        fontSize: 17,
+                        fontFamily: '.SF Pro Display',
+                        fontWeight: FontWeight.w500,
+                        color: Color.fromRGBO(120, 115, 115, 1),
+                      ),
+                    ),
+                    if (widget.isStatus)  Text(widget.status,
                       style: TextStyle(
                         fontSize: 17,
                         fontFamily: '.SF Pro Display',

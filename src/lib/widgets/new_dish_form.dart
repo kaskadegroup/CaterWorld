@@ -51,6 +51,7 @@ class _NewDishFormState extends State<NewDishForm> {
         'Ingredients': _dishIngredients,
         'isVeg': isVeg,
         'dishAllergens': _dishAllergens,
+        'status': false,
       });
 
       _formKey.currentState.reset();

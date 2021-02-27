@@ -40,7 +40,6 @@ class GetDishData extends StatelessWidget {
 
                   final List allFavorite = favoriteSnapshot
                       .data['allFavorites'];
-
                   return ListView.builder(
                       itemCount: dishInfo.length,
                       itemBuilder: (ctx, index) =>
@@ -52,6 +51,8 @@ class GetDishData extends StatelessWidget {
                             dishUrl: dishInfo[index]['dishUrl'],
                             ingredients: dishInfo[index]['Ingredients'],
                             isVeg: dishInfo[index]['isVeg'],
+                            isStatus: false,
+                            status: dishInfo[index]['status'],
 
                             isFavorite: allFavorite.contains(dishInfo[index]['dishId']),
                           ));
