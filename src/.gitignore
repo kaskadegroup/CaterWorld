@@ -23,7 +23,7 @@
 #.vscode/
 
 # Flutter/Dart/Pub related
-**/doc/api/git
+**/doc/api/
 **/ios/Flutter/.last_build_id
 **/ios/Podfile.lock
 **/ios/Runner.xcodeproj/project.pbxproj
