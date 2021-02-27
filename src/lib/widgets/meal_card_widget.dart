@@ -16,6 +16,8 @@ class DishCard extends StatefulWidget {
   final String dishId;
   final List ingredients;
   final bool isVeg;
+  final String status;
+  bool isStatus;
   bool isFavorite;
 
   DishCard({
@@ -27,6 +29,8 @@ class DishCard extends StatefulWidget {
     this.dishId,
     this.ingredients,
     this.isVeg,
+    this.status,
+    this.isStatus,
     this.isFavorite, // do not use except for like screen for now
   });
 
@@ -57,6 +61,8 @@ class _DishCardState extends State<DishCard> {
                   ingredients: widget.ingredients,
                   isVeg: widget.isVeg,
                   dishUrl: widget.dishUrl,
+                  isStatus: widget.isStatus,
+                  status: widget.status,
                 )));
 
     setState(() {
@@ -157,6 +163,13 @@ class _DishCardState extends State<DishCard> {
                                 likedbuttom,
                                 height: 30,
                               ),
+                        if (widget.isStatus)  Text(widget.status,
+                          style: TextStyle(
+                            fontSize: 21,
+                            fontFamily: '.SF Pro Display',
+                            color: Color.fromRGBO(120, 115, 115, 1),
+                          ),
+                        ),
                       ],
                     ),
                   ),
