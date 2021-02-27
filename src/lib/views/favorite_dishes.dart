@@ -16,12 +16,22 @@ class _FavoriteDishesState extends State<FavoriteDishes> {
     final user = await FirebaseAuth.instance.currentUser();
     final userData =
         await Firestore.instance.collection('users').document(user.uid).get();
-    var _allFavorites = userData.data["allFavorites"];
+    List _allFavorites = userData.data["allFavorites"];
+    if (_allFavorites.isNotEmpty){
     var results = Firestore.instance
         .collection('dishInfo')
         .where("dishId", whereIn: _allFavorites)
         .getDocuments();
     return results;
+    }
+    else {
+      var results = Firestore.instance
+          .collection('dishInfo')
+          .where("dishId", isEqualTo: 'none')
+          .getDocuments();
+      return results;
+    }
+
   }
 
   @override
@@ -52,6 +62,8 @@ class _FavoriteDishesState extends State<FavoriteDishes> {
                         dishUrl: dishInfo[index]['dishUrl'],
                         isVeg: dishInfo[index]['isVeg'],
                         isFavorite: true,
+                        status: dishInfo[index]['status'],
+                        isStatus: false,
                         ingredients: dishInfo[index]['Ingredients'],
                       ));
           }

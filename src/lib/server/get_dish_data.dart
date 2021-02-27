@@ -18,7 +18,8 @@ class GetDishData extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return StreamBuilder(
-        stream: Firestore.instance.collection('dishInfo').snapshots(),
+        stream: Firestore.instance.collection('dishInfo')
+            .where('status', isEqualTo: 'APPROVED').snapshots(),
         builder: (ctx, dishInfoSnapshot) {
           if (dishInfoSnapshot.connectionState == ConnectionState.waiting) {
             return Center(child: CircularProgressIndicator());

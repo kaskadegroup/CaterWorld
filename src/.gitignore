@@ -15,6 +15,7 @@
 *.iws
 ../.idea/
 */.idea/
+.idea
 
 # The .vscode folder contains launch configuration and tasks you configure in
 # VS Code which you may wish to be included in version control, so this line
@@ -22,8 +23,10 @@
 #.vscode/
 
 # Flutter/Dart/Pub related
-**/doc/api/
+**/doc/api/git
 **/ios/Flutter/.last_build_id
+**/ios/Podfile.lock
+**/ios/Runner.xcodeproj/project.pbxproj
 .dart_tool/
 .flutter-plugins
 .flutter-plugins-dependencies
