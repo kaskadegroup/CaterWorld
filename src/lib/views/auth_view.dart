@@ -45,6 +45,7 @@ class _AuthViewState extends State<AuthView> {
             .setData({
           'username': username,
           'email': email,
+          'allFavorites': []
         });
       }
     } on PlatformException catch (err) {

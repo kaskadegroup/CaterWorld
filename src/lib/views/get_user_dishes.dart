@@ -15,7 +15,24 @@ class GetUserDishes extends StatelessWidget {
   }
   @override
   Widget build(BuildContext context){
-    return Scaffold(body: FutureBuilder(
+    return Scaffold(
+      appBar: AppBar(
+        leading: IconButton(
+            icon: Icon(Icons.arrow_back, color: Colors.black),
+            onPressed: () => Navigator.of(context).pop()),
+        title: Text(
+          'My dishes',
+          style: TextStyle(
+            fontSize: 24,
+            fontFamily: '.SF Pro Display',
+            fontWeight: FontWeight.w500,
+            color: Color.fromRGBO(120, 115, 115, 1),
+          ),
+        ),
+        backgroundColor: Colors.white,
+        elevation: 0,
+      ),
+        body: FutureBuilder(
       future: _checkuserdishes(),
       builder: (ctx, userDishesSnapshot){
         switch (userDishesSnapshot.connectionState){
@@ -29,6 +46,9 @@ class GetUserDishes extends StatelessWidget {
                 child: Text(userDishesSnapshot.error.toString()),
               );
             final List userDishes = userDishesSnapshot.data.documents;
+            if (userDishes.isEmpty){
+              return Center(child: Text("You have not uploaded any dishes"));
+            }
             return ListView.builder(
               itemCount: userDishes.length,
               itemBuilder: (ctx, index) =>
