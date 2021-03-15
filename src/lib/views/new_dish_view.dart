@@ -13,10 +13,6 @@ class AddDishScreen extends StatefulWidget {
 
 class _AddDishScreenState extends State<AddDishScreen> {
   @override
-//   Widget build(BuildContext context) {
-//     return NewDishForm();
-//   }
-// }
   Widget build(BuildContext context) {
     return StreamBuilder(
         stream: FirebaseAuth.instance.onAuthStateChanged,

@@ -12,8 +12,6 @@ class GetDishData extends StatefulWidget {
 }
 
 class _GetDishDataState extends State<GetDishData> {
-  bool isLogin = false;
-
   Future _checkfavorites() async {
     final user = await FirebaseAuth.instance.currentUser();
     final userData =

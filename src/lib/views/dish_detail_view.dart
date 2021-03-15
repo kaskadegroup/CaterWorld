@@ -12,8 +12,6 @@ import 'package:flutter/cupertino.dart';
 class DishDetailView extends StatefulWidget {
   static const routeName = '/views-screen';
 
-  final Function toggleFavorite;
-
   final String title;
   final String cuisine;
   final String dishStory;
@@ -28,18 +26,17 @@ class DishDetailView extends StatefulWidget {
 
   DishDetailView(
       {Key key,
-      this.title,
-      this.cuisine,
-      this.dishStory,
-      this.dishId,
-      this.toggleFavorite,
-      this.isFavorite,
-      this.ingredients,
-      this.isVeg,
-      this.dishUrl,
-      this.status,
-      this.isStatus,
-      this.isLogin})
+      @required this.title,
+      @required this.cuisine,
+      @required this.dishStory,
+      @required this.dishId,
+      @required this.isFavorite,
+      @required this.ingredients,
+      @required this.isVeg,
+      @required this.dishUrl,
+      @required this.status,
+      @required this.isStatus,
+      @required this.isLogin})
       : super(key: key);
 
   @override
