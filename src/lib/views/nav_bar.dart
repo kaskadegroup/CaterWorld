@@ -18,7 +18,6 @@ class _NavBarState extends State<NavBar> {
   final String favDish = 'assets/icons/Union.svg';
   final String addNew = 'assets/icons/Add.svg';
   final String burgMenu = 'assets/icons/Hamburger Menu.svg';
-
   List<Map<String, Object>> _pages;
 
   int _selectedPageIndex = 0;

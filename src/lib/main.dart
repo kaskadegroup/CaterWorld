@@ -20,21 +20,26 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   // final Future<FirebaseApp> _initialization = Firebase.initializeApp();
   @override
+  // Widget build(BuildContext context) {
+  //   return StreamBuilder(
+  //       //future: _initialization,
+  //       stream: Firestore.instance.collection('dishInfo').snapshots(),
+  //       builder: (context, appSnapshot) {
+  //         return MaterialApp(
+  //           home: StreamBuilder(
+  //               stream: FirebaseAuth.instance.onAuthStateChanged,
+  //               builder: (ctx, userSnapshot) {
+  //                 if (userSnapshot.hasData) {
+  //                   return NavBar();
+  //                 }
+  //                 return AuthView();
+  //               }),
+  //         );
+  //       });
+  // }
   Widget build(BuildContext context) {
-    return StreamBuilder(
-        //future: _initialization,
-        stream: Firestore.instance.collection('dishInfo').snapshots(),
-        builder: (context, appSnapshot) {
-          return MaterialApp(
-            home: StreamBuilder(
-                stream: FirebaseAuth.instance.onAuthStateChanged,
-                builder: (ctx, userSnapshot) {
-                  if (userSnapshot.hasData) {
-                    return NavBar();
-                  }
-                  return AuthView();
-                }),
-          );
-        });
+    return MaterialApp(
+      home: NavBar(),
+    );
   }
 }

@@ -42,11 +42,8 @@ class _AuthViewState extends State<AuthView> {
         await Firestore.instance
             .collection('users')
             .document(authResult.user.uid)
-            .setData({
-          'username': username,
-          'email': email,
-          'allFavorites': []
-        });
+            .setData(
+                {'username': username, 'email': email, 'allFavorites': []});
       }
     } on PlatformException catch (err) {
       var message = 'An error occurred, pelase check your credentials!';

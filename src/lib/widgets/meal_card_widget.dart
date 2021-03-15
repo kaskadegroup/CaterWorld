@@ -19,19 +19,21 @@ class DishCard extends StatefulWidget {
   final String status;
   bool isStatus;
   bool isFavorite;
+  bool isLogin;
 
   DishCard({
     // @required this.id,
     @required this.title,
     @required this.cuisine,
-    this.dishStory,
-    this.dishUrl,
-    this.dishId,
-    this.ingredients,
-    this.isVeg,
-    this.status,
-    this.isStatus,
-    this.isFavorite, // do not use except for like screen for now
+    @required this.dishStory,
+    @required this.dishUrl,
+    @required this.dishId,
+    @required this.ingredients,
+    @required this.isVeg,
+    @required this.status,
+    @required this.isStatus,
+    @required this.isFavorite,
+    @required this.isLogin, // do not use except for like screen for now
   });
 
   @override
@@ -63,6 +65,7 @@ class _DishCardState extends State<DishCard> {
                   dishUrl: widget.dishUrl,
                   isStatus: widget.isStatus,
                   status: widget.status,
+                  isLogin: widget.isLogin,
                 )));
 
     setState(() {
@@ -110,7 +113,6 @@ class _DishCardState extends State<DishCard> {
                     child: Row(
                       children: [
                         Flexible(
-                          
                           child: Text(
                             widget.title,
                             style: TextStyle(
@@ -153,23 +155,29 @@ class _DishCardState extends State<DishCard> {
                           padding: EdgeInsets.only(right: 8),
                         ),
                         //Favorite Icon
-                        
-                        !widget.isFavorite
-                            ? SvgPicture.asset(
-                                favIcon,
-                                height: 30,
-                              )
-                            : SvgPicture.asset(
-                                likedbuttom,
-                                height: 30,
+                        widget.isLogin
+                            ? !widget.isFavorite
+                                ? SvgPicture.asset(
+                                    favIcon,
+                                    height: 30,
+                                  )
+                                : SvgPicture.asset(
+                                    likedbuttom,
+                                    height: 30,
+                                  )
+                            : Padding(
+                                padding: EdgeInsets.only(right: 2),
                               ),
-                        if (widget.isStatus)  Text(widget.status,
-                          style: TextStyle(
-                            fontSize: 21,
-                            fontFamily: '.SF Pro Display',
-                            color: Color.fromRGBO(120, 115, 115, 1),
+
+                        if (widget.isStatus)
+                          Text(
+                            widget.status,
+                            style: TextStyle(
+                              fontSize: 21,
+                              fontFamily: '.SF Pro Display',
+                              color: Color.fromRGBO(120, 115, 115, 1),
+                            ),
                           ),
-                        ),
                       ],
                     ),
                   ),
