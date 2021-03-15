@@ -100,8 +100,10 @@ class _MultiPickerState extends State<MultiPicker> {
   }
 
   void backHome() {
-    Navigator.push(
-        context, new MaterialPageRoute(builder: (context) => new NavBar()));
+    Navigator.pushAndRemoveUntil(
+        context,
+        MaterialPageRoute(builder: (BuildContext context) => new NavBar()),
+        (Route<dynamic> route) => false);
     // Navigator.pop(
     //     context, new MaterialPageRoute(builder: (context) => NavBar()));
   }
