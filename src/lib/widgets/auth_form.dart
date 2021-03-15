@@ -1,4 +1,8 @@
+//package imports
 import 'package:flutter/material.dart';
+
+//file imports
+import '../views/nav_bar.dart';
 
 class AuthForm extends StatefulWidget {
   AuthForm(
@@ -34,6 +38,10 @@ class _AuthFormState extends State<AuthForm> {
       _formKey.currentState.save();
       widget.submitFn(_userEmail.trim(), _userPassword.trim(), _userName.trim(),
           _isLogin, context);
+      Navigator.pushAndRemoveUntil(
+          context,
+          MaterialPageRoute(builder: (BuildContext context) => new NavBar()),
+          (Route<dynamic> route) => false);
     }
   }
 

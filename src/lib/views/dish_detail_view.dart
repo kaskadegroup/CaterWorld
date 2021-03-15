@@ -24,21 +24,23 @@ class DishDetailView extends StatefulWidget {
   final List dishUrl;
   bool isStatus;
   final status;
+  bool isLogin;
 
-  DishDetailView({
-    Key key,
-    this.title,
-    this.cuisine,
-    this.dishStory,
-    this.dishId,
-    this.toggleFavorite,
-    this.isFavorite,
-    this.ingredients,
-    this.isVeg,
-    this.dishUrl,
-    this.status,
-    this.isStatus
-  }) : super(key: key);
+  DishDetailView(
+      {Key key,
+      this.title,
+      this.cuisine,
+      this.dishStory,
+      this.dishId,
+      this.toggleFavorite,
+      this.isFavorite,
+      this.ingredients,
+      this.isVeg,
+      this.dishUrl,
+      this.status,
+      this.isStatus,
+      this.isLogin})
+      : super(key: key);
 
   @override
   _DishDetailViewState createState() => _DishDetailViewState();
@@ -187,18 +189,22 @@ class _DishDetailViewState extends State<DishDetailView> {
                           Padding(
                             padding: EdgeInsets.only(right: 10),
                           ),
-                          IconButton(
-                            icon: !widget.isFavorite
-                                ? SvgPicture.asset(
-                                    favIcon,
-                                    height: 35,
-                                  )
-                                : SvgPicture.asset(
-                                    likedbuttom,
-                                    height: 35,
-                                  ),
-                            onPressed: _likedThis,
-                          ),
+                          widget.isLogin
+                              ? IconButton(
+                                  icon: !widget.isFavorite
+                                      ? SvgPicture.asset(
+                                          favIcon,
+                                          height: 35,
+                                        )
+                                      : SvgPicture.asset(
+                                          likedbuttom,
+                                          height: 35,
+                                        ),
+                                  onPressed: _likedThis,
+                                )
+                              : Padding(
+                                  padding: EdgeInsets.only(right: 2),
+                                ),
                           Padding(
                             padding: EdgeInsets.only(right: 10),
                           ),
@@ -256,14 +262,16 @@ class _DishDetailViewState extends State<DishDetailView> {
                         color: Color.fromRGBO(120, 115, 115, 1),
                       ),
                     ),
-                    if (widget.isStatus)  Text(widget.status,
-                      style: TextStyle(
-                        fontSize: 17,
-                        fontFamily: '.SF Pro Display',
-                        fontWeight: FontWeight.w500,
-                        color: Color.fromRGBO(120, 115, 115, 1),
+                    if (widget.isStatus)
+                      Text(
+                        widget.status,
+                        style: TextStyle(
+                          fontSize: 17,
+                          fontFamily: '.SF Pro Display',
+                          fontWeight: FontWeight.w500,
+                          color: Color.fromRGBO(120, 115, 115, 1),
+                        ),
                       ),
-                    ),
                   ],
                 ),
               ),
