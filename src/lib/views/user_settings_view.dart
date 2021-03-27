@@ -37,18 +37,18 @@ class UserSettings extends StatelessWidget {
                 children: <Widget>[
                   Card(
                     child: ListTile(
+                      title: Text('My dishes'),
+                      onTap: () => getUserDishes(context),
+                      trailing: Icon(Icons.arrow_forward_ios),
+                    ),
+                  ),
+                  Card(
+                    child: ListTile(
                         title: Text('Sign out'),
                         onTap: () async {
                           await FirebaseAuth.instance.signOut();
                         },
                         trailing: Icon(Icons.arrow_forward_ios)),
-                  ),
-                  Card(
-                    child: ListTile(
-                      title: Text('My dishes'),
-                      onTap: () => getUserDishes(context),
-                      trailing: Icon(Icons.arrow_forward_ios),
-                    ),
                   ),
                 ],
               );
