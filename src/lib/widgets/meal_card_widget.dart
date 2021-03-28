@@ -20,6 +20,7 @@ class DishCard extends StatefulWidget {
   bool isStatus;
   bool isFavorite;
   bool isLogin;
+  bool isAdmin;
 
   DishCard({
     // @required this.id,
@@ -34,6 +35,7 @@ class DishCard extends StatefulWidget {
     @required this.isStatus,
     @required this.isFavorite,
     @required this.isLogin, // do not use except for like screen for now
+    @required this.isAdmin,
   });
 
   @override
@@ -66,6 +68,7 @@ class _DishCardState extends State<DishCard> {
                   isStatus: widget.isStatus,
                   status: widget.status,
                   isLogin: widget.isLogin,
+                  isAdmin: widget.isAdmin,
                 )));
 
     setState(() {
