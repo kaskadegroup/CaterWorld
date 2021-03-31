@@ -39,40 +39,56 @@ class _FavoriteDishesState extends State<FavoriteDishes> {
         stream: FirebaseAuth.instance.onAuthStateChanged,
         builder: (ctx, userSnapshot) {
           if (userSnapshot.hasData) {
-            return FutureBuilder(
-                future: getFavoriteDishes(),
-                builder: (ctx, dishInfoSnapshot) {
-                  switch (dishInfoSnapshot.connectionState) {
-                    case ConnectionState.none:
-                    case ConnectionState.waiting:
-                      return Center(child: CircularProgressIndicator());
-                      break;
-                    default:
-                      if (dishInfoSnapshot.hasError)
-                        return Container(
-                            child: Text(dishInfoSnapshot.error.toString()));
-                      final List dishInfo = dishInfoSnapshot.data.documents;
-                      if (dishInfo.isEmpty) {
-                        return Center(child: Text("You have no Favorites"));
-                      }
-                      return ListView.builder(
-                          itemCount: dishInfo.length,
-                          itemBuilder: (ctx, index) => DishCard(
-                                title: dishInfo[index]['dishName'],
-                                cuisine: dishInfo[index]['dishCat'],
-                                dishStory: dishInfo[index]['dishStory'],
-                                dishId: dishInfo[index]['dishId'],
-                                dishUrl: dishInfo[index]['dishUrl'],
-                                isVeg: dishInfo[index]['isVeg'],
-                                isFavorite: true,
-                                status: dishInfo[index]['status'],
-                                isStatus: false,
-                                ingredients: dishInfo[index]['dishIngredients'],
-                                isLogin: true,
-                                isAdmin: false,
-                              ));
-                  }
-                });
+            return Container(
+              child: FutureBuilder(
+                  future: getFavoriteDishes(),
+                  builder: (ctx, dishInfoSnapshot) {
+                    switch (dishInfoSnapshot.connectionState) {
+                      case ConnectionState.none:
+                      case ConnectionState.waiting:
+                        return Center(child: CircularProgressIndicator());
+                        break;
+                      default:
+                        if (dishInfoSnapshot.hasError)
+                          return Container(
+                              child: Text(dishInfoSnapshot.error.toString()));
+                        final List dishInfo = dishInfoSnapshot.data.documents;
+                        if (dishInfo.isEmpty) {
+                          return Center(child: Text("You have no Favorites"));
+                        }
+                        return ListView.builder(
+                            itemCount: dishInfo.length,
+                            itemBuilder: (ctx, index) => DishCard(
+                                  title: dishInfo[index]['dishName'],
+                                  cuisine: dishInfo[index]['dishCat'],
+                                  dishStory: dishInfo[index]['dishStory'],
+                                  dishId: dishInfo[index]['dishId'],
+                                  dishUrl: dishInfo[index]['dishUrl'],
+                                  isVeg: dishInfo[index]['isVeg'],
+                                  isFavorite: true,
+                                  status: dishInfo[index]['status'],
+                                  isStatus: false,
+                                  ingredients: dishInfo[index]
+                                      ['dishIngredients'],
+                                  isLogin: true,
+                                  isAdmin: false,
+                                ));
+                    }
+                  }),
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                    colors: [
+                      const Color(0xFFFFFFFF),
+                      const Color(0xFFF7F0DD),
+                    ],
+                    stops: [
+                      0,
+                      1
+                    ]),
+              ),
+            );
           }
           return Scaffold(
             body: SignIn(),
