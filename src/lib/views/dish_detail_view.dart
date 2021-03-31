@@ -23,6 +23,7 @@ class DishDetailView extends StatefulWidget {
   bool isStatus;
   final status;
   bool isLogin;
+  bool isAdmin;
 
   DishDetailView(
       {Key key,
@@ -36,7 +37,8 @@ class DishDetailView extends StatefulWidget {
       @required this.dishUrl,
       @required this.status,
       @required this.isStatus,
-      @required this.isLogin})
+      @required this.isLogin,
+      @required this.isAdmin})
       : super(key: key);
 
   @override
@@ -91,6 +93,10 @@ class _DishDetailViewState extends State<DishDetailView> {
     //   ingredientsStr += '>' + ingredients[i] + '\n';
     // }
     return ingredientsStr;
+  }
+
+  void approveDish(){
+    Firestore.instance.collection('dishInfo').document(widget.dishId).updateData({'status':"APPROVED"});
   }
 
   @override
@@ -271,6 +277,7 @@ class _DishDetailViewState extends State<DishDetailView> {
                           color: Color.fromRGBO(120, 115, 115, 1),
                         ),
                       ),
+
                       if (widget.isStatus)
                         Text(
                           widget.status,
@@ -283,6 +290,11 @@ class _DishDetailViewState extends State<DishDetailView> {
                         ),
                     ],
                   ),
+
+                    if (widget.isAdmin)
+                      ElevatedButton(onPressed: approveDish, child: Text('Approve'))
+                  ],
+
                 ),
               ],
             ),

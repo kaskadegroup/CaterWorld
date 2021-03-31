@@ -43,7 +43,8 @@ class _AuthViewState extends State<AuthView> {
             .collection('users')
             .document(authResult.user.uid)
             .setData(
-                {'username': username, 'email': email, 'allFavorites': []});
+                {'username': username, 'email': email, 'allFavorites': [],
+                  'account':''});
       }
     } on PlatformException catch (err) {
       var message = 'An error occurred, pelase check your credentials!';

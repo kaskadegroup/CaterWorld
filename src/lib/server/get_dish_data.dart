@@ -52,6 +52,7 @@ class _GetDishDataState extends State<GetDishData> {
                               status: dishInfo[index]['status'],
                               isFavorite: false,
                               isLogin: false,
+                              isAdmin: false,
                             ));
                   } else {
                     return FutureBuilder(
@@ -86,7 +87,8 @@ class _GetDishDataState extends State<GetDishData> {
                                       status: dishInfo[index]['status'],
                                       isFavorite: allFavorite
                                           .contains(dishInfo[index]['dishId']),
-                                      isLogin: true));
+                                      isLogin: true,
+                                    isAdmin: false,));
                           }
                         });
                   }
