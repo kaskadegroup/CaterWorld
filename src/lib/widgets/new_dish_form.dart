@@ -52,116 +52,131 @@ class _NewDishFormState extends State<NewDishForm> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Form(
-        key: _newDishKey,
-        child: ListView(
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: TextFormField(
-                key: ValueKey('Name'),
-                validator: (value) {
-                  if (value.isEmpty) {
-                    return 'Name is required';
-                  }
-                  return null;
-                },
-                decoration: InputDecoration(
-                  hintText: 'Name of Dish',
-                  enabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(10)),
-                    borderSide: BorderSide(color: Colors.grey),
+      body: Container(
+        child: Form(
+          key: _newDishKey,
+          child: ListView(
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: TextFormField(
+                  key: ValueKey('Name'),
+                  validator: (value) {
+                    if (value.isEmpty) {
+                      return 'Name is required';
+                    }
+                    return null;
+                  },
+                  decoration: InputDecoration(
+                    hintText: 'Name of Dish',
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(10)),
+                      borderSide: BorderSide(color: Colors.grey),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                      borderSide: BorderSide(color: Colors.grey),
+                    ),
                   ),
-                  focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(10.0)),
-                    borderSide: BorderSide(color: Colors.grey),
-                  ),
+                  textInputAction: TextInputAction.next,
+                  onFieldSubmitted: (_) {
+                    FocusScope.of(context).requestFocus(_priceNode);
+                  },
+                  onSaved: (value) {
+                    _dishName = value;
+                  },
                 ),
-                textInputAction: TextInputAction.next,
-                onFieldSubmitted: (_) {
-                  FocusScope.of(context).requestFocus(_priceNode);
-                },
-                onSaved: (value) {
-                  _dishName = value;
-                },
               ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: TextFormField(
-                key: ValueKey('Cuisine'),
-                validator: (value) {
-                  if (value.isEmpty) {
-                    return 'Cuisine is required';
-                  }
-                  return null;
-                },
-                decoration: InputDecoration(
-                  hintText: 'Cuisine',
-                  enabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(10)),
-                    borderSide: BorderSide(color: Colors.grey),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: TextFormField(
+                  key: ValueKey('Cuisine'),
+                  validator: (value) {
+                    if (value.isEmpty) {
+                      return 'Cuisine is required';
+                    }
+                    return null;
+                  },
+                  decoration: InputDecoration(
+                    hintText: 'Cuisine',
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(10)),
+                      borderSide: BorderSide(color: Colors.grey),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                      borderSide: BorderSide(color: Colors.grey),
+                    ),
                   ),
-                  focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(10.0)),
-                    borderSide: BorderSide(color: Colors.grey),
-                  ),
+                  textInputAction: TextInputAction.next,
+                  focusNode: _priceNode,
+                  onSaved: (value) {
+                    _dishCuisine = value;
+                  },
                 ),
-                textInputAction: TextInputAction.next,
-                focusNode: _priceNode,
-                onSaved: (value) {
-                  _dishCuisine = value;
-                },
               ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: TextFormField(
-                key: ValueKey('Allergens'),
-                validator: (value) {
-                  if (value.isEmpty) {
-                    return 'Allergens is required';
-                  }
-                  return null;
-                },
-                decoration: InputDecoration(
-                  hintText: 'Allergens',
-                  enabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(10)),
-                    borderSide: BorderSide(color: Colors.grey),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: TextFormField(
+                  key: ValueKey('Allergens'),
+                  validator: (value) {
+                    if (value.isEmpty) {
+                      return 'Allergens is required';
+                    }
+                    return null;
+                  },
+                  decoration: InputDecoration(
+                    hintText: 'Allergens',
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(10)),
+                      borderSide: BorderSide(color: Colors.grey),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                      borderSide: BorderSide(color: Colors.grey),
+                    ),
                   ),
-                  focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(10.0)),
-                    borderSide: BorderSide(color: Colors.grey),
-                  ),
+                  textInputAction: TextInputAction.next,
+                  //focusNode: _priceNode,
+                  onSaved: (value) {
+                    _dishAllergens = value;
+                  },
                 ),
-                textInputAction: TextInputAction.next,
-                //focusNode: _priceNode,
-                onSaved: (value) {
-                  _dishAllergens = value;
-                },
               ),
-            ),
-            CheckboxListTile(
-                title: const Text('Is this dish Vegetarian ?'),
-                value: isVeg,
-                onChanged: (val) {
-                  setState(() {
-                    isVeg = val;
-                  });
-                }),
-            SizedBox(
-              height: 20,
-              width: 40,
-              child: ElevatedButton(
-                //shape: ,
-                child: Text('Next'),
-                onPressed: () {
-                  addIngredients(context);
-                },
+              CheckboxListTile(
+                  title: const Text('Is this dish Vegetarian ?'),
+                  value: isVeg,
+                  onChanged: (val) {
+                    setState(() {
+                      isVeg = val;
+                    });
+                  }),
+              SizedBox(
+                height: 20,
+                width: 40,
+                child: ElevatedButton(
+                  //shape: ,
+                  child: Text('Next'),
+                  onPressed: () {
+                    addIngredients(context);
+                  },
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
+        ),
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+              colors: [
+                const Color(0xFFFFFFFF),
+                const Color(0xFFF7F0DD),
+              ],
+              stops: [
+                0,
+                1
+              ]),
         ),
       ),
     );

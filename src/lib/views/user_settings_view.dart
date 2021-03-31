@@ -19,43 +19,61 @@ class UserSettings extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return StreamBuilder<Object>(
-        stream: FirebaseAuth.instance.onAuthStateChanged,
-        builder: (_, userSnapshot) {
-          if (userSnapshot.connectionState == ConnectionState.active) {
-            if (userSnapshot.data == null) {
-              return ListView(children: <Widget>[
-                Card(
-                  child: ListTile(
-                      title: Text('Sign in'),
-                      onTap: () => goToAuth(context),
-                      trailing: Icon(Icons.arrow_forward_ios)),
-                )
-              ]);
-            } else {
-              return ListView(
-                children: <Widget>[
+    return Container(
+      child: StreamBuilder<Object>(
+          stream: FirebaseAuth.instance.onAuthStateChanged,
+          builder: (_, userSnapshot) {
+            if (userSnapshot.connectionState == ConnectionState.active) {
+              if (userSnapshot.data == null) {
+                return ListView(children: <Widget>[
                   Card(
                     child: ListTile(
-                      title: Text('My dishes'),
-                      onTap: () => getUserDishes(context),
-                      trailing: Icon(Icons.arrow_forward_ios),
+                        title: Text('Sign in'),
+                        onTap: () => goToAuth(context),
+                        trailing: Icon(Icons.arrow_forward_ios)),
+                  )
+                ]);
+              } else {
+                return ListView(
+                  children: <Widget>[
+                    Card(
+                      child: ListTile(
+                        title: Text('My dishes'),
+                        onTap: () => getUserDishes(context),
+                        trailing: Icon(Icons.arrow_forward_ios),
+                        tileColor: Color.fromRGBO(252, 252, 246, 0.5),
+                      ),
                     ),
-                  ),
-                  Card(
-                    child: ListTile(
+                    Card(
+                      child: ListTile(
                         title: Text('Sign out'),
                         onTap: () async {
                           await FirebaseAuth.instance.signOut();
                         },
-                        trailing: Icon(Icons.arrow_forward_ios)),
-                  ),
-                ],
-              );
+                        trailing: Icon(Icons.arrow_forward_ios),
+                        tileColor: Color.fromRGBO(252, 252, 246, 0.5),
+                      ),
+                    ),
+                  ],
+                );
+              }
+            } else {
+              return CircularProgressIndicator();
             }
-          } else {
-            return CircularProgressIndicator();
-          }
-        });
+          }),
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: [
+              const Color(0xFFFFFFFF),
+              const Color(0xFFF7F0DD),
+            ],
+            stops: [
+              0,
+              1
+            ]),
+      ),
+    );
   }
 }
