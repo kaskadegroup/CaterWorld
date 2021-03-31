@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>Dish Approval Process</h1>
+        <div class="container pt-5">
+            <h4>Dish Images</h4>
+            {% for image in dish.dishUrl %}
+
+            <img src={{image}}  style="width:300px;height:300px;">
+            {% endfor %}
+
+
+        </div>
+<div class="container pt-5">
+            <h4>Dish Story </h4>
+            <p>{{dish.dishStory}}</p>
+        </div>
+
+<div class="container pt-5">
+            <h4>Dish Ingredients </h4>
+    <ul>
+
+    {% for ingredient in dish.Ingredients %}
+    <li>{{ingredient}}</li>
+    {% endfor %}
+
+    </ul>
+        </div>
+
+<div class="container pt-5">
+    <form method ="POST" action="{{url_for('update')}}">
+ <input type="hidden" name="id" value="{{ dish.dishId }}"/>
+    <button>Approve</button>
+    </form>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
+</body>
+</html>
