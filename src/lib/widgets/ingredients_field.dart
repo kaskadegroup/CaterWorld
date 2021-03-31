@@ -55,7 +55,8 @@ class _IngredientsTextFieldsState extends State<IngredientsTextFields> {
         children: [
           Flexible(
             flex: 2,
-            child: TextFormField(
+            child: Padding(padding: EdgeInsets.only(left:5, right: 5),
+              child: TextFormField(
               controller: _nameController,
               onChanged: (v1) => widget.ingredientsNameList[widget.index] = v1,
               validator: (v1) {
@@ -74,10 +75,12 @@ class _IngredientsTextFieldsState extends State<IngredientsTextFields> {
                 ),
               ),
             ),
+            ),
           ),
           Flexible(
             flex: 1,
-            child: TextFormField(
+            child: Padding(padding: EdgeInsets.only(left:5, right: 5),
+              child:TextFormField(
               controller: _qtyController,
               onChanged: (v2) => widget.ingredientsQtyList[widget.index] = v2,
               validator: (v2) {
@@ -96,10 +99,12 @@ class _IngredientsTextFieldsState extends State<IngredientsTextFields> {
                 ),
               ),
             ),
+            ),
           ),
           Flexible(
             flex: 1,
-            child: TextFormField(
+            child: Padding(padding: EdgeInsets.only(left:5, right: 5),
+              child:TextFormField(
               controller: _unitController,
               onChanged: (v3) => widget.ingredientsUnitList[widget.index] = v3,
               validator: (v3) {
@@ -117,6 +122,7 @@ class _IngredientsTextFieldsState extends State<IngredientsTextFields> {
                   borderSide: BorderSide(color: Colors.grey),
                 ),
               ),
+            ),
             ),
 
             //DropdownButton<String>(

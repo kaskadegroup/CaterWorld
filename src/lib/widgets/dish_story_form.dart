@@ -110,24 +110,52 @@ class _DishStoryFormState extends State<DishStoryForm> {
             },
           ),
         ),
-        ElevatedButton(
+        Row(children: [
+        Padding(
+        padding: EdgeInsets.only(left:70,right: 10, top: 100),
+        child:ElevatedButton(
           onPressed: () => Navigator.pop(context),
           child: Text("Back"),
-        ),
-        ElevatedButton(
-          onPressed: () {
-            if (newStoryKey.currentState.validate()) {
-              newStoryKey.currentState.save();
-            }
-            _trySubmit(dishStory);
+          style: ElevatedButton.styleFrom(
+            primary: Color(0xFF787373),
+            minimumSize: Size(10, 50),
+            enableFeedback: true,
+            textStyle: TextStyle(
+              fontSize: 18,
+              fontFamily: '.SF Pro Display',
+              fontWeight: FontWeight.w500,
+              color: Color(0xDBDAD6),
+            ),
+          ),
+        ),),
 
-            widget.newDishKey.currentState.reset();
-            // widget.newIngKey.currentState.reset();
-            // widget.ingController.clear();
-            newStoryKey.currentState.reset();
-          },
-          child: Text("Next"),
-        ),
+    Padding(
+    padding: EdgeInsets.only(left: 100, right: 20, top: 100),
+    child:ElevatedButton(
+            onPressed: () {
+              if (newStoryKey.currentState.validate()) {
+                newStoryKey.currentState.save();
+              }
+              _trySubmit(dishStory);
+
+              widget.newDishKey.currentState.reset();
+              // widget.newIngKey.currentState.reset();
+              // widget.ingController.clear();
+              newStoryKey.currentState.reset();
+            },
+            child: Text("Next"),
+            style: ElevatedButton.styleFrom(
+              primary: Color(0xFF787373),
+              minimumSize: Size(10, 50),
+              enableFeedback: true,
+              textStyle: TextStyle(
+                fontSize: 18,
+                fontFamily: '.SF Pro Display',
+                fontWeight: FontWeight.w500,
+                color: Color(0xDBDAD6),
+              ),
+            ),
+          ),),],)
       ],
     );
   }
