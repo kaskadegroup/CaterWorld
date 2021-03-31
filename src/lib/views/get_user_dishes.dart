@@ -63,7 +63,7 @@ class GetUserDishes extends StatelessWidget {
                             dishStory: userDishes[index]['dishStory'],
                             dishId: userDishes[index]['dishId'],
                             dishUrl: userDishes[index]['dishUrl'],
-                            ingredients: userDishes[index]['Ingredients'],
+                            ingredients: userDishes[index]['dishIngredients'],
                             isVeg: userDishes[index]['isVeg'],
                             isStatus: true,
                             isFavorite: false,

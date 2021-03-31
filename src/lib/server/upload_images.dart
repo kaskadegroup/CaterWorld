@@ -13,7 +13,7 @@ import '../views/nav_bar.dart';
 class MultiPicker extends StatefulWidget {
   final String dishId;
 
-  MultiPicker({Key key, this.dishId}) : super(key: key);
+  MultiPicker({Key key, @required this.dishId}) : super(key: key);
 
   @override
   _MultiPickerState createState() => _MultiPickerState();
@@ -104,18 +104,13 @@ class _MultiPickerState extends State<MultiPicker> {
         context,
         MaterialPageRoute(builder: (BuildContext context) => new NavBar()),
         (Route<dynamic> route) => false);
-    // Navigator.pop(
-    //     context, new MaterialPageRoute(builder: (context) => NavBar()));
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back, color: Colors.black),
-          onPressed: () => Navigator.of(context).pop(),
-        ),
+        automaticallyImplyLeading: false,
         title: Text(
           "Add Images",
           style: TextStyle(
@@ -195,9 +190,6 @@ class _MultiPickerState extends State<MultiPicker> {
               ],
             ),
           ),
-          // Flexible(
-
-          //   child: buildGridView()),
           RaisedButton(
               child: Text("upload images"),
               onPressed: images.length >= 2
