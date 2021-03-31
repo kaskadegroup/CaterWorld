@@ -40,12 +40,24 @@ class AddIngredients extends StatelessWidget {
             backgroundColor: Colors.transparent,
             elevation: 0),
       ),
-      body: IngredientsForm(
-        dishName: dishName,
-        dishCuisine: dishCuisine,
-        dishAllergens: dishAllergens,
-        isVeg: isVeg,
-        newDishKey: newDishKey,
+      body: Container(
+        child: IngredientsForm(
+          dishName: dishName,
+          dishCuisine: dishCuisine,
+          dishAllergens: dishAllergens,
+          isVeg: isVeg,
+          newDishKey: newDishKey,
+        ),
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: [
+              const Color(0xFFFFFFFF),
+              const Color(0xFFF7F0DD),
+            ],
+          ),
+        ),
       ),
     );
   }

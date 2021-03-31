@@ -45,16 +45,28 @@ class DishStory extends StatelessWidget {
               backgroundColor: Colors.transparent,
               elevation: 0),
         ),
-        body: DishStoryForm(
-          dishName: dishName,
-          dishCuisine: dishCuisine,
-          dishAllergens: dishAllergens,
-          isVeg: isVeg,
-          ingredientsList: ingredientsList,
-          recipesList: recipesList,
-          newDishKey: newDishKey,
-          newIngKey: newIngKey,
-          ingController: ingController,
+        body: Container(
+          child: DishStoryForm(
+            dishName: dishName,
+            dishCuisine: dishCuisine,
+            dishAllergens: dishAllergens,
+            isVeg: isVeg,
+            ingredientsList: ingredientsList,
+            recipesList: recipesList,
+            newDishKey: newDishKey,
+            newIngKey: newIngKey,
+            ingController: ingController,
+          ),
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+              colors: [
+                const Color(0xFFFFFFFF),
+                const Color(0xFFF7F0DD),
+              ],
+            ),
+          ),
         ));
   }
 }
