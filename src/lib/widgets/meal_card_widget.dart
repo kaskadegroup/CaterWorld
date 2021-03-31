@@ -14,7 +14,7 @@ class DishCard extends StatefulWidget {
   final String dishStory;
   final List dishUrl;
   final String dishId;
-  final List ingredients;
+  final Map<String, dynamic> ingredients;
   final bool isVeg;
   final String status;
   bool isStatus;

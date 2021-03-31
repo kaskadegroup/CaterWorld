@@ -3,10 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:toastea/views/add_ingredients.dart';
 
 //import files
 
 import '../server/upload_images.dart';
+import '../views/add_ingredients.dart';
 
 class NewDishForm extends StatefulWidget {
   @override
@@ -16,62 +18,42 @@ class NewDishForm extends StatefulWidget {
 class _NewDishFormState extends State<NewDishForm> {
   final _priceNode = FocusNode();
   //final _controller = new TextEditingController();
-  final _formKey = GlobalKey<FormState>();
+  final _newDishKey = GlobalKey<FormState>();
   String _dishName;
   String _dishCuisine;
-  List _dishIngredients;
   String _dishAllergens;
-  String _dishStory;
-  String userId;
   bool isVeg = false;
 
   List convertIngredientsList(value) {
     return value.split(",");
   }
 
-  void _trySubmit() async {
-    final isValid = _formKey.currentState.validate();
+  void addIngredients(BuildContext context) {
+    final isValid = _newDishKey.currentState.validate();
     FocusScope.of(context).unfocus();
 
     if (isValid) {
-      _formKey.currentState.save();
-      final user = await FirebaseAuth.instance.currentUser();
-      final userData =
-          await Firestore.instance.collection('users').document(user.uid).get();
-      DocumentReference documentReference =
-          Firestore.instance.collection('dishInfo').document();
-      documentReference.setData({
-        'dishCat': _dishCuisine,
-        'dishName': _dishName,
-        'createdAt': Timestamp.now(),
-        'dishStory': _dishStory,
-        'userId': user.uid,
-        'username': userData.data['username'],
-        'dishId': documentReference.documentID,
-        'Ingredients': _dishIngredients,
-        'isVeg': isVeg,
-        'dishAllergens': _dishAllergens,
-        'status': 'PENDING',
-      });
-
-      _formKey.currentState.reset();
-      uploadImages(context, documentReference.documentID);
+      _newDishKey.currentState.save();
+      Navigator.push(
+        context,
+        new MaterialPageRoute(
+          builder: (context) => AddIngredients(
+            dishName: _dishName,
+            dishCuisine: _dishCuisine,
+            dishAllergens: _dishAllergens,
+            isVeg: isVeg,
+            newDishKey: _newDishKey,
+          ),
+        ),
+      );
     }
   }
 
-  void uploadImages(BuildContext context, dishId) {
-    Navigator.push(
-        context,
-        new MaterialPageRoute(
-            builder: (context) => MultiPicker(
-                  dishId: dishId,
-                )));
-  }
-
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Form(
-        key: _formKey,
+        key: _newDishKey,
         child: ListView(
           children: [
             Padding(
@@ -135,34 +117,6 @@ class _NewDishFormState extends State<NewDishForm> {
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: TextFormField(
-                key: ValueKey('Ingredients'),
-                validator: (value) {
-                  if (value.isEmpty) {
-                    return 'Ingredients is required';
-                  }
-                  return null;
-                },
-                decoration: InputDecoration(
-                  hintText: 'Add comma separated Ingredients',
-                  enabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(10)),
-                    borderSide: BorderSide(color: Colors.grey),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(10.0)),
-                    borderSide: BorderSide(color: Colors.grey),
-                  ),
-                ),
-                textInputAction: TextInputAction.next,
-                onSaved: (value) {
-                  _dishIngredients = convertIngredientsList(value);
-                },
-                //focusNode: _priceNode,
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: TextFormField(
                 key: ValueKey('Allergens'),
                 validator: (value) {
                   if (value.isEmpty) {
@@ -196,44 +150,15 @@ class _NewDishFormState extends State<NewDishForm> {
                     isVeg = val;
                   });
                 }),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: TextFormField(
-                key: ValueKey('Story'),
-                validator: (value) {
-                  if (value.isEmpty) {
-                    return 'Story is required';
-                  }
-                  return null;
-                },
-                decoration: InputDecoration(
-                  hintText: 'Story',
-                  enabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(10)),
-                    borderSide: BorderSide(color: Colors.grey),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(10.0)),
-                    borderSide: BorderSide(color: Colors.grey),
-                  ),
-                ),
-                maxLines: 4,
-                keyboardType: TextInputType.multiline,
-                textInputAction: TextInputAction.next,
-                onSaved: (value) {
-                  _dishStory = value;
-                },
-
-                //focusNode: _priceNode,
-              ),
-            ),
             SizedBox(
               height: 20,
               width: 40,
-              child: RaisedButton(
+              child: ElevatedButton(
                 //shape: ,
-                child: Text('Submit'),
-                onPressed: _trySubmit,
+                child: Text('Next'),
+                onPressed: () {
+                  addIngredients(context);
+                },
               ),
             ),
           ],

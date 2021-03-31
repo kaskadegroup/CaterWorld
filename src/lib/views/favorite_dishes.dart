@@ -67,7 +67,7 @@ class _FavoriteDishesState extends State<FavoriteDishes> {
                                 isFavorite: true,
                                 status: dishInfo[index]['status'],
                                 isStatus: false,
-                                ingredients: dishInfo[index]['Ingredients'],
+                                ingredients: dishInfo[index]['dishIngredients'],
                                 isLogin: true,
                               ));
                   }

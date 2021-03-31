@@ -46,7 +46,7 @@ class _GetDishDataState extends State<GetDishData> {
                               dishStory: dishInfo[index]['dishStory'],
                               dishId: dishInfo[index]['dishId'],
                               dishUrl: dishInfo[index]['dishUrl'],
-                              ingredients: dishInfo[index]['Ingredients'],
+                              ingredients: dishInfo[index]['dishIngredients'],
                               isVeg: dishInfo[index]['isVeg'],
                               isStatus: false,
                               status: dishInfo[index]['status'],
@@ -81,7 +81,7 @@ class _GetDishDataState extends State<GetDishData> {
                                       dishId: dishInfo[index]['dishId'],
                                       dishUrl: dishInfo[index]['dishUrl'],
                                       ingredients: dishInfo[index]
-                                          ['Ingredients'],
+                                          ['dishIngredients'],
                                       isVeg: dishInfo[index]['isVeg'],
                                       isStatus: false,
                                       status: dishInfo[index]['status'],
