@@ -69,6 +69,7 @@ class _FavoriteDishesState extends State<FavoriteDishes> {
                                 isStatus: false,
                                 ingredients: dishInfo[index]['dishIngredients'],
                                 isLogin: true,
+                                isAdmin: false,
                               ));
                   }
                 });
