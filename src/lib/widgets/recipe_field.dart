@@ -32,7 +32,8 @@ class _RecipeFieldState extends State<RecipeField> {
       _nameController.text = widget.recipesList[widget.index] ?? '';
     });
 
-    return TextFormField(
+    return Padding(padding: EdgeInsets.only(left:10, right: 5, bottom: 10, top: 10),
+    child:TextFormField(
       controller: _nameController,
       onChanged: (v) => widget.recipesList[widget.index] = v,
       validator: (v) {
@@ -50,6 +51,7 @@ class _RecipeFieldState extends State<RecipeField> {
           borderSide: BorderSide(color: Colors.grey),
         ),
       ),
+    )
     );
   }
 }
