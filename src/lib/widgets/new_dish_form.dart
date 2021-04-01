@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:path/path.dart';
 import 'package:toastea/views/add_ingredients.dart';
 
 //import files
@@ -55,7 +54,8 @@ class _NewDishFormState extends State<NewDishForm> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Form(
+      body: Container(
+        child: Form(
         key: _newDishKey,
         child: ListView(
           children: [
@@ -231,6 +231,21 @@ class _NewDishFormState extends State<NewDishForm> {
     ),
           ],
         ),
+
+        ),
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+              colors: [
+                const Color(0xFFFFFFFF),
+                const Color(0xFFF7F0DD),
+              ],
+              stops: [
+                0,
+                1
+              ]),
+      ),
       ),
     );
   }

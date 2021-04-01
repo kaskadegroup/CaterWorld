@@ -79,8 +79,6 @@ class _DishDetailViewState extends State<DishDetailView> {
   String getIngredients(Map<String, dynamic> ingredients) {
     String ingredientsStr = '';
     for (var ing in ingredients.entries) {
-      print(ing.key);
-      print(ing.value);
       ingredientsStr += '>' +
           ing.key +
           ', ' +
@@ -89,9 +87,6 @@ class _DishDetailViewState extends State<DishDetailView> {
           ing.value['Unit(s)'] +
           '\n';
     }
-    // for (var i = 0; i < ingredients.length; i++) {
-    //   ingredientsStr += '>' + ingredients[i] + '\n';
-    // }
     return ingredientsStr;
   }
 
@@ -120,7 +115,7 @@ class _DishDetailViewState extends State<DishDetailView> {
               color: Color.fromRGBO(120, 115, 115, 1),
             ),
           ),
-          backgroundColor: Colors.white,
+          backgroundColor: const Color(0xFFFFFFFF),
           elevation: 0,
         ),
         body: SingleChildScrollView(
@@ -298,14 +293,16 @@ class _DishDetailViewState extends State<DishDetailView> {
             ]),
             decoration: BoxDecoration(
               gradient: LinearGradient(
-                begin: Alignment.topCenter,
-                end: Alignment.bottomCenter,
-                colors: [
-                  Colors.white,
-                  const Color(0xFFF7F0DD),
-                ],
-              ),
-              //boxShadow: [BoxShadow(spreadRadius: 2,),],
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                  colors: [
+                    const Color(0xFFFFFFFF),
+                    const Color(0xFFF7F0DD),
+                  ],
+                  stops: [
+                    0,
+                    1
+                  ]),
             ),
           ),
         ),

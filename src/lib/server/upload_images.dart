@@ -123,84 +123,96 @@ class _MultiPickerState extends State<MultiPicker> {
         backgroundColor: Colors.white,
         elevation: 0,
       ),
-      body: Column(
-        children: <Widget>[
-          Center(
-            child: Text("Please select a minimum of images"),
-          ),
-          Expanded(
-            child: GridView.count(
-              padding: const EdgeInsets.all(20),
-              crossAxisSpacing: 10,
-              mainAxisSpacing: 10,
-              crossAxisCount: 2,
-              children: <Widget>[
-                Padding(
-                  padding: const EdgeInsets.all(8),
-                  child: images.isNotEmpty
-                      ? AssetThumb(
-                          asset: images[0],
-                          width: 100,
-                          height: 100,
-                        )
-                      : IconButton(
-                          icon: SvgPicture.asset(addImage),
-                          onPressed: loadAssets,
-                        ),
-                ),
-                Container(
-                  padding: const EdgeInsets.all(8),
-                  child: images.length >= 2
-                      ? AssetThumb(
-                          asset: images[1],
-                          width: 100,
-                          height: 100,
-                        )
-                      : IconButton(
-                          icon: SvgPicture.asset(addImage),
-                          onPressed: loadAssets,
-                        ),
-                ),
-                Container(
-                  padding: const EdgeInsets.all(8),
-                  child: images.length >= 3
-                      ? AssetThumb(
-                          asset: images[2],
-                          width: 100,
-                          height: 100,
-                        )
-                      : IconButton(
-                          icon: SvgPicture.asset(addImage),
-                          onPressed: loadAssets,
-                        ),
-                ),
-                Container(
-                  padding: const EdgeInsets.all(8),
-                  child: images.length == 4
-                      ? AssetThumb(
-                          asset: images[3],
-                          width: 100,
-                          height: 100,
-                        )
-                      : IconButton(
-                          icon: SvgPicture.asset(addImage),
-                          onPressed: loadAssets,
-                        ),
-                ),
-              ],
+      body: Container(
+        child: Column(
+          children: <Widget>[
+            Center(
+              child: Text("Please select a minimum of images"),
             ),
-          ),
-          RaisedButton(
-              child: Text("upload images"),
-              onPressed: images.length >= 2
-                  ? () {
-                      for (var i = 0; i < images.length; i++) {
-                        saveImage(images[i], i);
+            Expanded(
+              child: GridView.count(
+                padding: const EdgeInsets.all(20),
+                crossAxisSpacing: 10,
+                mainAxisSpacing: 10,
+                crossAxisCount: 2,
+                children: <Widget>[
+                  Padding(
+                    padding: const EdgeInsets.all(8),
+                    child: images.isNotEmpty
+                        ? AssetThumb(
+                            asset: images[0],
+                            width: 100,
+                            height: 100,
+                          )
+                        : IconButton(
+                            icon: SvgPicture.asset(addImage),
+                            onPressed: loadAssets,
+                          ),
+                  ),
+                  Container(
+                    padding: const EdgeInsets.all(8),
+                    child: images.length >= 2
+                        ? AssetThumb(
+                            asset: images[1],
+                            width: 100,
+                            height: 100,
+                          )
+                        : IconButton(
+                            icon: SvgPicture.asset(addImage),
+                            onPressed: loadAssets,
+                          ),
+                  ),
+                  Container(
+                    padding: const EdgeInsets.all(8),
+                    child: images.length >= 3
+                        ? AssetThumb(
+                            asset: images[2],
+                            width: 100,
+                            height: 100,
+                          )
+                        : IconButton(
+                            icon: SvgPicture.asset(addImage),
+                            onPressed: loadAssets,
+                          ),
+                  ),
+                  Container(
+                    padding: const EdgeInsets.all(8),
+                    child: images.length == 4
+                        ? AssetThumb(
+                            asset: images[3],
+                            width: 100,
+                            height: 100,
+                          )
+                        : IconButton(
+                            icon: SvgPicture.asset(addImage),
+                            onPressed: loadAssets,
+                          ),
+                  ),
+                ],
+              ),
+            ),
+            RaisedButton(
+                child: Text("upload images"),
+                onPressed: images.length >= 2
+                    ? () {
+                        for (var i = 0; i < images.length; i++) {
+                          saveImage(images[i], i);
+                        }
+                        backHome();
                       }
-                      backHome();
-                    }
-                  : null),
-        ],
+                    : null),
+          ],
+        ),
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: [
+              const Color(0xFFFFFFFF),
+              const Color(0xFFF7F0DD),
+            ],
+          ),
+        ),
       ),
     );
   }

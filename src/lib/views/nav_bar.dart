@@ -68,7 +68,7 @@ class _NavBarState extends State<NavBar> {
             ),
             textAlign: TextAlign.justify,
           ),
-          backgroundColor: Colors.transparent,
+          backgroundColor: const Color(0xFFFFFFFF),
           elevation: 0,
         ),
       ),
