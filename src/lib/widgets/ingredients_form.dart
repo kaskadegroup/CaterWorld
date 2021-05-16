@@ -85,11 +85,11 @@ class _IngredientsFormState extends State<IngredientsForm> {
               flex: 1,
               child: ClipOval(
                 child: ElevatedButton(
-                    onPressed: () => _addRemoveIngredients(
-                        i == ingredientsNameList.length - 1, i),
-                    child: i == (ingredientsNameList.length - 1)
-                        ? Text("+")
-                        : Text("-"),
+                  onPressed: () => _addRemoveIngredients(
+                      i == ingredientsNameList.length - 1, i),
+                  child: i == (ingredientsNameList.length - 1)
+                      ? Text("+")
+                      : Text("-"),
                   style: ElevatedButton.styleFrom(
                     primary: Color(0xFF787373),
                     minimumSize: Size(10, 45),
@@ -128,23 +128,21 @@ class _IngredientsFormState extends State<IngredientsForm> {
               flex: 1,
               child: ClipOval(
                 child: ElevatedButton(
-                    onPressed: () =>
-                        _addRemoveRecipe(i == recipesList.length - 1, i),
-                    child:
-                        i == (recipesList.length - 1) ? Text("+") : Text("-"),
-                    style: ElevatedButton.styleFrom(
-                primary: Color(0xFF787373),
-                enableFeedback: true,
-                minimumSize: Size(10, 45),
-                textStyle: TextStyle(
-                  fontSize: 18,
-                  fontFamily: '.SF Pro Display',
-                  fontWeight: FontWeight.w500,
-                  color: Color(0xDBDAD6),
+                  onPressed: () =>
+                      _addRemoveRecipe(i == recipesList.length - 1, i),
+                  child: i == (recipesList.length - 1) ? Text("+") : Text("-"),
+                  style: ElevatedButton.styleFrom(
+                    primary: Color(0xFF787373),
+                    enableFeedback: true,
+                    minimumSize: Size(10, 45),
+                    textStyle: TextStyle(
+                      fontSize: 18,
+                      fontFamily: '.SF Pro Display',
+                      fontWeight: FontWeight.w500,
+                      color: Color(0xDBDAD6),
+                    ),
+                  ),
                 ),
-              ),
-                ),
-
               ),
             ),
           ],
@@ -161,91 +159,99 @@ class _IngredientsFormState extends State<IngredientsForm> {
       key: newIngKey,
       child: Column(
         children: [
-          Padding(padding: EdgeInsets.only(top: 30, bottom: 20),
-          child: Text("Add Ingredients *" ,
-          style: TextStyle(
-            fontSize: 18,
-            fontFamily: '.SF Pro Display',
-            fontWeight: FontWeight.w500,
-            color: Color.fromRGBO(120, 115, 115, 1),
-          ),),),
-          ..._getNewIngredientsFields(),
-          Padding(padding: EdgeInsets.only(top: 20, bottom: 20),
-              child:Text("How do you make this dish? *",
+          Padding(
+            padding: EdgeInsets.only(top: 30, bottom: 20),
+            child: Text(
+              "Add Ingredients *",
               style: TextStyle(
-            fontSize: 18,
-            fontFamily: '.SF Pro Display',
-            fontWeight: FontWeight.w500,
-            color: Color.fromRGBO(120, 115, 115, 1),
-          ),),),
+                fontSize: 18,
+                fontFamily: '.SF Pro Display',
+                fontWeight: FontWeight.w500,
+                color: Color.fromRGBO(120, 115, 115, 1),
+              ),
+            ),
+          ),
+          ..._getNewIngredientsFields(),
+          Padding(
+            padding: EdgeInsets.only(top: 20, bottom: 20),
+            child: Text(
+              "How do you make this dish? *",
+              style: TextStyle(
+                fontSize: 18,
+                fontFamily: '.SF Pro Display',
+                fontWeight: FontWeight.w500,
+                color: Color.fromRGBO(120, 115, 115, 1),
+              ),
+            ),
+          ),
           ..._getNewRecipeFields(),
           Row(
             children: [
               Padding(
-                padding: EdgeInsets.only(left:70,right: 10, top: 100),
-              child: ElevatedButton(
-                onPressed: () => Navigator.pop(context),
-                child: Text("Back"),
-                style: ElevatedButton.styleFrom(
-                primary: Color(0xFF787373),
-                minimumSize: Size(10, 50),
-                enableFeedback: true,
-                textStyle: TextStyle(
-                  fontSize: 18,
-                  fontFamily: '.SF Pro Display',
-                  fontWeight: FontWeight.w500,
-                  color: Color(0xDBDAD6),
-                  ),),
-                ),
-                ),
-              Padding(
-              padding: EdgeInsets.only(left: 100, right: 20, top: 100),
-              child:ElevatedButton(
-                onPressed: () {
-                  if (newIngKey.currentState.validate()) {
-                    newIngKey.currentState.save();
-                  }
-
-                  for (int i = 0; i < ingredientsNameList.length; i++) {
-                    ingredientsList[ingredientsNameList[i].toString()] = {
-                      'Qty': ingredientsqtyList[i].toString(),
-                      'Unit(s)': ingredientsUnitList[i].toString()
-                    };
-                  }
-
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => DishStory(
-                        dishName: widget.dishName,
-                        dishCuisine: widget.dishCuisine,
-                        dishAllergens: widget.dishAllergens,
-                        isVeg: widget.isVeg,
-                        recipesList: recipesList,
-                        ingredientsList: ingredientsList,
-                        newDishKey: widget.newDishKey,
-                        newIngKey: newIngKey,
-                        ingController: nameController,
-                      ),
+                padding: EdgeInsets.only(left: 70, right: 10, top: 100),
+                child: ElevatedButton(
+                  onPressed: () => Navigator.pop(context),
+                  child: Text("Back"),
+                  style: ElevatedButton.styleFrom(
+                    primary: Color(0xFF787373),
+                    minimumSize: Size(10, 50),
+                    enableFeedback: true,
+                    textStyle: TextStyle(
+                      fontSize: 18,
+                      fontFamily: '.SF Pro Display',
+                      fontWeight: FontWeight.w500,
+                      color: Color(0xDBDAD6),
                     ),
-                  );
-                  newIngKey.currentState.reset();
-                  nameController.clear();
-                },
-
-                child: Text("Next"),
-                style: ElevatedButton.styleFrom(
-                primary: Color(0xFF787373),
-                minimumSize: Size(10, 50),
-                enableFeedback: true,
-                textStyle: TextStyle(
-                  fontSize: 18,
-                  fontFamily: '.SF Pro Display',
-                  fontWeight: FontWeight.w500,
-                  color: Color(0xDBDAD6),
                   ),
                 ),
               ),
+              Padding(
+                padding: EdgeInsets.only(left: 100, right: 20, top: 100),
+                child: ElevatedButton(
+                  onPressed: () {
+                    if (newIngKey.currentState.validate()) {
+                      newIngKey.currentState.save();
+                    }
+
+                    for (int i = 0; i < ingredientsNameList.length; i++) {
+                      ingredientsList[ingredientsNameList[i].toString()] = {
+                        'Qty': ingredientsqtyList[i].toString(),
+                        'Unit(s)': ingredientsUnitList[i].toString()
+                      };
+                    }
+
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => DishStory(
+                          dishName: widget.dishName,
+                          dishCuisine: widget.dishCuisine,
+                          dishAllergens: widget.dishAllergens,
+                          isVeg: widget.isVeg,
+                          recipesList: recipesList,
+                          ingredientsList: ingredientsList,
+                          newDishKey: widget.newDishKey,
+                          newIngKey: newIngKey,
+                          ingController: nameController,
+                        ),
+                      ),
+                    );
+                    newIngKey.currentState.reset();
+                    nameController.clear();
+                  },
+                  child: Text("Next"),
+                  style: ElevatedButton.styleFrom(
+                    primary: Color(0xFF787373),
+                    minimumSize: Size(10, 50),
+                    enableFeedback: true,
+                    textStyle: TextStyle(
+                      fontSize: 18,
+                      fontFamily: '.SF Pro Display',
+                      fontWeight: FontWeight.w500,
+                      color: Color(0xDBDAD6),
+                    ),
+                  ),
+                ),
               ),
             ],
           )

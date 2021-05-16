@@ -119,7 +119,7 @@ class _DishCardState extends State<DishCard> {
                           child: Text(
                             widget.title,
                             style: TextStyle(
-                              fontSize: 21,
+                              fontSize: 18,
                               fontFamily: '.SF Pro Display',
                               color: Color.fromRGBO(120, 115, 115, 1),
                             ),
@@ -133,7 +133,7 @@ class _DishCardState extends State<DishCard> {
                         Text(
                           widget.cuisine,
                           style: TextStyle(
-                            fontSize: 21,
+                            fontSize: 18,
                             fontFamily: '.SF Pro Display',
                             color: Color.fromRGBO(120, 115, 115, 1),
                           ),
@@ -176,7 +176,7 @@ class _DishCardState extends State<DishCard> {
                           Text(
                             widget.status,
                             style: TextStyle(
-                              fontSize: 21,
+                              fontSize: 15,
                               fontFamily: '.SF Pro Display',
                               color: Color.fromRGBO(120, 115, 115, 1),
                             ),
