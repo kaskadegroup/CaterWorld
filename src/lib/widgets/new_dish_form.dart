@@ -16,10 +16,6 @@ class NewDishForm extends StatefulWidget {
 }
 
 class _NewDishFormState extends State<NewDishForm> {
-  // final _priceNode = FocusNode();
-  //final _controller = new TextEditingController();
-  // final _addDishFormNode = FocusNode();
-
   final _newDishKey = GlobalKey<FormState>();
 
   String _dishName;
@@ -28,14 +24,6 @@ class _NewDishFormState extends State<NewDishForm> {
   String _servingSize;
   String _prepTime;
   bool isVeg = false;
-
-  // @override
-  // void dispose() {
-  //   // Clean up the focus node when the Form is disposed.
-  //   _addDishFormNode.dispose();
-
-  //   super.dispose();
-  // }
 
   List convertIngredientsList(value) {
     return value.split(",");
