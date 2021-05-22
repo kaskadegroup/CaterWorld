@@ -74,7 +74,7 @@ class _NavBarState extends State<NavBar> {
       ),
       body: _pages[_selectedPageIndex]['page'],
       bottomNavigationBar: SizedBox(
-        height: 88,
+        // height: 90,
         child: BottomNavigationBar(
           showSelectedLabels: false,
           showUnselectedLabels: false,
