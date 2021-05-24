@@ -158,19 +158,20 @@ class _DishCardState extends State<DishCard> {
                           padding: EdgeInsets.only(right: 8),
                         ),
                         //Favorite Icon
-                        widget.isLogin
-                            ? !widget.isFavorite
-                                ? SvgPicture.asset(
-                                    favIcon,
-                                    height: 30,
-                                  )
-                                : SvgPicture.asset(
-                                    likedbuttom,
-                                    height: 30,
-                                  )
-                            : Padding(
-                                padding: EdgeInsets.only(right: 2),
-                              ),
+                        if (widget.isLogin && widget.status == 'APPROVED')
+                          !widget.isFavorite
+                              ? SvgPicture.asset(
+                                  favIcon,
+                                  height: 30,
+                                )
+                              : SvgPicture.asset(
+                                  likedbuttom,
+                                  height: 30,
+                                )
+                        else
+                          Padding(
+                            padding: EdgeInsets.only(right: 2),
+                          ),
 
                         if (widget.isStatus)
                           Text(
