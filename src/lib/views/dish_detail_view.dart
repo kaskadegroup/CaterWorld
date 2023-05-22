@@ -201,22 +201,23 @@ class _DishDetailViewState extends State<DishDetailView> {
                           Padding(
                             padding: EdgeInsets.only(right: 10),
                           ),
-                          widget.isLogin
-                              ? IconButton(
-                                  icon: !widget.isFavorite
-                                      ? SvgPicture.asset(
-                                          favIcon,
-                                          height: 35,
-                                        )
-                                      : SvgPicture.asset(
-                                          likedbuttom,
-                                          height: 35,
-                                        ),
-                                  onPressed: _likedThis,
-                                )
-                              : Padding(
-                                  padding: EdgeInsets.only(right: 2),
-                                ),
+                          if (widget.isLogin && widget.status == 'APPROVED')
+                            IconButton(
+                              icon: !widget.isFavorite
+                                  ? SvgPicture.asset(
+                                      favIcon,
+                                      height: 35,
+                                    )
+                                  : SvgPicture.asset(
+                                      likedbuttom,
+                                      height: 35,
+                                    ),
+                              onPressed: _likedThis,
+                            )
+                          else
+                            Padding(
+                              padding: EdgeInsets.only(right: 2),
+                            ),
                           Padding(
                             padding: EdgeInsets.only(right: 10),
                           ),
