@@ -7,10 +7,10 @@ class IngredientsTextFields extends StatefulWidget {
   final List<String> ingredientsQtyList;
   final List<String> ingredientsUnitList;
   IngredientsTextFields(
-      {@required this.index,
-      @required this.ingredientsNameList,
-      @required this.ingredientsQtyList,
-      @required this.ingredientsUnitList});
+      {required this.index,
+      required this.ingredientsNameList,
+      required this.ingredientsQtyList,
+      required this.ingredientsUnitList});
   @override
   _IngredientsTextFieldsState createState() => _IngredientsTextFieldsState();
 }
@@ -18,9 +18,9 @@ class IngredientsTextFields extends StatefulWidget {
 class _IngredientsTextFieldsState extends State<IngredientsTextFields> {
   String dropdownValue = 'Unit';
 
-  TextEditingController _nameController;
-  TextEditingController _qtyController;
-  TextEditingController _unitController;
+  TextEditingController _nameController = TextEditingController();
+  TextEditingController _qtyController = TextEditingController();
+  TextEditingController _unitController = TextEditingController();
   @override
   void initState() {
     super.initState();
@@ -60,7 +60,7 @@ class _IngredientsTextFieldsState extends State<IngredientsTextFields> {
               controller: _nameController,
               onChanged: (v1) => widget.ingredientsNameList[widget.index] = v1,
               validator: (v1) {
-                if (v1.trim().isEmpty) return 'Ingredients are required';
+                if (v1!.trim().isEmpty) return 'Ingredients are required';
                 return null;
               },
               decoration: InputDecoration(
@@ -84,7 +84,7 @@ class _IngredientsTextFieldsState extends State<IngredientsTextFields> {
               controller: _qtyController,
               onChanged: (v2) => widget.ingredientsQtyList[widget.index] = v2,
               validator: (v2) {
-                if (v2.trim().isEmpty) return 'Qty is required';
+                if (v2!.trim().isEmpty) return 'Qty is required';
                 return null;
               },
               decoration: InputDecoration(
@@ -108,7 +108,7 @@ class _IngredientsTextFieldsState extends State<IngredientsTextFields> {
               controller: _unitController,
               onChanged: (v3) => widget.ingredientsUnitList[widget.index] = v3,
               validator: (v3) {
-                if (v3.trim().isEmpty) return 'Unit is required';
+                if (v3!.trim().isEmpty) return 'Unit is required';
                 return null;
               },
               decoration: InputDecoration(

@@ -15,7 +15,7 @@ class _AddDishScreenState extends State<AddDishScreen> {
   @override
   Widget build(BuildContext context) {
     return StreamBuilder(
-        stream: FirebaseAuth.instance.onAuthStateChanged,
+        stream: FirebaseAuth.instance.authStateChanges(),
         builder: (_, userSnapshot) {
           if (userSnapshot.connectionState == ConnectionState.active) {
             if (userSnapshot.data == null) {

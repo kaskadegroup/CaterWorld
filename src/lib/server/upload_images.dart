@@ -13,15 +13,15 @@ import '../views/nav_bar.dart';
 class MultiPicker extends StatefulWidget {
   final String dishId;
 
-  MultiPicker({Key key, @required this.dishId}) : super(key: key);
+  MultiPicker({ key, required this.dishId}) : super(key: key);
 
   @override
   _MultiPickerState createState() => _MultiPickerState();
 }
 
 class _MultiPickerState extends State<MultiPicker> {
-  List<Asset> images = List<Asset>();
-  List allUrl = List();
+  List<Asset> images = [];
+  List allUrl = [];
 
   final String addImage = 'assets/icons/Add Photo.svg';
 
@@ -31,7 +31,7 @@ class _MultiPickerState extends State<MultiPicker> {
   }
 
   Future<void> loadAssets() async {
-    List<Asset> resultList = List<Asset>();
+    List<Asset> resultList = [];
     String error = 'No Error Dectected';
 
     try {
@@ -62,14 +62,14 @@ class _MultiPickerState extends State<MultiPicker> {
   Future saveImage(Asset asset, int count) async {
     ByteData byteData = await asset.getByteData(quality: 50);
     List<int> imageData = byteData.buffer.asUint8List();
-    StorageReference ref = FirebaseStorage.instance
+    Reference ref = FirebaseStorage.instance
         .ref()
         .child('dish_image')
         .child(widget.dishId)
         .child("imageNumber" + count.toString() + '.jpeg');
-    StorageUploadTask uploadTask = ref.putData(imageData);
+    UploadTask uploadTask = ref.putData(imageData as Uint8List);
 
-    await uploadTask.onComplete;
+    await uploadTask;
 
     var url = await ref.getDownloadURL();
 
@@ -79,8 +79,8 @@ class _MultiPickerState extends State<MultiPicker> {
   // Add Url to Dish Document on Firebase
   addUrl(url) async {
     final ref =
-        Firestore.instance.collection('dishInfo').document(widget.dishId);
-    await ref.updateData({
+    FirebaseFirestore.instance.collection('dishInfo').doc(widget.dishId);
+    await ref.update({
       'dishUrl': FieldValue.arrayUnion([url])
     });
   }
@@ -191,7 +191,7 @@ class _MultiPickerState extends State<MultiPicker> {
                 ],
               ),
             ),
-            RaisedButton(
+            ElevatedButton(
                 child: Text("upload images"),
                 onPressed: images.length >= 2
                     ? () {

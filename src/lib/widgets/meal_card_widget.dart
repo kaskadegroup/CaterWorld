@@ -23,19 +23,19 @@ class DishCard extends StatefulWidget {
   bool isAdmin;
 
   DishCard({
-    // @required this.id,
-    @required this.title,
-    @required this.cuisine,
-    @required this.dishStory,
-    @required this.dishUrl,
-    @required this.dishId,
-    @required this.ingredients,
-    @required this.isVeg,
-    @required this.status,
-    @required this.isStatus,
-    @required this.isFavorite,
-    @required this.isLogin, // do not use except for like screen for now
-    @required this.isAdmin,
+    // required this.id,
+    required this.title,
+    required this.cuisine,
+    required this.dishStory,
+    required this.dishUrl,
+    required this.dishId,
+    required this.ingredients,
+    required this.isVeg,
+    required this.status,
+    required this.isStatus,
+    required this.isFavorite,
+    required this.isLogin, // do not use except for like screen for now
+    required this.isAdmin,
   });
 
   @override

@@ -12,11 +12,11 @@ class AddIngredients extends StatelessWidget {
   final GlobalKey<FormState> newDishKey;
 
   AddIngredients({
-    @required this.dishName,
-    @required this.dishCuisine,
-    @required this.dishAllergens,
-    @required this.isVeg,
-    @required this.newDishKey,
+    required this.dishName,
+    required this.dishCuisine,
+    required this.dishAllergens,
+    required this.isVeg,
+    required this.newDishKey,
   });
 
   @override

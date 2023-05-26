@@ -14,21 +14,21 @@ class FavoriteDishes extends StatefulWidget {
 
 class _FavoriteDishesState extends State<FavoriteDishes> {
   Future getFavoriteDishes() async {
-    final user = await FirebaseAuth.instance.currentUser();
+    final user =  FirebaseAuth.instance.currentUser;
     final userData =
-        await Firestore.instance.collection('users').document(user.uid).get();
-    List _allFavorites = userData.data["allFavorites"];
+        await FirebaseFirestore.instance.collection('users').doc(user!.uid).get();
+    List _allFavorites = userData.data()!["allFavorites"];
     if (_allFavorites.isNotEmpty) {
-      var results = Firestore.instance
+      var results = FirebaseFirestore.instance
           .collection('dishInfo')
           .where("dishId", whereIn: _allFavorites)
-          .getDocuments();
+          .get();
       return results;
     } else {
-      var results = Firestore.instance
+      var results = FirebaseFirestore.instance
           .collection('dishInfo')
           .where("dishId", isEqualTo: 'none')
-          .getDocuments();
+          .get();
       return results;
     }
   }
@@ -36,7 +36,7 @@ class _FavoriteDishesState extends State<FavoriteDishes> {
   @override
   Widget build(BuildContext context) {
     return StreamBuilder(
-        stream: FirebaseAuth.instance.onAuthStateChanged,
+        stream: FirebaseAuth.instance.authStateChanges(),
         builder: (ctx, userSnapshot) {
           if (userSnapshot.hasData) {
             return Container(

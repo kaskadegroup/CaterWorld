@@ -5,15 +5,15 @@ class RecipeField extends StatefulWidget {
   final List<String> recipesList;
 
   RecipeField({
-    @required this.index,
-    @required this.recipesList,
+    required this.index,
+    required this.recipesList,
   });
   @override
   _RecipeFieldState createState() => _RecipeFieldState();
 }
 
 class _RecipeFieldState extends State<RecipeField> {
-  TextEditingController _nameController;
+  TextEditingController _nameController = TextEditingController();
   @override
   void initState() {
     super.initState();
@@ -37,7 +37,7 @@ class _RecipeFieldState extends State<RecipeField> {
       controller: _nameController,
       onChanged: (v) => widget.recipesList[widget.index] = v,
       validator: (v) {
-        if (v.trim().isEmpty) return 'Recipe is required';
+        if (v!.trim().isEmpty) return 'Recipe is required';
         return null;
       },
       decoration: InputDecoration(

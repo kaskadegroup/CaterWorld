@@ -29,27 +29,27 @@ class SignInOptions extends StatelessWidget {
                 child: Text(
                     "Sign Up to Toastea to contact a chef, sell your dishes and so much more!"),
               ),
-              RaisedButton(
+              ElevatedButton(
                 onPressed: null,
                 child: Text("Sign in with Apple"),
               ),
-              RaisedButton(
+              ElevatedButton(
                 onPressed: null,
                 child: Text("Sign in with FaceBook"),
               ),
-              RaisedButton(
+              ElevatedButton(
                 onPressed: null,
                 child: Text("Sign in with Google"),
               ),
-              RaisedButton(
+              ElevatedButton(
                 onPressed: null,
                 child: Text("Sign in with Email"),
               ),
-              RaisedButton(
+              ElevatedButton(
                 onPressed: null,
                 child: Text("Sign in with Phone Number"),
               ),
-              RaisedButton(
+              ElevatedButton(
                   onPressed: () => _signInWithEmail(context),
                   child: Text("Sign in with email"))
             ]),

@@ -13,9 +13,9 @@ class GetDishData extends StatefulWidget {
 
 class _GetDishDataState extends State<GetDishData> {
   Future _checkfavorites() async {
-    final user = await FirebaseAuth.instance.currentUser();
+    final user = FirebaseAuth.instance.currentUser;
     final userData =
-        await Firestore.instance.collection('users').document(user.uid).get();
+        await FirebaseFirestore.instance.collection('users').doc(user!.uid).get();
 
     return userData;
   }
@@ -24,7 +24,7 @@ class _GetDishDataState extends State<GetDishData> {
   Widget build(BuildContext context) {
     return Container(
       child: StreamBuilder(
-          stream: Firestore.instance
+          stream: FirebaseFirestore.instance
               .collection('dishInfo')
               .where('status', isEqualTo: 'APPROVED')
               .snapshots(),
@@ -32,10 +32,10 @@ class _GetDishDataState extends State<GetDishData> {
             if (dishInfoSnapshot.connectionState == ConnectionState.waiting) {
               return Center(child: CircularProgressIndicator());
             }
-            final dishInfo = dishInfoSnapshot.data.documents;
+            final dishInfo = dishInfoSnapshot.data!.docs;
 
             return StreamBuilder(
-                stream: FirebaseAuth.instance.onAuthStateChanged,
+                stream: FirebaseAuth.instance.authStateChanges(),
                 builder: (_, userSnapshot) {
                   if (userSnapshot.connectionState == ConnectionState.active) {
                     if (userSnapshot.data == null) {

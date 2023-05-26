@@ -20,8 +20,8 @@ class UserSettings extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: StreamBuilder<Object>(
-          stream: FirebaseAuth.instance.onAuthStateChanged,
+      child: StreamBuilder(
+          stream: FirebaseAuth.instance.authStateChanges(),
           builder: (_, userSnapshot) {
             if (userSnapshot.connectionState == ConnectionState.active) {
               if (userSnapshot.data == null) {
