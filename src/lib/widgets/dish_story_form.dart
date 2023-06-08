@@ -16,15 +16,15 @@ class DishStoryForm extends StatefulWidget {
   final TextEditingController ingController;
 
   DishStoryForm({
-    @required this.dishName,
-    @required this.dishCuisine,
-    @required this.dishAllergens,
-    @required this.isVeg,
-    @required this.ingredientsList,
-    @required this.recipesList,
-    @required this.newDishKey,
-    @required this.newIngKey,
-    @required this.ingController,
+    required this.dishName,
+    required this.dishCuisine,
+    required this.dishAllergens,
+    required this.isVeg,
+    required this.ingredientsList,
+    required this.recipesList,
+    required this.newDishKey,
+    required this.newIngKey,
+    required this.ingController,
   });
 
   @override
@@ -33,7 +33,7 @@ class DishStoryForm extends StatefulWidget {
 
 class _DishStoryFormState extends State<DishStoryForm> {
   final newStoryKey = GlobalKey<FormState>();
-  TextEditingController _storyController;
+  TextEditingController _storyController = TextEditingController();
   String dishStory = '';
 
   @override
@@ -49,18 +49,18 @@ class _DishStoryFormState extends State<DishStoryForm> {
   }
 
   void _trySubmit(String dishStory) async {
-    final user = await FirebaseAuth.instance.currentUser();
+    final user =  FirebaseAuth.instance.currentUser;
     final userData =
-        await Firestore.instance.collection('users').document(user.uid).get();
+        await FirebaseFirestore.instance.collection('users').doc(user!.uid).get();
     DocumentReference documentReference =
-        Firestore.instance.collection('dishInfo').document();
-    documentReference.setData({
+    FirebaseFirestore.instance.collection('dishInfo').doc();
+    documentReference.set({
       'dishCat': widget.dishCuisine,
       'dishName': widget.dishName,
       'createdAt': Timestamp.now(),
       'userId': user.uid,
-      'username': userData.data['username'],
-      'dishId': documentReference.documentID,
+      'username': userData.data()!['username'],
+      'dishId': documentReference.id,
       'dishIngredients': widget.ingredientsList,
       'isVeg': widget.isVeg,
       'dishAllergens': widget.dishAllergens,
@@ -73,7 +73,7 @@ class _DishStoryFormState extends State<DishStoryForm> {
         context,
         MaterialPageRoute(
             builder: (BuildContext context) =>
-                new MultiPicker(dishId: documentReference.documentID)),
+                new MultiPicker(dishId: documentReference.id)),
         (Route<dynamic> route) => false);
   }
 
@@ -103,7 +103,7 @@ class _DishStoryFormState extends State<DishStoryForm> {
               dishStory = value;
             },
             validator: (value) {
-              if (value.isEmpty) {
+              if (value!.isEmpty) {
                 return 'Story is required';
               }
               return null;
@@ -133,15 +133,15 @@ class _DishStoryFormState extends State<DishStoryForm> {
     padding: EdgeInsets.only(left: 100, right: 20, top: 100),
     child:ElevatedButton(
             onPressed: () {
-              if (newStoryKey.currentState.validate()) {
-                newStoryKey.currentState.save();
+              if (newStoryKey.currentState!.validate()) {
+                newStoryKey.currentState?.save();
               }
               _trySubmit(dishStory);
 
-              widget.newDishKey.currentState.reset();
+              widget.newDishKey.currentState?.reset();
               // widget.newIngKey.currentState.reset();
               // widget.ingController.clear();
-              newStoryKey.currentState.reset();
+              newStoryKey.currentState?.reset();
             },
             child: Text("Next"),
             style: ElevatedButton.styleFrom(

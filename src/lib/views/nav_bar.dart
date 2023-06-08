@@ -18,7 +18,7 @@ class _NavBarState extends State<NavBar> {
   final String favDish = 'assets/icons/Union.svg';
   final String addNew = 'assets/icons/Add.svg';
   final String burgMenu = 'assets/icons/Hamburger Menu.svg';
-  List<Map<String, Object>> _pages;
+  List<Map<String, Object>> _pages = [];
 
   int _selectedPageIndex = 0;
 
@@ -59,7 +59,7 @@ class _NavBarState extends State<NavBar> {
         child: AppBar(
           centerTitle: false,
           title: Text(
-            _pages[_selectedPageIndex]['title'],
+            _pages[_selectedPageIndex]['title'] as String,
             style: TextStyle(
               fontSize: 34,
               fontFamily: '.SF Pro Display',
@@ -72,7 +72,7 @@ class _NavBarState extends State<NavBar> {
           elevation: 0,
         ),
       ),
-      body: _pages[_selectedPageIndex]['page'],
+      body: _pages[_selectedPageIndex]['page'] as Widget,
       bottomNavigationBar: SizedBox(
         // height: 90,
         child: BottomNavigationBar(

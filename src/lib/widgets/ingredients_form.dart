@@ -12,11 +12,11 @@ class IngredientsForm extends StatefulWidget {
   final GlobalKey<FormState> newDishKey;
 
   IngredientsForm({
-    @required this.dishName,
-    @required this.dishCuisine,
-    @required this.dishAllergens,
-    @required this.isVeg,
-    @required this.newDishKey,
+    required this.dishName,
+    required this.dishCuisine,
+    required this.dishAllergens,
+    required this.isVeg,
+    required this.newDishKey,
   });
 
   @override
@@ -25,11 +25,11 @@ class IngredientsForm extends StatefulWidget {
 
 class _IngredientsFormState extends State<IngredientsForm> {
   final newIngKey = GlobalKey<FormState>();
-  TextEditingController nameController;
-  static List<String> ingredientsNameList = [null];
-  static List<String> ingredientsqtyList = [null];
-  static List<String> ingredientsUnitList = [null];
-  static List<String> recipesList = [null];
+  TextEditingController nameController = TextEditingController();
+  static List<String> ingredientsNameList = [];
+  static List<String> ingredientsqtyList = [];
+  static List<String> ingredientsUnitList = [];
+  static List<String> recipesList = [];
 
   static Map<String, Map<String, String>> ingredientsList = {};
 
@@ -47,9 +47,9 @@ class _IngredientsFormState extends State<IngredientsForm> {
 
   void _addRemoveIngredients(bool action, int index) {
     if (action) {
-      ingredientsNameList.insert(index + 1, null);
-      ingredientsqtyList.insert(index + 1, null);
-      ingredientsUnitList.insert(index + 1, null);
+      ingredientsNameList.insert(index + 1, '');
+      ingredientsqtyList.insert(index + 1, '');
+      ingredientsUnitList.insert(index + 1, '');
     } else {
       ingredientsNameList.removeAt(index);
       ingredientsqtyList.removeAt(index);
@@ -60,7 +60,7 @@ class _IngredientsFormState extends State<IngredientsForm> {
 
   void _addRemoveRecipe(bool action, int index) {
     if (action) {
-      recipesList.insert(index + 1, null);
+      recipesList.insert(index + 1, '');
     } else
       recipesList.removeAt(index);
     setState(() {});
@@ -209,8 +209,8 @@ class _IngredientsFormState extends State<IngredientsForm> {
                 padding: EdgeInsets.only(left: 100, right: 20, top: 100),
                 child: ElevatedButton(
                   onPressed: () {
-                    if (newIngKey.currentState.validate()) {
-                      newIngKey.currentState.save();
+                    if (newIngKey.currentState!.validate()) {
+                      newIngKey.currentState?.save();
                     }
 
                     for (int i = 0; i < ingredientsNameList.length; i++) {
@@ -236,7 +236,7 @@ class _IngredientsFormState extends State<IngredientsForm> {
                         ),
                       ),
                     );
-                    newIngKey.currentState.reset();
+                    newIngKey.currentState?.reset();
                     nameController.clear();
                   },
                   child: Text("Next"),

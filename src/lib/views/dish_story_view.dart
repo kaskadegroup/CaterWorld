@@ -14,15 +14,15 @@ class DishStory extends StatelessWidget {
   final TextEditingController ingController;
 
   DishStory({
-    @required this.dishName,
-    @required this.dishCuisine,
-    @required this.dishAllergens,
-    @required this.isVeg,
-    @required this.ingredientsList,
-    @required this.recipesList,
-    @required this.newDishKey,
-    @required this.newIngKey,
-    @required this.ingController,
+    required this.dishName,
+    required this.dishCuisine,
+    required this.dishAllergens,
+    required this.isVeg,
+    required this.ingredientsList,
+    required this.recipesList,
+    required this.newDishKey,
+    required this.newIngKey,
+    required this.ingController,
   });
   @override
   Widget build(BuildContext context) {

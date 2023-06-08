@@ -18,11 +18,11 @@ class NewDishForm extends StatefulWidget {
 class _NewDishFormState extends State<NewDishForm> {
   final _newDishKey = GlobalKey<FormState>();
 
-  String _dishName;
-  String _dishCuisine;
-  String _dishAllergens;
-  String _servingSize;
-  String _prepTime;
+  String _dishName = '';
+  String _dishCuisine = '';
+  String _dishAllergens = '';
+  String _servingSize = '';
+  String _prepTime = '';
   bool isVeg = false;
 
   List convertIngredientsList(value) {
@@ -30,11 +30,11 @@ class _NewDishFormState extends State<NewDishForm> {
   }
 
   void addIngredients(BuildContext context) {
-    final isValid = _newDishKey.currentState.validate();
+    final isValid = _newDishKey.currentState!.validate();
     FocusScope.of(context).unfocus();
 
     if (isValid) {
-      _newDishKey.currentState.save();
+      _newDishKey.currentState?.save();
       Navigator.push(
         context,
         new MaterialPageRoute(
@@ -70,7 +70,7 @@ class _NewDishFormState extends State<NewDishForm> {
                 child: TextFormField(
                   key: ValueKey('Name'),
                   validator: (value) {
-                    if (value.isEmpty) {
+                    if (value!.isEmpty) {
                       return 'Name is required';
                     }
                     return null;
@@ -91,7 +91,7 @@ class _NewDishFormState extends State<NewDishForm> {
                   //   _addDishFormNode.nextFocus();
                   // },
                   onSaved: (value) {
-                    _dishName = value;
+                    _dishName = value!;
                   },
                 ),
               ),
@@ -100,7 +100,7 @@ class _NewDishFormState extends State<NewDishForm> {
                 child: TextFormField(
                   key: ValueKey('Cuisine'),
                   validator: (value) {
-                    if (value.isEmpty) {
+                    if (value!.isEmpty) {
                       return 'Cuisine is required';
                     }
                     return null;
@@ -118,7 +118,7 @@ class _NewDishFormState extends State<NewDishForm> {
                   ),
                   textInputAction: TextInputAction.next,
                   onSaved: (value) {
-                    _dishCuisine = value;
+                    _dishCuisine = value!;
                   },
                 ),
               ),
@@ -127,7 +127,7 @@ class _NewDishFormState extends State<NewDishForm> {
                 child: TextFormField(
                   key: ValueKey('Allergens'),
                   validator: (value) {
-                    if (value.isEmpty) {
+                    if (value!.isEmpty) {
                       return 'Allergens is required';
                     }
                     return null;
@@ -145,7 +145,7 @@ class _NewDishFormState extends State<NewDishForm> {
                   ),
                   textInputAction: TextInputAction.next,
                   onSaved: (value) {
-                    _dishAllergens = value;
+                    _dishAllergens = value!;
                   },
                 ),
               ),
@@ -154,7 +154,7 @@ class _NewDishFormState extends State<NewDishForm> {
                 child: TextFormField(
                   key: ValueKey('Serving Size'),
                   validator: (value) {
-                    if (value.isEmpty) {
+                    if (value!.isEmpty) {
                       return 'Serving size is required';
                     }
                     return null;
@@ -172,7 +172,7 @@ class _NewDishFormState extends State<NewDishForm> {
                   ),
                   textInputAction: TextInputAction.next,
                   onSaved: (value) {
-                    _servingSize = value;
+                    _servingSize = value!;
                   },
                 ),
               ),
@@ -181,7 +181,7 @@ class _NewDishFormState extends State<NewDishForm> {
                 child: TextFormField(
                   key: ValueKey('Prep Time'),
                   validator: (value) {
-                    if (value.isEmpty) {
+                    if (value!.isEmpty) {
                       return 'Preparation time is required';
                     }
                     return null;
@@ -199,7 +199,7 @@ class _NewDishFormState extends State<NewDishForm> {
                   ),
                   textInputAction: TextInputAction.next,
                   onSaved: (value) {
-                    _prepTime = value;
+                    _prepTime = value!;
                   },
                 ),
               ),
@@ -208,7 +208,7 @@ class _NewDishFormState extends State<NewDishForm> {
                   value: isVeg,
                   onChanged: (val) {
                     setState(() {
-                      isVeg = val;
+                      isVeg = val!;
                     });
                   }),
               Padding(

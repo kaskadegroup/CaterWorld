@@ -7,24 +7,24 @@ import 'package:firebase_auth/firebase_auth.dart';
 import '../widgets/meal_card_widget.dart';
 
 class GetUserDishes extends StatelessWidget {
-  bool isAdmin;
+  bool isAdmin = false;
   Future _checkuserdishes() async {
-    final user = await FirebaseAuth.instance.currentUser();
+    final user =  FirebaseAuth.instance.currentUser;
     final userInfo =
-        await Firestore.instance.collection('users').document(user.uid).get();
+        await FirebaseFirestore.instance.collection('users').doc(user!.uid).get();
 
     if (userInfo['account'] == '') {
-      final dishesData = await Firestore.instance
+      final dishesData = await FirebaseFirestore.instance
           .collection('dishInfo')
-          .where('userId', isEqualTo: user.uid)
-          .getDocuments();
+          .where('userId', isEqualTo: user!.uid)
+          .get();
       isAdmin = false;
       return dishesData;
     } else if (userInfo['account'] == 'admin') {
-      final dishesData = await Firestore.instance
+      final dishesData = await FirebaseFirestore.instance
           .collection('dishInfo')
           .where('status', isEqualTo: 'PENDING')
-          .getDocuments();
+          .get();
       isAdmin = true;
       return dishesData;
     }

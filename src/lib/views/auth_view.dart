@@ -16,6 +16,10 @@ class _AuthViewState extends State<AuthView> {
   final _auth = FirebaseAuth.instance;
   var _isLoading = false;
 
+  get  authResult => {};
+
+  set authResult(authResult) {}
+
   void _submitAuthForm(
     String email,
     String password,
@@ -23,7 +27,7 @@ class _AuthViewState extends State<AuthView> {
     bool isLogin,
     BuildContext ctx,
   ) async {
-    AuthResult authResult;
+    authResult;
 
     try {
       setState(() {
@@ -39,10 +43,10 @@ class _AuthViewState extends State<AuthView> {
           email: email,
           password: password,
         );
-        await Firestore.instance
+        await FirebaseFirestore.instance
             .collection('users')
-            .document(authResult.user.uid)
-            .setData(
+            .doc(authResult.user.uid)
+            .set(
                 {'username': username, 'email': email, 'allFavorites': [],
                   'account':''});
       }
@@ -50,10 +54,10 @@ class _AuthViewState extends State<AuthView> {
       var message = 'An error occurred, pelase check your credentials!';
 
       if (err.message != null) {
-        message = err.message;
+        message = err.message!;
       }
 
-      Scaffold.of(ctx).showSnackBar(
+      ScaffoldMessenger.of(ctx).showSnackBar(
         SnackBar(
           content: Text(message),
           backgroundColor: Theme.of(ctx).errorColor,

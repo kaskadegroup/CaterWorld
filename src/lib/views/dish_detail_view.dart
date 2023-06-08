@@ -26,19 +26,19 @@ class DishDetailView extends StatefulWidget {
   bool isAdmin;
 
   DishDetailView(
-      {Key key,
-      @required this.title,
-      @required this.cuisine,
-      @required this.dishStory,
-      @required this.dishId,
-      @required this.isFavorite,
-      @required this.ingredients,
-      @required this.isVeg,
-      @required this.dishUrl,
-      @required this.status,
-      @required this.isStatus,
-      @required this.isLogin,
-      @required this.isAdmin})
+      { key,
+      required this.title,
+      required this.cuisine,
+      required this.dishStory,
+      required this.dishId,
+      required this.isFavorite,
+      required this.ingredients,
+      required this.isVeg,
+      required this.dishUrl,
+      required this.status,
+      required this.isStatus,
+      required this.isLogin,
+      required this.isAdmin})
       : super(key: key);
 
   @override
@@ -55,10 +55,10 @@ class _DishDetailViewState extends State<DishDetailView> {
   final _currentPageNotifier = ValueNotifier<int>(0);
 
   void _likedThis() async {
-    final user = await FirebaseAuth.instance.currentUser();
-    final userData = Firestore.instance.collection('users').document(user.uid);
+    final user = FirebaseAuth.instance.currentUser;
+    final userData = FirebaseFirestore.instance.collection('users').doc(user!.uid);
     if (widget.isFavorite == false) {
-      userData.updateData({
+      userData.update({
         "allFavorites": FieldValue.arrayUnion([widget.dishId])
       });
 
@@ -66,7 +66,7 @@ class _DishDetailViewState extends State<DishDetailView> {
         widget.isFavorite = true;
       });
     } else {
-      userData.updateData({
+      userData.update({
         "allFavorites": FieldValue.arrayRemove([widget.dishId])
       });
 
@@ -91,10 +91,10 @@ class _DishDetailViewState extends State<DishDetailView> {
   }
 
   void approveDish() {
-    Firestore.instance
+    FirebaseFirestore.instance
         .collection('dishInfo')
-        .document(widget.dishId)
-        .updateData({'status': "APPROVED"});
+        .doc(widget.dishId)
+        .update({'status': "APPROVED"});
   }
 
   @override
