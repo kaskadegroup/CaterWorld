@@ -65,7 +65,7 @@ class GetUserDishes extends StatelessWidget {
                       return Container(
                         child: Text(userDishesSnapshot.error.toString()),
                       );
-                    final List userDishes = userDishesSnapshot.data.documents;
+                    final List userDishes = userDishesSnapshot.data.docs;
                     if (userDishes.isEmpty) {
                       return Center(
                           child: Text("You have not uploaded any dishes"));

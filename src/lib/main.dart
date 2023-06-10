@@ -27,25 +27,8 @@ class _MyAppState extends State<MyApp> {
   // final Future<FirebaseApp> _initialization = Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform,);
   @override
   Widget build(BuildContext context) {
-    return StreamBuilder(
-        // future: _initialization,
-        stream: FirebaseFirestore.instance.collection('dishInfo').snapshots(),
-        builder: (context, appSnapshot) {
-          return MaterialApp(
-            home: StreamBuilder(
-                stream: FirebaseAuth.instance.authStateChanges(),
-                builder: (ctx, userSnapshot) {
-                  if (userSnapshot.hasData) {
-                    return NavBar();
-                  }
-                  return AuthView();
-                }),
-          );
-        });
+    return MaterialApp(
+      home: NavBar(),
+    );
   }
-  // Widget build(BuildContext context) {
-  //   return MaterialApp(
-  //     home: NavBar(),
-  //   );
-  //}
 }
