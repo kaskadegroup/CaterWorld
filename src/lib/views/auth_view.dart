@@ -16,10 +16,6 @@ class _AuthViewState extends State<AuthView> {
   final _auth = FirebaseAuth.instance;
   var _isLoading = false;
 
-  get  authResult => {};
-
-  set authResult(authResult) {}
-
   void _submitAuthForm(
     String email,
     String password,
@@ -27,31 +23,30 @@ class _AuthViewState extends State<AuthView> {
     bool isLogin,
     BuildContext ctx,
   ) async {
-    authResult;
 
     try {
       setState(() {
         _isLoading = true;
       });
       if (isLogin) {
-        authResult = await _auth.signInWithEmailAndPassword(
+        final authResult = await _auth.signInWithEmailAndPassword(
           email: email,
           password: password,
         );
       } else {
-        authResult = await _auth.createUserWithEmailAndPassword(
+        final authResult = await _auth.createUserWithEmailAndPassword(
           email: email,
           password: password,
         );
         await FirebaseFirestore.instance
             .collection('users')
-            .doc(authResult.user.uid)
+            .doc(authResult.user?.uid)
             .set(
                 {'username': username, 'email': email, 'allFavorites': [],
                   'account':''});
       }
     } on PlatformException catch (err) {
-      var message = 'An error occurred, pelase check your credentials!';
+      var message = 'An error occurred, please check your credentials!';
 
       if (err.message != null) {
         message = err.message!;

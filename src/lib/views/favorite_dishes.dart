@@ -52,7 +52,7 @@ class _FavoriteDishesState extends State<FavoriteDishes> {
                         if (dishInfoSnapshot.hasError)
                           return Container(
                               child: Text(dishInfoSnapshot.error.toString()));
-                        final List dishInfo = dishInfoSnapshot.data.documents;
+                        final List dishInfo = dishInfoSnapshot.data.docs;
                         if (dishInfo.isEmpty) {
                           return Center(child: Text("You have no Favorites"));
                         }
