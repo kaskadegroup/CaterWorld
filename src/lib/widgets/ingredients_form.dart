@@ -91,7 +91,7 @@ class _IngredientsFormState extends State<IngredientsForm> {
                       ? Text("+")
                       : Text("-"),
                   style: ElevatedButton.styleFrom(
-                    primary: Color(0xFF787373),
+                    backgroundColor: Color(0xFF787373),
                     minimumSize: Size(10, 45),
                     enableFeedback: true,
                     textStyle: TextStyle(
@@ -132,7 +132,7 @@ class _IngredientsFormState extends State<IngredientsForm> {
                       _addRemoveRecipe(i == recipesList.length - 1, i),
                   child: i == (recipesList.length - 1) ? Text("+") : Text("-"),
                   style: ElevatedButton.styleFrom(
-                    primary: Color(0xFF787373),
+                    backgroundColor: Color(0xFF787373),
                     enableFeedback: true,
                     minimumSize: Size(10, 45),
                     textStyle: TextStyle(
@@ -193,7 +193,7 @@ class _IngredientsFormState extends State<IngredientsForm> {
                   onPressed: () => Navigator.pop(context),
                   child: Text("Back"),
                   style: ElevatedButton.styleFrom(
-                    primary: Color(0xFF787373),
+                    backgroundColor: Color(0xFF787373),
                     minimumSize: Size(10, 50),
                     enableFeedback: true,
                     textStyle: TextStyle(
@@ -241,7 +241,7 @@ class _IngredientsFormState extends State<IngredientsForm> {
                   },
                   child: Text("Next"),
                   style: ElevatedButton.styleFrom(
-                    primary: Color(0xFF787373),
+                    backgroundColor: Color(0xFF787373),
                     minimumSize: Size(10, 50),
                     enableFeedback: true,
                     textStyle: TextStyle(

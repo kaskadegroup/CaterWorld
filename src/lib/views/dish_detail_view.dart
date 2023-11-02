@@ -1,5 +1,4 @@
 //import packages
-import 'dart:ui';
 import 'package:flutter_svg/svg.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -7,7 +6,6 @@ import 'package:page_view_indicators/page_view_indicators.dart';
 
 //import files
 import 'package:flutter/material.dart';
-import 'package:flutter/cupertino.dart';
 
 class DishDetailView extends StatefulWidget {
   static const routeName = '/views-screen';
