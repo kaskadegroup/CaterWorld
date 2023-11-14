@@ -1,14 +1,9 @@
 //import packages
 import 'package:flutter/material.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:toastea/views/add_ingredients.dart';
 
 //import files
 
-import '../server/upload_images.dart';
-import '../views/add_ingredients.dart';
 
 class NewDishForm extends StatefulWidget {
   @override
@@ -219,7 +214,7 @@ class _NewDishFormState extends State<NewDishForm> {
                     addIngredients(context);
                   },
                   style: ElevatedButton.styleFrom(
-                    primary: Color(0xFF787373),
+                    backgroundColor: Color(0xFF787373),
                     minimumSize: Size(10, 50),
                     enableFeedback: true,
                     textStyle: TextStyle(

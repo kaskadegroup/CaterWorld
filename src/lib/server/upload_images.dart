@@ -13,7 +13,7 @@ import '../views/nav_bar.dart';
 class MultiPicker extends StatefulWidget {
   final String dishId;
 
-  MultiPicker({ key, required this.dishId}) : super(key: key);
+  MultiPicker({key, required this.dishId}) : super(key: key);
 
   @override
   _MultiPickerState createState() => _MultiPickerState();
@@ -79,7 +79,7 @@ class _MultiPickerState extends State<MultiPicker> {
   // Add Url to Dish Document on Firebase
   addUrl(url) async {
     final ref =
-    FirebaseFirestore.instance.collection('dishInfo').doc(widget.dishId);
+        FirebaseFirestore.instance.collection('dishInfo').doc(widget.dishId);
     await ref.update({
       'dishUrl': FieldValue.arrayUnion([url])
     });
@@ -127,7 +127,7 @@ class _MultiPickerState extends State<MultiPicker> {
         child: Column(
           children: <Widget>[
             Center(
-              child: Text("Please select a minimum of images"),
+              child: Text("Please select a minimum of four images"),
             ),
             Expanded(
               child: GridView.count(

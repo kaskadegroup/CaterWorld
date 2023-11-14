@@ -16,7 +16,7 @@ class GetUserDishes extends StatelessWidget {
     if (userInfo['account'] == '') {
       final dishesData = await FirebaseFirestore.instance
           .collection('dishInfo')
-          .where('userId', isEqualTo: user!.uid)
+          .where('userId', isEqualTo: user.uid)
           .get();
       isAdmin = false;
       return dishesData;

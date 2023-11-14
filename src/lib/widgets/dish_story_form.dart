@@ -117,7 +117,7 @@ class _DishStoryFormState extends State<DishStoryForm> {
           onPressed: () => Navigator.pop(context),
           child: Text("Back"),
           style: ElevatedButton.styleFrom(
-            primary: Color(0xFF787373),
+            backgroundColor: Color(0xFF787373),
             minimumSize: Size(10, 50),
             enableFeedback: true,
             textStyle: TextStyle(
@@ -145,7 +145,7 @@ class _DishStoryFormState extends State<DishStoryForm> {
             },
             child: Text("Next"),
             style: ElevatedButton.styleFrom(
-              primary: Color(0xFF787373),
+              backgroundColor: Color(0xFF787373),
               minimumSize: Size(10, 50),
               enableFeedback: true,
               textStyle: TextStyle(

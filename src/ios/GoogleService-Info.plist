@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>817899666782-5rfr4no56cj9mebacu2o7icnv0agli44.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.817899666782-5rfr4no56cj9mebacu2o7icnv0agli44</string>
+	<key>API_KEY</key>
+	<string>AIzaSyAYGvSPo2lh29mdmKGoAJ7wdNnOBK_girg</string>
+	<key>GCM_SENDER_ID</key>
+	<string>817899666782</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.kaskadegroup.toastea</string>
+	<key>PROJECT_ID</key>
+	<string>toastea-eeb58</string>
+	<key>STORAGE_BUCKET</key>
+	<string>toastea-eeb58.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:817899666782:ios:ba131efd3638743f6ae3cf</string>
+</dict>
+</plist>

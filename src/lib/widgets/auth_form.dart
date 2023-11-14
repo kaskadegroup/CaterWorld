@@ -63,7 +63,7 @@ class _AuthFormState extends State<AuthForm> {
                     TextFormField(
                       key: ValueKey('email'),
                       validator: (value) {
-                        if (value!.isEmpty || !value!.contains('@')) {
+                        if (value!.isEmpty || !value.contains('@')) {
                           return 'Please enter a valid email address.';
                         }
                         return null;
@@ -80,7 +80,7 @@ class _AuthFormState extends State<AuthForm> {
                       TextFormField(
                         key: ValueKey('username'),
                         validator: (value) {
-                          if (value!.isEmpty || value!.length < 4) {
+                          if (value!.isEmpty || value.length < 4) {
                             return 'Please enter at least 4 characters';
                           }
                           return null;
@@ -93,7 +93,7 @@ class _AuthFormState extends State<AuthForm> {
                     TextFormField(
                       key: ValueKey('password'),
                       validator: (value) {
-                        if (value!.isEmpty || value!.length < 7) {
+                        if (value!.isEmpty || value.length < 7) {
                           return 'Password must be at least 7 characters long.';
                         }
                         return null;
