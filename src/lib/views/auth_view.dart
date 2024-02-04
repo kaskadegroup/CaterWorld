@@ -15,8 +15,9 @@ class AuthView extends StatefulWidget {
 class _AuthViewState extends State<AuthView> {
   final _auth = FirebaseAuth.instance;
   var _isLoading = false;
+  var _loginFailed = false;
 
-  void _submitAuthForm(
+  Future<bool> _submitAuthForm(
     String email,
     String password,
     String username,
@@ -45,6 +46,7 @@ class _AuthViewState extends State<AuthView> {
                 {'username': username, 'email': email, 'allFavorites': [],
                   'account':''});
       }
+      _loginFailed = false;
     } on PlatformException catch (err) {
       var message = 'An error occurred, please check your credentials!';
 
@@ -62,11 +64,20 @@ class _AuthViewState extends State<AuthView> {
         _isLoading = false;
       });
     } catch (err) {
-      print(err);
+      _loginFailed = true;
+      ScaffoldMessenger.of(ctx).showSnackBar(
+        SnackBar(
+          content: Text('An error occurred, please check your credentials!'),
+          backgroundColor: Theme.of(ctx).colorScheme.error,
+        ),
+      );
+
+
       setState(() {
         _isLoading = false;
       });
     }
+    return _loginFailed;
   }
 
   @override

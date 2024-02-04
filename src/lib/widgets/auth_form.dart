@@ -11,7 +11,7 @@ class AuthForm extends StatefulWidget {
   );
 
   final bool isLoading;
-  final void Function(
+  final Future<bool> Function(
     String email,
     String password,
     String userName,
@@ -29,19 +29,28 @@ class _AuthFormState extends State<AuthForm> {
   var _userEmail = '';
   var _userName = '';
   var _userPassword = '';
+  
 
-  void _trySubmit() {
+  void _trySubmit() async{
+    
     final isValid = _formKey.currentState!.validate();
     FocusScope.of(context).unfocus();
+    bool _loginFailed = false;
 
     if (isValid) {
       _formKey.currentState?.save();
-      widget.submitFn(_userEmail.trim(), _userPassword.trim(), _userName.trim(),
+
+      _loginFailed = await widget.submitFn(_userEmail.trim(), _userPassword.trim(), _userName.trim(),
           _isLogin, context);
-      Navigator.pushAndRemoveUntil(
+
+
+      if (!_loginFailed) {
+         Navigator.pushAndRemoveUntil(
           context,
           MaterialPageRoute(builder: (BuildContext context) => new NavBar()),
           (Route<dynamic> route) => false);
+      }
+     
     }
   }
 
