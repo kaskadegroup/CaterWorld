@@ -26,10 +26,10 @@ class IngredientsForm extends StatefulWidget {
 class _IngredientsFormState extends State<IngredientsForm> {
   final newIngKey = GlobalKey<FormState>();
   TextEditingController nameController = TextEditingController();
-  static List<String> ingredientsNameList = [];
-  static List<String> ingredientsqtyList = [];
-  static List<String> ingredientsUnitList = [];
-  static List<String> recipesList = [];
+  static List<String> ingredientsNameList = [''];
+  static List<String> ingredientsqtyList = [''];
+  static List<String> ingredientsUnitList = [''];
+  static List<String> recipesList = [''];
 
   static Map<String, Map<String, String>> ingredientsList = {};
 
