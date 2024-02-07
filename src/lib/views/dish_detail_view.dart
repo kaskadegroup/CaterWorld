@@ -22,6 +22,7 @@ class DishDetailView extends StatefulWidget {
   final status;
   bool isLogin;
   bool isAdmin;
+  final List dishRecipe;
 
   DishDetailView(
       { key,
@@ -36,7 +37,8 @@ class DishDetailView extends StatefulWidget {
       required this.status,
       required this.isStatus,
       required this.isLogin,
-      required this.isAdmin})
+      required this.isAdmin,
+      required this.dishRecipe})
       : super(key: key);
 
   @override
@@ -86,6 +88,15 @@ class _DishDetailViewState extends State<DishDetailView> {
           '\n';
     }
     return ingredientsStr;
+  }
+
+  String formatRecipe(List<dynamic> recipes) {
+    String formattedRecipe = '';
+    for (var recipe in recipes) {
+      formattedRecipe += '* ' + recipe + '\n';
+
+    }
+    return formattedRecipe;
   }
 
   void approveDish() {
@@ -251,6 +262,27 @@ class _DishDetailViewState extends State<DishDetailView> {
                         fontWeight: FontWeight.w500,
                         color: Color.fromRGBO(120, 115, 115, 1),
                       ),
+                    ),
+                    Text(
+                      "Recipe",
+                      style: TextStyle(
+                        fontSize: 17,
+                        fontFamily: '.SF Pro Display',
+                        fontWeight: FontWeight.w500,
+                        color: Color.fromRGBO(120, 115, 115, 1),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(bottom: 5),
+                    ),
+                    Text(
+                      formatRecipe(widget.dishRecipe),
+                        style: TextStyle(
+                          fontSize: 17,
+                          fontFamily: '.SF Pro Display',
+                          fontWeight: FontWeight.w500,
+                          color: Color.fromRGBO(120, 115, 115, 1),
+                        ),
                     ),
                     Text(
                       "Story Behind This Dish",
