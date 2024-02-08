@@ -54,6 +54,7 @@ class _GetDishDataState extends State<GetDishData> {
                                 isFavorite: false,
                                 isLogin: false,
                                 isAdmin: false,
+                                dishRecipe: dishInfo[index]['dishRecipe']
                               ));
                     } else {
                       return FutureBuilder(
@@ -92,6 +93,7 @@ class _GetDishDataState extends State<GetDishData> {
                                               dishInfo[index]['dishId']),
                                           isLogin: true,
                                           isAdmin: false,
+                                          dishRecipe: dishInfo[index]['dishRecipe']
                                         ));
                             }
                           });

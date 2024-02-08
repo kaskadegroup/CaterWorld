@@ -85,6 +85,7 @@ class GetUserDishes extends StatelessWidget {
                               status: userDishes[index]['status'],
                               isLogin: true,
                               isAdmin: isAdmin,
+                              dishRecipe: userDishes[index]['dishRecipe']
                             ));
                 }
               }),

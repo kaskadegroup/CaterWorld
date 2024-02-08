@@ -15,6 +15,7 @@ class DishCard extends StatefulWidget {
   final Map<String, dynamic> ingredients;
   final bool isVeg;
   final String status;
+  final List dishRecipe;
   bool isStatus;
   bool isFavorite;
   bool isLogin;
@@ -34,6 +35,7 @@ class DishCard extends StatefulWidget {
     required this.isFavorite,
     required this.isLogin, // do not use except for like screen for now
     required this.isAdmin,
+    required this.dishRecipe
   });
 
   @override
@@ -67,6 +69,7 @@ class _DishCardState extends State<DishCard> {
                   status: widget.status,
                   isLogin: widget.isLogin,
                   isAdmin: widget.isAdmin,
+                  dishRecipe: widget.dishRecipe
                 )));
 
     setState(() {
