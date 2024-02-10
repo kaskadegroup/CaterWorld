@@ -49,11 +49,13 @@ class _DishStoryFormState extends State<DishStoryForm> {
   }
 
   void _trySubmit(String dishStory) async {
-    final user =  FirebaseAuth.instance.currentUser;
-    final userData =
-        await FirebaseFirestore.instance.collection('users').doc(user!.uid).get();
+    final user = FirebaseAuth.instance.currentUser;
+    final userData = await FirebaseFirestore.instance
+        .collection('users')
+        .doc(user!.uid)
+        .get();
     DocumentReference documentReference =
-    FirebaseFirestore.instance.collection('dishInfo').doc();
+        FirebaseFirestore.instance.collection('dishInfo').doc();
     documentReference.set({
       'dishCat': widget.dishCuisine,
       'dishName': widget.dishName,
@@ -110,53 +112,55 @@ class _DishStoryFormState extends State<DishStoryForm> {
             },
           ),
         ),
-        Row(children: [
-        Padding(
-        padding: EdgeInsets.only(left:70,right: 10, top: 100),
-        child:ElevatedButton(
-          onPressed: () => Navigator.pop(context),
-          child: Text("Back"),
-          style: ElevatedButton.styleFrom(
-            backgroundColor: Color(0xFF787373),
-            minimumSize: Size(10, 50),
-            enableFeedback: true,
-            textStyle: TextStyle(
-              fontSize: 18,
-              fontFamily: '.SF Pro Display',
-              fontWeight: FontWeight.w500,
-              color: Color(0xDBDAD6),
-            ),
-          ),
-        ),),
-
-    Padding(
-    padding: EdgeInsets.only(left: 100, right: 20, top: 100),
-    child:ElevatedButton(
-            onPressed: () {
-              if (newStoryKey.currentState!.validate()) {
-                newStoryKey.currentState?.save();
-                _trySubmit(dishStory);
-              }
-              
-
-              widget.newDishKey.currentState?.reset();
-              widget.newIngKey.currentState?.reset();
-              // widget.ingController.clear();
-              newStoryKey.currentState?.reset();
-            },
-            child: Text("Next"),
-            style: ElevatedButton.styleFrom(
-              backgroundColor: Color(0xFF787373),
-              minimumSize: Size(10, 50),
-              enableFeedback: true,
-              textStyle: TextStyle(
-                fontSize: 18,
-                fontFamily: '.SF Pro Display',
-                fontWeight: FontWeight.w500,
-                color: Color(0xDBDAD6),
+        Row(
+          children: [
+            Padding(
+              padding: EdgeInsets.only(left: 70, right: 10, top: 100),
+              child: ElevatedButton(
+                onPressed: () => Navigator.pop(context),
+                child: Text("Back"),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Color(0xFF787373),
+                  minimumSize: Size(10, 50),
+                  enableFeedback: true,
+                  textStyle: TextStyle(
+                    fontSize: 18,
+                    fontFamily: '.SF Pro Display',
+                    fontWeight: FontWeight.w500,
+                    color: Color(0xDBDAD6),
+                  ),
+                ),
               ),
             ),
-          ),),],)
+            Padding(
+              padding: EdgeInsets.only(left: 100, right: 20, top: 100),
+              child: ElevatedButton(
+                onPressed: () {
+                  if (newStoryKey.currentState!.validate()) {
+                    newStoryKey.currentState?.save();
+                    _trySubmit(dishStory);
+                    widget.newDishKey.currentState?.reset();
+                    widget.newIngKey.currentState?.reset();
+                    // widget.ingController.clear();
+                    newStoryKey.currentState?.reset();
+                  }
+                },
+                child: Text("Next"),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Color(0xFF787373),
+                  minimumSize: Size(10, 50),
+                  enableFeedback: true,
+                  textStyle: TextStyle(
+                    fontSize: 18,
+                    fontFamily: '.SF Pro Display',
+                    fontWeight: FontWeight.w500,
+                    color: Color(0xDBDAD6),
+                  ),
+                ),
+              ),
+            ),
+          ],
+        )
       ],
     );
   }
