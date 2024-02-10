@@ -26,10 +26,10 @@ class IngredientsForm extends StatefulWidget {
 class _IngredientsFormState extends State<IngredientsForm> {
   final newIngKey = GlobalKey<FormState>();
   TextEditingController nameController = TextEditingController();
-  static List<String> ingredientsNameList = [''];
-  static List<String> ingredientsqtyList = [''];
-  static List<String> ingredientsUnitList = [''];
-  static List<String> recipesList = [''];
+  List<String> ingredientsNameList = [''];
+  List<String> ingredientsqtyList = [''];
+  List<String> ingredientsUnitList = [''];
+  List<String> recipesList = [''];
 
   static Map<String, Map<String, String>> ingredientsList = {};
 
@@ -209,9 +209,7 @@ class _IngredientsFormState extends State<IngredientsForm> {
                 padding: EdgeInsets.only(left: 100, right: 20, top: 100),
                 child: ElevatedButton(
                   onPressed: () {
-                    if (newIngKey.currentState!.validate()) {
-                      newIngKey.currentState?.save();
-                    }
+                    
 
                     for (int i = 0; i < ingredientsNameList.length; i++) {
                       ingredientsList[ingredientsNameList[i].toString()] = {
@@ -220,7 +218,9 @@ class _IngredientsFormState extends State<IngredientsForm> {
                       };
                     }
 
-                    Navigator.push(
+                    if (newIngKey.currentState!.validate()) {
+                      newIngKey.currentState?.save();
+                                          Navigator.push(
                       context,
                       MaterialPageRoute(
                         builder: (context) => DishStory(
@@ -236,8 +236,11 @@ class _IngredientsFormState extends State<IngredientsForm> {
                         ),
                       ),
                     );
-                    newIngKey.currentState?.reset();
+                    // newIngKey.currentState?.reset();
                     nameController.clear();
+                    }
+
+
                   },
                   child: Text("Next"),
                   style: ElevatedButton.styleFrom(

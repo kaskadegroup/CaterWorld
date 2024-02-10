@@ -135,11 +135,12 @@ class _DishStoryFormState extends State<DishStoryForm> {
             onPressed: () {
               if (newStoryKey.currentState!.validate()) {
                 newStoryKey.currentState?.save();
+                _trySubmit(dishStory);
               }
-              _trySubmit(dishStory);
+              
 
               widget.newDishKey.currentState?.reset();
-              // widget.newIngKey.currentState.reset();
+              widget.newIngKey.currentState?.reset();
               // widget.ingController.clear();
               newStoryKey.currentState?.reset();
             },
