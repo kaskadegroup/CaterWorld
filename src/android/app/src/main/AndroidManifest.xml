@@ -8,7 +8,7 @@
     <application
         android:name="${applicationName}"
         android:label="toastea"
-        android:icon="@mipmap/ic_launcher">
+        android:icon="@mipmap/icon">
         <meta-data
             android:name="flutterEmbedding"
             android:value="2" />
