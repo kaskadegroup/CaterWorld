@@ -1,6 +1,7 @@
 //import packages
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:toastea/views/my_account.dart';
 
 // import files
 import 'get_user_dishes.dart';
@@ -15,6 +16,11 @@ class UserSettings extends StatelessWidget {
   void goToAuth(BuildContext context) {
     Navigator.push(
         context, MaterialPageRoute(builder: (context) => AuthView()));
+  }
+
+  void goToAccount(BuildContext context) {
+    Navigator.push(
+        context, MaterialPageRoute(builder: (context) => MyAccount()));
   }
 
   @override
@@ -37,13 +43,21 @@ class UserSettings extends StatelessWidget {
                 return ListView(
                   children: <Widget>[
                     Card(
-                      child: ListTile(
-                        title: Text('My dishes'),
-                        onTap: () => getUserDishes(context),
-                        trailing: Icon(Icons.arrow_forward_ios),
-                        tileColor: Color.fromRGBO(252, 252, 246, 0.5),
-                      ),
-                    ),
+                        child: ListTile(
+                          title: Text('My dishes'),
+                          onTap: () => getUserDishes(context),
+                          trailing: Icon(Icons.arrow_forward_ios),
+                          tileColor: Color.fromRGBO(252, 252, 246, 0.5),
+                        ),
+                        margin: EdgeInsetsDirectional.fromSTEB(5, 5, 5, 25)),
+                    Card(
+                        child: ListTile(
+                          title: Text('My Account'),
+                          onTap: () => goToAccount(context),
+                          trailing: Icon(Icons.arrow_forward_ios),
+                          tileColor: Color.fromRGBO(252, 252, 246, 0.5),
+                        ),
+                        margin: EdgeInsetsDirectional.fromSTEB(5, 5, 5, 25)),
                     Card(
                       child: ListTile(
                         title: Text('Sign out'),
