@@ -52,7 +52,7 @@ class UserSettings extends StatelessWidget {
                         margin: EdgeInsetsDirectional.fromSTEB(5, 5, 5, 25)),
                     Card(
                         child: ListTile(
-                          title: Text('My Account'),
+                          title: Text('Account'),
                           onTap: () => goToAccount(context),
                           trailing: Icon(Icons.arrow_forward_ios),
                           tileColor: Color.fromRGBO(252, 252, 246, 0.5),

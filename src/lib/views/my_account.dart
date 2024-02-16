@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/cupertino.dart';
 
 // import files
 import 'get_user_dishes.dart';
@@ -16,8 +17,31 @@ class MyAccount extends StatelessWidget {
     Navigator.pushAndRemoveUntil(
         context,
         MaterialPageRoute(builder: (BuildContext context) => new NavBar()),
-            (Route<dynamic> route) => false);
+        (Route<dynamic> route) => false);
+  }
 
+  void _showAlertDialog(BuildContext context) {
+    showCupertinoModalPopup<void>(
+      context: context,
+      builder: (BuildContext context) => CupertinoAlertDialog(
+        title: const Text('Delete'),
+        content: const Text('Are you sure ?'),
+        actions: <CupertinoDialogAction>[
+          CupertinoDialogAction(
+            isDefaultAction: true,
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            child: const Text('No'),
+          ),
+          CupertinoDialogAction(
+            isDestructiveAction: true,
+            onPressed: () => _deleteAccount(context),
+            child: const Text('Yes'),
+          ),
+        ],
+      ),
+    );
   }
 
   @override
@@ -43,7 +67,7 @@ class MyAccount extends StatelessWidget {
         child: Center(
           child: ElevatedButton(
             child: Text('Delete Account'),
-            onPressed: () => _deleteAccount(context),
+            onPressed: () => _showAlertDialog(context),
           ),
         ),
         decoration: BoxDecoration(
