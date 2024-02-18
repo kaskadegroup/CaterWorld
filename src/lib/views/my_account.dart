@@ -1,17 +1,31 @@
 //import packages
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 
 // import files
-import 'get_user_dishes.dart';
-import '../views/auth_view.dart';
 import 'nav_bar.dart';
 
 class MyAccount extends StatelessWidget {
   Future _deleteAccount(context) async {
     final user = FirebaseAuth.instance.currentUser;
+    final userPersonalData =
+        FirebaseFirestore.instance.collection('users').doc(user?.uid);
+    await FirebaseFirestore.instance
+        .collection('dishInfo')
+        .where('userId', isEqualTo: user?.uid)
+        .get()
+        .then((querySnapshot) {
+      for (var docSnapshot in querySnapshot.docs) {
+        FirebaseFirestore.instance
+            .collection('dishInfo')
+            .doc(docSnapshot.id)
+            .delete();
+      }
+    });
+
+    await userPersonalData.delete();
     await user?.delete();
 
     Navigator.pushAndRemoveUntil(
@@ -25,7 +39,7 @@ class MyAccount extends StatelessWidget {
       context: context,
       builder: (BuildContext context) => CupertinoAlertDialog(
         title: const Text('Delete'),
-        content: const Text('Are you sure ?'),
+        content: const Text('This will also delete all your dishes!'),
         actions: <CupertinoDialogAction>[
           CupertinoDialogAction(
             isDefaultAction: true,
