@@ -58,6 +58,15 @@ class MyAccount extends StatelessWidget {
     );
   }
 
+  Future _getUserInfo() async {
+    final user = FirebaseAuth.instance.currentUser;
+    final userInfo = await FirebaseFirestore.instance
+        .collection('users')
+        .doc(user!.uid)
+        .get();
+    return userInfo;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -77,27 +86,77 @@ class MyAccount extends StatelessWidget {
         backgroundColor: Colors.white,
         elevation: 0,
       ),
-      body: Container(
-        child: Center(
-          child: ElevatedButton(
-            child: Text('Delete Account'),
-            onPressed: () => _showAlertDialog(context),
-          ),
-        ),
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter,
-              colors: [
-                const Color(0xFFFFFFFF),
-                const Color(0xFFF7F0DD),
-              ],
-              stops: [
-                0,
-                1
-              ]),
-        ),
-      ),
+      body: FutureBuilder(
+          future: _getUserInfo(),
+          builder: (ctx, userInfoSnapshot) {
+            return Container(
+              child: Column(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(
+                      bottom: 25,
+                    ),
+                    child: Center(
+                      child: Icon(
+                        Icons.account_circle_sharp,
+                        size: 90,
+                        color: Colors.grey,
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 25),
+                    child: Center(child:
+                    // userInfoSnapshot.data['email']
+                        Text(
+                          'User Name: ${userInfoSnapshot.data['username']}',
+                          style: TextStyle(
+                            fontSize: 18,
+                            fontFamily: '.SF Pro Display',
+                            fontWeight: FontWeight.w500,
+                            color: Color.fromRGBO(120, 115, 115, 1),
+                          ),
+                        ),
+                        ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 10),
+                    child: Center(
+                      child: Text(
+                        'Email: ${userInfoSnapshot.data['email']}',
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontFamily: '.SF Pro Display',
+                          fontWeight: FontWeight.w500,
+                          color: Color.fromRGBO(120, 115, 115, 1),
+                        ),
+                      ),
+                    ),
+                  ),
+                  Center(
+                    child: CupertinoButton(
+                      child: Text('Delete Account'),
+                      onPressed: () => _showAlertDialog(context),
+                      // pressedOpacity: 0.2,
+                    ),
+                  ),
+                ],
+              ),
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                    colors: [
+                      const Color(0xFFFFFFFF),
+                      const Color(0xFFF7F0DD),
+                    ],
+                    stops: [
+                      0,
+                      1
+                    ]),
+              ),
+            );
+          }),
     );
   }
 }
